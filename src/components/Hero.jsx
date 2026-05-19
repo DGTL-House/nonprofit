@@ -184,7 +184,7 @@ export default function Hero() {
                 </div>
               </AnimItem>
               {/* CTAs */}
-              <AnimItem variant={scaleIn}>
+              <AnimItem variant={scaleIn} className="lg:hidden">
                 <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
                   <a
                     href="#opportunity"

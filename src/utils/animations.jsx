@@ -47,10 +47,10 @@ export const slideRight = {
 };
 
 // Animated section wrapper
-export function AnimSection({ children, className = "" }) {
+export function AnimSection({ children, className = "", skipInitial = false }) {
   return (
     <motion.div
-      initial="hidden"
+      initial={skipInitial ? "visible" : "hidden"}
       whileInView="visible"
       viewport={{ once: true, amount: 0.12 }}
       variants={staggerContainer}
