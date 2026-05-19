@@ -37,7 +37,7 @@ const pains = [
 
 export default function Problem() {
   return (
-    <section className="relative pt-0 pb-8 sm:pb-32 overflow-hidden">
+    <section className="relative pt-0 pb-8 sm:pb-12 overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -107,8 +107,6 @@ export default function Problem() {
           </AnimItem>{" "}
         </AnimSection>
       </div>
-
-      <div className="section-divider mx-auto max-w-6xl" />
     </section>
   );
 }

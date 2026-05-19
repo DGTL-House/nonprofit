@@ -1,16 +1,52 @@
-# React + Vite
+# nonprofit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Лендинг на React + Vite + Tailwind CSS.
 
-Currently, two official plugins are available:
+## Требования
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Node.js](https://nodejs.org/) версии 18 и выше
+- npm (входит в состав Node.js)
 
-## React Compiler
+## Установка зависимостей
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+## Запуск в режиме разработки
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+Откроет локальный сервер по адресу `http://localhost:5173` с горячей перезагрузкой (HMR).
+
+## Сборка для продакшена
+
+```bash
+npm run build
+```
+
+Собранные файлы будут помещены в папку `dist/`.
+
+## Предпросмотр собранной версии
+
+```bash
+npm run preview
+```
+
+Запускает локальный сервер для проверки продакшен-сборки из папки `dist/`.
+
+## Линтинг
+
+```bash
+npm run lint
+```
+
+## Стек
+
+- [React 19](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lucide React](https://lucide.dev/)

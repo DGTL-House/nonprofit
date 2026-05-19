@@ -99,7 +99,7 @@ export default function Credibility() {
   return (
     <section
       id="credibility"
-      className="relative py-8 sm:py-20 overflow-hidden"
+      className="relative py-8 sm:py-16 overflow-hidden"
     >
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/6 rounded-full blur-[140px] pointer-events-none" />
 
@@ -118,18 +118,16 @@ export default function Credibility() {
 
         {/* Clutch badge */}
         <div className="flex justify-center mb-4">
-          <a href="https://clutch.co" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/icons/poweredCluch.png"
-              alt="Clutch"
-              width="200"
-              className="opacity-80 group-hover:opacity-100 transition-opacity"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "inline";
-              }}
-            />
-          </a>
+          <img
+            src="/icons/poweredCluch.png"
+            alt="Clutch — Top Rated Google Ad Grants Agency"
+            width="200"
+            className="opacity-80 group-hover:opacity-100 transition-opacity"
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "inline";
+            }}
+          />
         </div>
 
         {/* Testimonials */}
@@ -255,8 +253,6 @@ export default function Credibility() {
           </AnimItem>
         </AnimSection>
       </div>
-
-      {/* <div className="section-divider mx-auto max-w-6xl mt-16" /> */}
     </section>
   );
 }

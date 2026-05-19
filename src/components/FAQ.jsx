@@ -112,7 +112,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative py-8 sm:py-32 overflow-hidden bg-[#f0eee6]/60"
+      className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/60"
     >
       <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
 
@@ -142,8 +142,6 @@ export default function FAQ() {
           </AnimItem>
         </AnimSection>
       </div>
-
-      <div className="section-divider mx-auto max-w-6xl mt-16" />
     </section>
   );
 }

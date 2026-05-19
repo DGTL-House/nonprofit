@@ -1,15 +1,5 @@
-import { motion } from "framer-motion";
+import { Clock, BadgeCheck, Star, Lock } from "lucide-react";
 import {
-  ShieldCheck,
-  Clock,
-  BadgeCheck,
-  ChevronRight,
-  Star,
-  Users,
-  Lock,
-} from "lucide-react";
-import {
-  staggerContainer,
   fadeUp,
   fadeIn,
   scaleIn,
@@ -44,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-12 pb-2 bg-[#ffffff]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-12 pb-16 sm:pb-20 bg-[#ffffff]"
     >
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <AnimSection>
@@ -93,17 +83,22 @@ export default function Hero() {
                 <div className="w-full max-w-sm mx-auto lg:max-w-none lg:h-full">
                   <img
                     src="/home-img.webp"
-                    alt="Nonprofit volunteers"
+                    alt="Nonprofit volunteers working with Google Ad Grants"
+                    width="920"
+                    height="614"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
                   />
                 </div>
               </AnimItem>
 
-              {/* h1 + p */}
+              {/* h1 + p + CTA */}
               <div className="flex-1 min-w-0 flex flex-col justify-center">
                 {/* Main headline */}
                 <AnimItem variant={fadeUp}>
-                  <h1 className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-black leading-[1.08] tracking-tight mb-6 text-center lg:text-left">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-6 text-center lg:text-left">
                     <span className="text-[#161514]">
                       Get a Free $10,000/Month Google Grant for Your Nonprofit —
                       Guaranteed.
@@ -113,11 +108,23 @@ export default function Hero() {
 
                 {/* Subheadline */}
                 <AnimItem variant={fadeUp}>
-                  <p className="text-base sm:text-lg lg:text-2xl text-[#52504C] leading-relaxed text-center lg:text-left">
+                  <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-6">
                     We handle Google Ad Grants end-to-end — so more donors,
                     volunteers, and partners find you. At $0 ad spend.{" "}
                     <strong className="text-[#52504C]">$0 ad spend.</strong>
                   </p>
+                </AnimItem>
+
+                {/* Primary CTA */}
+                <AnimItem variant={scaleIn}>
+                  <div className="flex justify-center lg:justify-start">
+                    <a
+                      href="#contact-form"
+                      className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
+                    >
+                      Check My Eligibility →
+                    </a>
+                  </div>
                 </AnimItem>
               </div>
             </div>
@@ -163,32 +170,18 @@ export default function Hero() {
               {/* CTAs */}
               <AnimItem variant={scaleIn}>
                 <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
-                  <button
-                    onClick={scrollToEligibility}
-                    className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
-                  >
-                    Check My Eligibility →
-                  </button>
-                  <button
-                    onClick={() =>
-                      document
-                        .querySelector("#opportunity")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
+                  <a
+                    href="#opportunity"
                     className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"
                   >
                     See How It Works
-                  </button>
-                  <button
-                    onClick={() =>
-                      document
-                        .querySelector("#credibility")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
+                  </a>
+                  <a
+                    href="#credibility"
                     className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"
                   >
                     View Case Studies
-                  </button>
+                  </a>
                 </div>
               </AnimItem>
               {/* Supporting micro-copy */}

@@ -224,11 +224,11 @@ export default function Opportunity() {
   return (
     <section
       id="opportunity"
-      className="relative pt-16 pb-24 sm:pb-32 overflow-hidden scroll-mt-[100px]"
+      className="relative py-16 sm:py-24 overflow-hidden scroll-mt-[100px]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Phone mockup demo — left, h2+p — right */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-20">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
             <motion.p
@@ -261,12 +261,9 @@ export default function Opportunity() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center lg:text-left leading-tight mb-6">
               $10,000/Month. Every Month. Already Yours If You Qualify.
             </h2>
-            <p className="text-slate-300 text-center lg:text-left text-base sm:text-2xl mb-10 leading-relaxed">
+            <p className="text-slate-300 text-center lg:text-left text-base sm:text-2xl mb-8 leading-relaxed">
               Google gives eligible nonprofits{" "}
-              <strong className="text-white">
-                up to $10,000/month +1 in free search ads
-              </strong>{" "}
-              — so you show up first when people look for what you do.
+              <strong className="text-white">up to $10,000/month</strong>{" "}
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
@@ -284,7 +281,7 @@ export default function Opportunity() {
         </div>
 
         {/* Two column layout */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 mb-8">
           {/* Left: Search queries visual */}
           <motion.div
             initial="hidden"
@@ -414,7 +411,7 @@ export default function Opportunity() {
               </div>
             </div>
           </AnimItem>
-          <div className="flex justify-center mb-8 mt-8">
+          <div className="flex justify-center mt-8">
             <button
               onClick={scrollToEligibility}
               className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
@@ -424,8 +421,6 @@ export default function Opportunity() {
           </div>
         </AnimSection>
       </div>
-
-      <div className="section-divider mx-auto max-w-6xl mt-16" />
     </section>
   );
 }

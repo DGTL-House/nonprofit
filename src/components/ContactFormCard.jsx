@@ -1,6 +1,9 @@
 export default function ContactFormCard() {
   return (
-    <section id="contact-form" className="py-20 bg-gray-50 scroll-mt-24">
+    <section
+      id="contact-form"
+      className="py-8 sm:py-16 bg-gray-50 scroll-mt-24"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="bg-[#ffffff] rounded-3xl border border-gray-100 p-6 sm:p-10">
           <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-xs font-semibold px-4 py-1.5 rounded-full mb-5">

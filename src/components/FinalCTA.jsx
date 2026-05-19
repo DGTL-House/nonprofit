@@ -13,10 +13,7 @@ const guarantees = [
 
 export default function FinalCTA() {
   return (
-    <section
-      id="contact"
-      className="relative pt-10 sm:pt-14 pb-10 sm:pb-16 overflow-hidden"
-    >
+    <section id="contact" className="relative py-8 sm:py-16 overflow-hidden">
       {/* Dramatic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.05] to-transparent pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] pointer-events-none" />
@@ -32,7 +29,11 @@ export default function FinalCTA() {
             <div className="w-full max-w-sm mx-auto lg:max-w-none lg:h-full">
               <img
                 src="/slide_2.webp"
-                alt="Nonprofit team"
+                alt="Nonprofit team getting Google Ad Grants results"
+                width="920"
+                height="614"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
               />
             </div>

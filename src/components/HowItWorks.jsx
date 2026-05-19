@@ -49,7 +49,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative py-14 sm:py-32 overflow-hidden bg-[#f0eee6]/60"
+      className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/60"
     >
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-blue-500/6 rounded-full blur-[140px] pointer-events-none" />
@@ -157,7 +157,6 @@ export default function HowItWorks() {
           Check My Eligibility →
         </button>
       </div>
-      <div className="section-divider mx-auto max-w-6xl mt-16" />
     </section>
   );
 }

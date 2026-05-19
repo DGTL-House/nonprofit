@@ -9,8 +9,7 @@ export default function WhatIsGrants() {
       ?.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <section className="relative py-8 sm:py-32 overflow-hidden bg-[#f0eee6]/70">
-      <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
+    <section className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/70">
       <div className="absolute top-0 left-1/3 w-96 h-96 bg-blue-500/6 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -166,8 +165,6 @@ export default function WhatIsGrants() {
           </button>
         </div>
       </div>
-
-      <div className="section-divider mx-auto max-w-6xl mt-16" />
     </section>
   );
 }

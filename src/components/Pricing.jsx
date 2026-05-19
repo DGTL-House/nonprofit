@@ -51,7 +51,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="relative py-8 sm:py-32 overflow-hidden">
+    <section id="pricing" className="relative py-8 sm:py-16 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-500/8 rounded-full blur-[180px] pointer-events-none" />
 

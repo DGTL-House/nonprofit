@@ -23,7 +23,7 @@ const services = [
 
 export default function Solution() {
   return (
-    <section className="relative py-4 sm:py-32 overflow-hidden">
+    <section className="relative py-8 sm:py-16 overflow-hidden">
       <div className="absolute top-1/2 left-0 w-[600px] h-[400px] bg-emerald-500/6 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -161,7 +161,6 @@ export default function Solution() {
           Check My Eligibility →
         </button>
       </div>
-      <div className="section-divider mx-auto max-w-6xl mt-6 sm:mt-16" />
     </section>
   );
 }

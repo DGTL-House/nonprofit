@@ -27,7 +27,7 @@ const points = [
 
 export default function Ownership() {
   return (
-    <section className="relative py-20 sm:py-28 overflow-hidden bg-[#f0eee6]/60">
+    <section className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <AnimSection>
           <AnimItem variant={fadeUp}>
@@ -84,7 +84,6 @@ export default function Ownership() {
           </button>
         </div>
       </div>
-      <div className="section-divider mx-auto max-w-6xl mt-16" />
     </section>
   );
 }

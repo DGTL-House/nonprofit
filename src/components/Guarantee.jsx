@@ -11,9 +11,8 @@ import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
 
 export default function Guarantee() {
   return (
-    <section className="relative py-14 sm:py-28 overflow-hidden">
+    <section className="relative py-8 sm:py-16 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.04] to-transparent pointer-events-none" />
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <AnimSection>
@@ -123,8 +122,6 @@ export default function Guarantee() {
           </AnimItem>
         </AnimSection>
       </div>
-
-      <div className="section-divider mx-auto max-w-6xl mt-8 sm:mt-16" />
     </section>
   );
 }

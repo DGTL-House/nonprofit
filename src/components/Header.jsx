@@ -45,7 +45,7 @@ export default function Header() {
         >
           <img
             src="/nonprofit-logo.svg"
-            alt="DGTL-House"
+            alt="DGTL-House — Google Ad Grants for Nonprofits"
             width="160"
             height="32"
             fetchpriority="high"
@@ -54,7 +54,10 @@ export default function Header() {
           />
         </a>
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav
+          aria-label="Main navigation"
+          className="hidden md:flex items-center gap-1"
+        >
           {navLinks.map((link) => (
             <button
               key={link.label}

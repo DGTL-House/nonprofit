@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nonprofit.dgtl-house.com/sitemap.xml

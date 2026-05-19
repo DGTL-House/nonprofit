@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex-1">
             <img
               src="/nonprofit-logo.svg"
-              alt="DGTL-House"
+              alt="DGTL-House — Google Ad Grants for Nonprofits"
               width="140"
               height="28"
               loading="lazy"
@@ -54,6 +54,15 @@ export default function Footer() {
             </span>
             <span className="text-slate-700">·</span>
             <span>Not affiliated with Google LLC</span>
+            <span className="text-slate-700">·</span>
+            <a
+              href="https://dgtl-house.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-colors"
+            >
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

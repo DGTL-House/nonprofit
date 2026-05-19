@@ -23,7 +23,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#ffffff]">
       <Header />
-      <main>
+      <main id="main-content" aria-label="Main content">
         <Hero />
         <SocialProofBar />
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
