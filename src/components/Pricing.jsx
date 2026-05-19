@@ -58,10 +58,10 @@ export default function Pricing() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <AnimSection>
           <AnimItem variant={fadeUp}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-3xl mx-auto leading-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center leading-tight mb-4">
               COMPLETE MANAGEMENT PLAN
             </h2>
-            <p className="text-slate-400 text-center max-w-2xl mx-auto mb-14">
+            <p className="text-slate-400 text-center mb-14">
               We'll match any legitimate competitor's price — because we
               specialize exclusively in this.
             </p>

@@ -126,6 +126,22 @@ export default function Hero() {
                     </a>
                   </div>
                 </AnimItem>
+                {/* Supporting micro-copy */}
+                <AnimItem variant={fadeIn}>
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400 text-sm sm:text-base font-bold">
+                        Fully done-for-you
+                      </span>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-gray-400" />
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400 text-sm sm:text-base font-bold">
+                        Cancel anytime
+                      </span>
+                    </div>
+                  </div>
+                </AnimItem>
               </div>
             </div>
 
@@ -184,22 +200,7 @@ export default function Hero() {
                   </a>
                 </div>
               </AnimItem>
-              {/* Supporting micro-copy */}
-              <AnimItem variant={fadeIn}>
-                <div className="flex flex-wrap items-center justify-center gap-6 mb-10">
-                  <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 text-sm sm:text-base font-bold">
-                      Fully done-for-you
-                    </span>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-slate-400" />
-                  <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 text-sm sm:text-base font-bold">
-                      Cancel anytime
-                    </span>
-                  </div>
-                </div>
-              </AnimItem>
+
               <div className="flex flex-col items-center gap-3 mb-4 sm:mb-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0eee6]">
                   <Clock size={16} className="text-[#3f5028]" />
