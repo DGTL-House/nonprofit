@@ -5,7 +5,7 @@ import ContactFormCard from "./ContactFormCard";
 
 const guarantees = [
   "Grant approval guaranteed",
-  "First month free — pay only after launch",
+  "We get your Google Ad Grant — completely free",
   "Cancel anytime",
   "Your account stays yours, always",
   "No website? We'll build one",
