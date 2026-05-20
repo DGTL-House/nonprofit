@@ -108,7 +108,7 @@ export default function Hero() {
 
                 {/* Subheadline */}
                 <AnimItem variant={fadeUp}>
-                  <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-6">
+                  <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-3 sm:mb-6">
                     We handle Google Ad Grants end-to-end — so more donors,
                     volunteers, and partners find you. At $0 ad spend.{" "}
                     <strong className="text-[#52504C]">$0 ad spend.</strong>
@@ -120,7 +120,7 @@ export default function Hero() {
                   <div className="flex justify-center lg:justify-start">
                     <a
                       href="#contact-form"
-                      className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
+                      className="btn-primary text-base sm:text-2xl !py-2 sm:!py-4 !px-6 sm:!px-8"
                     >
                       Check My Eligibility →
                     </a>
@@ -128,7 +128,7 @@ export default function Hero() {
                 </AnimItem>
                 {/* Supporting micro-copy */}
                 <AnimItem variant={fadeIn}>
-                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-4">
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 mt-2 sm:mt-4">
                     <div className="flex items-center gap-2">
                       <span className="text-gray-400 text-sm sm:text-base font-bold">
                         Fully done-for-you
