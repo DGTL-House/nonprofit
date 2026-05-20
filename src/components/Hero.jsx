@@ -74,7 +74,7 @@ export default function Hero() {
             </AnimItem>
 
             {/* Row 1: image (left) + h1 + p (right) */}
-            <div className="flex flex-col lg:flex-row items-stretch gap-10 lg:gap-14">
+            <div className="flex flex-col lg:flex-row items-stretch gap-4 sm:gap-10 lg:gap-14">
               {/* Image — mobile: top, desktop: left, height = h1+p */}
               <AnimItem
                 variant={scaleIn}
