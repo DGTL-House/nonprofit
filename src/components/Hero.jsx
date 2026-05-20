@@ -98,7 +98,7 @@ export default function Hero() {
               <div className="flex-1 min-w-0 flex flex-col justify-center">
                 {/* Main headline */}
                 <AnimItem variant={fadeUp}>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-6 text-center lg:text-left">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-3 sm:mb-6 text-center lg:text-left">
                     <span className="text-[#161514]">
                       Get a Free $10,000/Month Google Grant for Your Nonprofit —
                       Guaranteed.
