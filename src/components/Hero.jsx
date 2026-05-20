@@ -89,7 +89,7 @@ export default function Hero() {
                     fetchpriority="high"
                     loading="eager"
                     decoding="async"
-                    className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
+                    className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
                   />
                 </div>
               </AnimItem>
