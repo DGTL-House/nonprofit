@@ -1,3 +1,8 @@
+import { appendUtmParams } from "../utils/utm.js";
+
+const BOOKING_URL =
+  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
+
 export default function ContactFormCard() {
   return (
     <section
@@ -47,7 +52,7 @@ export default function ContactFormCard() {
 
           {/* CTA Button */}
           <a
-            href="https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA"
+            href={appendUtmParams(BOOKING_URL)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors"

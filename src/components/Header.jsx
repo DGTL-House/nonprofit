@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
+import { appendUtmParams } from "../utils/utm.js";
+
+const BOOKING_URL =
+  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
@@ -72,7 +76,7 @@ export default function Header() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits"
+            href={appendUtmParams(BOOKING_URL)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary !text-lg !py-2.5 !px-5"
@@ -112,7 +116,7 @@ export default function Header() {
               ))}
               <div className="pt-3 border-t border-white/[0.06] mt-2">
                 <a
-                  href="https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits"
+                  href={appendUtmParams(BOOKING_URL)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary w-full justify-center !py-2.5 !px-5"
