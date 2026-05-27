@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nonprofit.dgtl-house.com/sitemap.xml
+Sitemap: https://non-profit.dgtl-house.com/sitemap.xml

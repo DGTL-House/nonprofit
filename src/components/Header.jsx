@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { appendUtmParams } from "../utils/utm.js";
 
@@ -95,40 +94,32 @@ export default function Header() {
       </div>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-[#ebe9e0] bg-[#ffffff]/98 backdrop-blur-lg"
-          >
-            <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => handleNav(link.href)}
-                  className="text-left px-4 py-3 text-slate-300 hover:text-white text-sx font-medium rounded-lg hover:bg-white/[0.06] transition-all"
-                >
-                  {link.label}
-                </button>
-              ))}
-              <div className="pt-3 border-t border-white/[0.06] mt-2">
-                <a
-                  href={appendUtmParams(BOOKING_URL)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full justify-center !py-2.5 !px-5"
-                >
-                  Schedule call
-                  <ChevronRight size={16} />
-                </a>
-              </div>
+      {mobileOpen && (
+        <div className="md:hidden border-t border-[#ebe9e0] bg-[#ffffff]/98 backdrop-blur-lg animate-[fadeDown_0.25s_ease-out]">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNav(link.href)}
+                className="text-left px-4 py-3 text-slate-300 hover:text-white text-sx font-medium rounded-lg hover:bg-white/[0.06] transition-all"
+              >
+                {link.label}
+              </button>
+            ))}
+            <div className="pt-3 border-t border-white/[0.06] mt-2">
+              <a
+                href={appendUtmParams(BOOKING_URL)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full justify-center !py-2.5 !px-5"
+              >
+                Schedule call
+                <ChevronRight size={16} />
+              </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

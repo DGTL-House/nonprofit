@@ -2,9 +2,9 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SocialProofBar from "./components/SocialProofBar";
-import ContactFormCard from "./components/ContactFormCard";
 
 // Below-the-fold components are loaded on demand to shrink the initial JS bundle.
+const ContactFormCard = lazy(() => import("./components/ContactFormCard"));
 const Problem = lazy(() => import("./components/Problem"));
 const Opportunity = lazy(() => import("./components/Opportunity"));
 const WhatIsGrants = lazy(() => import("./components/WhatIsGrants"));

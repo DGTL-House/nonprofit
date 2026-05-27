@@ -1,7 +1,3 @@
-import { motion } from "framer-motion";
-import { Award, Star, Lock, CheckCircle } from "lucide-react";
-import { AnimSection, AnimItem, fadeIn } from "../utils/animations";
-
 const clients = [
   "Hope Foundation",
   "Green Earth Fund",
@@ -22,13 +18,9 @@ export default function SocialProofBar() {
 
   return (
     <section className="relative py-12 bg-[#f0eee6] border-y border-[#ebe9e0] overflow-hidden">
-      <AnimSection>
-        <AnimItem variant={fadeIn}>
-          <p className="text-center text-slate-500 text-base sm:text-lg font-semibold tracking-[0.2em] uppercase mb-8">
-            Trusted by 200+ nonprofits across the US
-          </p>
-        </AnimItem>
-      </AnimSection>
+      <p className="text-center text-slate-500 text-base sm:text-lg font-semibold tracking-[0.2em] uppercase mb-8">
+        Trusted by 200+ nonprofits across the US
+      </p>
 
       {/* Marquee */}
       <div className="overflow-hidden">
