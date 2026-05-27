@@ -1,4 +1,25 @@
-import { Clock } from "lucide-react";
+// Inline SVG (was lucide-react `Clock`) so Hero doesn't pull the icons chunk
+// onto the critical path on mobile.
+function ClockIcon({ size = 16, className = "" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
 
 export default function Hero() {
   return (
@@ -154,7 +175,7 @@ export default function Hero() {
 
             <div className="flex flex-col items-center gap-3 mb-4 sm:mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0eee6]">
-                <Clock size={16} className="text-[#3f5028]" />
+                <ClockIcon size={16} className="text-[#3f5028]" />
                 <span className="text-[#52504C] text-sm sm:text-lg font-medium">
                   Grant live in as little as{" "}
                   <strong className="text-[#3f5028] font-bold">2 weeks</strong>

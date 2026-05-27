@@ -1,6 +1,68 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight } from "lucide-react";
 import { appendUtmParams } from "../utils/utm.js";
+
+// Inline SVGs (formerly from lucide-react) so the icons chunk stays off the
+// critical path. The header is rendered on first paint, so every kilobyte
+// we drop here directly improves mobile LCP / TBT.
+function MenuIcon({ size = 22 }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  );
+}
+
+function CloseIcon({ size = 22 }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon({ size = 16 }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  );
+}
 
 const BOOKING_URL =
   "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
@@ -30,7 +92,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,padding,border-color] duration-300 will-change-[padding] ${
         scrolled
           ? "bg-[#ffffff]/95 backdrop-blur-lg border-b border-[#ebe9e0] py-3"
           : "bg-transparent py-5"
@@ -81,15 +143,17 @@ export default function Header() {
             className="btn-primary !text-lg !py-2.5 !px-5"
           >
             Schedule call
-            <ChevronRight size={16} />
+            <ChevronRightIcon size={16} />
           </a>
         </div>
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
           className="md:hidden p-2 rounded-lg hover:bg-white/[0.06] transition-colors text-white"
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <CloseIcon size={22} /> : <MenuIcon size={22} />}
         </button>
       </div>
 
@@ -114,7 +178,7 @@ export default function Header() {
                 className="btn-primary w-full justify-center !py-2.5 !px-5"
               >
                 Schedule call
-                <ChevronRight size={16} />
+                <ChevronRightIcon size={16} />
               </a>
             </div>
           </div>

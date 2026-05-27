@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SocialProofBar from "./components/SocialProofBar";
+import DeferredMount from "./components/DeferredMount";
 
 // Below-the-fold components are loaded on demand to shrink the initial JS bundle.
 const ContactFormCard = lazy(() => import("./components/ContactFormCard"));
@@ -12,12 +13,17 @@ const Credibility = lazy(() => import("./components/Credibility"));
 const Guarantee = lazy(() => import("./components/Guarantee"));
 const Ownership = lazy(() => import("./components/Ownership"));
 const Solution = lazy(() => import("./components/Solution"));
-const HowItWorks = lazy(() => import("./components/HowItWorks"));
 const Pricing = lazy(() => import("./components/Pricing"));
 const FAQ = lazy(() => import("./components/FAQ"));
 const FinalCTA = lazy(() => import("./components/FinalCTA"));
 const Footer = lazy(() => import("./components/Footer"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+
+// Reserve vertical space so the deferred mount doesn't trigger a CLS spike
+// once the lazy chunks start streaming in.
+const belowFoldPlaceholder = (
+  <div aria-hidden="true" style={{ minHeight: "100vh" }} />
+);
 
 export default function App() {
   return (
@@ -26,25 +32,30 @@ export default function App() {
       <main id="main-content" aria-label="Main content">
         <Hero />
         <SocialProofBar />
-        <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
-          <Opportunity />
-          <Problem />
-          <WhatIsGrants />
-          <Credibility />
-          <Guarantee />
-          <Ownership />
-          <Solution />
-          {/* <HowItWorks /> */}
-          <FinalCTA />
-          <Pricing />
-          <ContactFormCard />
-          <FAQ />
-        </Suspense>
+        {/*
+          Defer mounting the rest of the page until the main thread is idle
+          or the user starts interacting. This dramatically reduces TBT/LCP
+          on mobile because the lazy chunks no longer compete with the LCP
+          image's critical fetch window.
+        */}
+        <DeferredMount placeholder={belowFoldPlaceholder}>
+          <Suspense fallback={belowFoldPlaceholder}>
+            <Opportunity />
+            <Problem />
+            <WhatIsGrants />
+            <Credibility />
+            <Guarantee />
+            <Ownership />
+            <Solution />
+            <FinalCTA />
+            <Pricing />
+            <ContactFormCard />
+            <FAQ />
+            <Footer />
+            <ScrollToTop />
+          </Suspense>
+        </DeferredMount>
       </main>
-      <Suspense fallback={null}>
-        <Footer />
-        <ScrollToTop />
-      </Suspense>
     </div>
   );
 }
