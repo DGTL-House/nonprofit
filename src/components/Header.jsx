@@ -79,7 +79,22 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let ticking = false;
+    let lastScrolled = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      // Read scroll position inside rAF to batch with the next paint and
+      // avoid forced layout/reflow on every scroll event (mobile perf).
+      requestAnimationFrame(() => {
+        const next = window.scrollY > 40;
+        if (next !== lastScrolled) {
+          lastScrolled = next;
+          setScrolled(next);
+        }
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

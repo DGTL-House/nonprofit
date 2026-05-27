@@ -67,18 +67,27 @@ export default function Hero() {
           <div className="flex flex-col lg:flex-row items-stretch gap-4 sm:gap-10 lg:gap-14">
             <div className="shrink-0 lg:w-[420px] xl:w-[460px]">
               <div className="w-full max-w-sm mx-auto lg:max-w-none lg:h-full">
-                <img
-                  src="/home-img-720.webp"
-                  srcSet="/home-img-720.webp 720w, /home-img-1280.webp 1280w, /home-img.webp 1840w"
-                  sizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
-                  alt="Nonprofit volunteers working with Google Ad Grants"
-                  width="920"
-                  height="614"
-                  fetchpriority="high"
-                  loading="eager"
-                  decoding="async"
-                  className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
-                />
+                <picture>
+                  {/* Mobile gets a tiny image since visible area is just h-32 (128px tall, ~360px wide). */}
+                  <source
+                    media="(max-width: 639px)"
+                    srcSet="/home-img-480.webp"
+                    width="480"
+                    height="320"
+                  />
+                  <img
+                    src="/home-img-720.webp"
+                    srcSet="/home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
+                    sizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
+                    alt="Nonprofit volunteers working with Google Ad Grants"
+                    width="920"
+                    height="614"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
+                  />
+                </picture>
               </div>
             </div>
 

@@ -15,9 +15,9 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://non-profit.dgtl-house.com/" />
 
-  <!-- Preload LCP image (responsive) -->
-  <link rel="preload" as="image" href="/home-img-720.webp"
-    imagesrcset="/home-img-720.webp 720w, /home-img-1280.webp 1280w, /home-img.webp 1840w"
+  <!-- Preload LCP image (mobile-first: tiny 480w by default, larger picked from srcset on bigger screens) -->
+  <link rel="preload" as="image" href="/home-img-480.webp"
+    imagesrcset="/home-img-480.webp 480w, /home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
     imagesizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
     fetchpriority="high" />
 
@@ -164,7 +164,6 @@
   <!-- Fonts: Lexend loaded non-blocking; Neue Montreal loaded async after page load -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap"
     media="print" onload="this.media='all'" />
   <noscript>

@@ -1,10 +1,10 @@
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import SocialProofBar from "./components/SocialProofBar";
 import DeferredMount from "./components/DeferredMount";
 
 // Below-the-fold components are loaded on demand to shrink the initial JS bundle.
+const SocialProofBar = lazy(() => import("./components/SocialProofBar"));
 const ContactFormCard = lazy(() => import("./components/ContactFormCard"));
 const Problem = lazy(() => import("./components/Problem"));
 const Opportunity = lazy(() => import("./components/Opportunity"));
@@ -31,15 +31,16 @@ export default function App() {
       <Header />
       <main id="main-content" aria-label="Main content">
         <Hero />
-        <SocialProofBar />
         {/*
-          Defer mounting the rest of the page until the main thread is idle
-          or the user starts interacting. This dramatically reduces TBT/LCP
-          on mobile because the lazy chunks no longer compete with the LCP
-          image's critical fetch window.
+          Defer mounting the rest of the page (including the SocialProofBar
+          marquee) until the main thread is idle or the user starts
+          interacting. This dramatically reduces TBT/LCP on mobile because
+          the lazy chunks no longer compete with the LCP image's critical
+          fetch window.
         */}
         <DeferredMount placeholder={belowFoldPlaceholder}>
           <Suspense fallback={belowFoldPlaceholder}>
+            <SocialProofBar />
             <Opportunity />
             <Problem />
             <WhatIsGrants />

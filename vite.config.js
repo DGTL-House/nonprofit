@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    target: "es2020",
+    target: "es2022",
     cssCodeSplit: true,
     chunkSizeWarningLimit: 800,
     rollupOptions: {
