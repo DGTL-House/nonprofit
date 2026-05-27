@@ -47,7 +47,9 @@ export default function Hero() {
             <div className="shrink-0 lg:w-[420px] xl:w-[460px]">
               <div className="w-full max-w-sm mx-auto lg:max-w-none lg:h-full">
                 <img
-                  src="/home-img.webp"
+                  src="/home-img-720.webp"
+                  srcSet="/home-img-720.webp 720w, /home-img-1280.webp 1280w, /home-img.webp 1840w"
+                  sizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
                   alt="Nonprofit volunteers working with Google Ad Grants"
                   width="920"
                   height="614"

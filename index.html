@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script defer src="https://t.contentsquare.net/uxa/fc16179df91a5.js"></script>
 
   <!-- Primary SEO -->
   <title>DGTL-House — Google Ad Grants for Nonprofits | $10K/Month Free Ads</title>
@@ -16,8 +15,11 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://non-profit.dgtl-house.com/" />
 
-  <!-- Preload LCP image -->
-  <link rel="preload" as="image" href="/home-img.webp" fetchpriority="high" />
+  <!-- Preload LCP image (responsive) -->
+  <link rel="preload" as="image" href="/home-img-720.webp"
+    imagesrcset="/home-img-720.webp 720w, /home-img-1280.webp 1280w, /home-img.webp 1840w"
+    imagesizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
+    fetchpriority="high" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="/icon.png" />
@@ -159,10 +161,12 @@
   }
   </script>
 
-  <!-- Fonts: only Lexend (used for text); Neue Montreal loaded async after page load -->
+  <!-- Fonts: Lexend loaded non-blocking; Neue Montreal loaded async after page load -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap"
+    media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
   </noscript>
@@ -196,6 +200,11 @@
         p.async = true;
         p.src = 'https://connect.facebook.net/en_US/fbevents.js';
         document.head.appendChild(p);
+        // Contentsquare (deferred; not needed for first paint)
+        var cs = document.createElement('script');
+        cs.async = true;
+        cs.src = 'https://t.contentsquare.net/uxa/fc16179df91a5.js';
+        document.head.appendChild(cs);
         // Async fonts (non-critical display face)
         var f = document.createElement('link');
         f.rel = 'stylesheet';
