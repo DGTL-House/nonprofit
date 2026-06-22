@@ -13,6 +13,9 @@ const Credibility = lazy(() => import("./components/Credibility"));
 const Guarantee = lazy(() => import("./components/Guarantee"));
 const Ownership = lazy(() => import("./components/Ownership"));
 const Solution = lazy(() => import("./components/Solution"));
+const GooglePartnerAdvantage = lazy(
+  () => import("./components/GooglePartnerAdvantage"),
+);
 const Pricing = lazy(() => import("./components/Pricing"));
 const FAQ = lazy(() => import("./components/FAQ"));
 const FinalCTA = lazy(() => import("./components/FinalCTA"));
@@ -49,6 +52,7 @@ export default function App() {
             <Ownership />
             <Solution />
             <FinalCTA />
+            <GooglePartnerAdvantage />
             <Pricing />
             <ContactFormCard />
             <FAQ />

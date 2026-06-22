@@ -1,42 +1,85 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { CheckCircle, Zap } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
+import { appendUtmParams } from "../utils/utm.js";
 
-const included = [
-  "Grant application & setup (one-time)",
-  "Website build if you need one",
-  "Full account management",
-  "Monthly campaign optimization",
-  "Monthly performance reporting",
-  "Dedicated account manager",
-  "Ongoing compliance monitoring",
-  "Guaranteed grant approval",
-  "Conversion tracking setup",
-  "Ad copywriting & A/B testing",
+const BOOKING_URL =
+  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
+
+const plans = [
+  {
+    id: "starter",
+    tab: "Starter",
+    name: "Ad Grant Management",
+    tagline: "Google Ad Grant setup and ongoing management",
+    monthly: 250,
+    annual: 200,
+    annualBilled: 2400,
+    save: 20,
+    saveYear: 600,
+    features: [
+      "Google Ad Grant application & setup",
+      "Campaign creation & launch",
+      "Keyword research",
+      "Ongoing Ad Grant management",
+    ],
+  },
+  {
+    id: "standard",
+    tab: "Standard",
+    name: "Growth Partner",
+    tagline: "Ad Grant + SEO, analytics & dedicated project manager",
+    monthly: 500,
+    annual: 350,
+    annualBilled: 4200,
+    save: 30,
+    saveYear: 1800,
+    popular: true,
+    featuresHeading: "Everything in Ad Grant Management",
+    features: [
+      "Website SEO optimization",
+      "Full web analytics setup",
+      "Personal project manager",
+      "Light website edits included",
+      "Up to 4 hrs/mo SEO work",
+      "Big updates at 70% off agency rates",
+    ],
+  },
+  {
+    id: "premium",
+    tab: "Premium",
+    name: "Impact Partner",
+    tagline: "A complete digital marketing team for your nonprofit",
+    monthly: 1000,
+    annual: 650,
+    annualBilled: 7800,
+    save: 35,
+    saveYear: 4200,
+    featuresHeading: "Everything in Growth Partner",
+    features: [
+      "Local SEO & Google Business Profile",
+      "Website edits & new page creation",
+      "Blog research, writing & publishing",
+      "Social media content & posting",
+      "Up to 4 hrs/mo SEO work",
+      "Up to 5 hrs/mo dev support",
+    ],
+  },
 ];
 
-export default function Pricing() {
-  const [spotsLeft, setSpotsLeft] = useState(4);
-  const [timeLeft, setTimeLeft] = useState(10783); // 2:59:43
-  const scrollToEligibility = () => {
-    document
-      .querySelector("#contact-form")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-  useEffect(() => {
-    const spotsTimeout = setTimeout(() => {
-      setSpotsLeft(3);
-    }, 5000);
+const money = (n) => `$${n.toLocaleString("en-US")}`;
 
+export default function Pricing() {
+  const [timeLeft, setTimeLeft] = useState(10783); // 2:59:43
+  const [billing, setBilling] = useState("annual");
+  const [activePlan, setActivePlan] = useState("standard");
+
+  useEffect(() => {
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    return () => {
-      clearTimeout(spotsTimeout);
-      clearInterval(timerInterval);
-    };
+    return () => clearInterval(timerInterval);
   }, []);
 
   const formatTime = (seconds) => {
@@ -55,142 +98,209 @@ export default function Pricing() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-500/8 rounded-full blur-[180px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center leading-tight mb-4">
-              COMPLETE MANAGEMENT PLAN
+              Services &amp; what's included
             </h2>
-            <p className="text-slate-400 text-center mb-14">
-              We'll match any legitimate competitor's price — because we
-              specialize exclusively in this.
+            <p className="text-slate-400 text-center max-w-2xl mx-auto mb-10">
+              Our partnership program for non-profits{" "}
+              <strong className="text-white">
+                covers 50% of the full package
+              </strong>{" "}
+              cost to help mission-driven organizations grow smarter and faster
+              online.
             </p>
           </AnimItem>
         </AnimSection>
 
         <AnimSection>
-          <AnimItem variant={scaleIn}>
-            {/* Main pricing card */}
-            <div className="relative rounded-3xl overflow-hidden border border-emerald-500/25 mb-8">
-              {/* Glow border effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-emerald-700/5 pointer-events-none" />
-
-              {/* Header */}
-              <div
-                className="relative px-8 py-6"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(196, 237, 130, 0.36) 0%, rgba(170, 201, 118, 0.18) 100%)",
-                }}
-              >
-                <div className="flex items-start justify-between gap-4 flex-wrap">
-                  <div>
-                    <div className="text-slate-400 text-sm sm:text-base font-bold tracking-widest uppercase mb-2">
-                      Complete Management Plan
-                    </div>
-                    <h3 className="text-white text-base sm:text-lg font-black">
-                      Full Google Ad Grants Service
-                    </h3>
-
-                    <div
-                      className="mt-3 inline-flex flex-col items-start gap-1.5 px-4 py-3 rounded-2xl border border-red-500/50 bg-red-500/10"
-                      style={{ boxShadow: "0 0 20px rgba(239,68,68,0.15)" }}
-                    >
-                      <div className="flex items-center gap-1.5">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
-                        </span>
-                        <span className="text-red-400 text-xs font-black tracking-[0.15em] uppercase">
-                          Offer expires in
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        {[
-                          { v: formatTime(timeLeft).h, l: "hr" },
-                          { v: formatTime(timeLeft).m, l: "min" },
-                          { v: formatTime(timeLeft).s, l: "sec" },
-                        ].map(({ v, l }, i) => (
-                          <div key={i} className="flex items-center gap-1">
-                            <div className="flex flex-col items-center">
-                              <span className="font-mono font-black text-2xl sm:text-3xl text-white leading-none">
-                                {v}
-                              </span>
-                              <span className="text-red-400/80 text-[10px] font-bold uppercase tracking-wide mt-0.5">
-                                {l}
-                              </span>
-                            </div>
-                            {i < 2 && (
-                              <span className="text-red-400 font-black text-xl sm:text-2xl leading-none mb-3 mx-0.5">
-                                :
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-white/70 text-lg sm:text-4xl line-through mb-0.5">
-                      $1,250/mo
-                    </div>
-                    <div className="text-white font-black text-5xl sm:text-6xl leading-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
-                      $250
-                      <span className="text-2xl sm:text-3xl font-semibold">
-                        /mo
-                      </span>
-                    </div>
-                    <div className="text-emerald-400 text-sm sm:text-lg mt-1">
-                      after free grant setup
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="relative px-8 py-8 glass-card border-0 rounded-none">
-                <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                  {included.map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.06 }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-2.5"
-                    >
-                      <CheckCircle
-                        size={16}
-                        className="text-emerald-400 flex-shrink-0 mt-0.5"
-                      />
-                      <span className="text-slate-300 text-sm sm:text-lg">
-                        {item}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Grant setup free highlight */}
-                <div className="rounded-2xl p-5 bg-gradient-to-r from-emerald-400/10 to-emerald-600/5 border border-emerald-400/20 text-center mb-6">
-                  <div className="text-3xl mb-2">🎁</div>
-                  <div className="text-emerald-400 font-black text-sm sm:text-xl mb-1">
-                    GRANT SETUP — 100% FREE
-                  </div>
-                  <p className="text-slate-300 text-sm sm:text-lg">
-                    We secure your Google Ad Grant at no cost. You only pay once
-                    it's live.
-                  </p>
-                </div>
-
-                <div className="flex justify-center mt-8 mb-4">
+          {/* Billing toggle */}
+          <AnimItem variant={fadeUp}>
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+              <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10">
+                {["annual", "monthly"].map((b) => (
                   <button
-                    onClick={scrollToEligibility}
-                    className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
+                    key={b}
+                    onClick={() => setBilling(b)}
+                    className={`px-5 sm:px-8 py-2 rounded-full text-sm sm:text-base font-bold capitalize transition-colors ${
+                      billing === b
+                        ? "bg-[#b5e550] text-black"
+                        : "text-slate-300 hover:text-white"
+                    }`}
                   >
-                    Check My Eligibility →
+                    {b}
                   </button>
-                </div>
+                ))}
               </div>
+              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-full">
+                💚 Save up to 35%
+              </span>
+            </div>
+          </AnimItem>
+
+          {/* Plan tabs (mobile) */}
+          <AnimItem variant={fadeUp}>
+            <div className="flex lg:hidden justify-center gap-2 mb-6">
+              {plans.map((plan) => (
+                <button
+                  key={plan.id}
+                  onClick={() => setActivePlan(plan.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                    activePlan === plan.id
+                      ? "bg-[#b5e550] text-black"
+                      : "bg-white/5 text-slate-300 border border-white/10 hover:text-white"
+                  }`}
+                >
+                  {plan.tab}
+                </button>
+              ))}
+            </div>
+          </AnimItem>
+
+          {/* Plan cards */}
+          <AnimItem variant={scaleIn}>
+            <div className="grid lg:grid-cols-3 gap-5 mb-8 items-start">
+              {plans.map((plan) => {
+                const price = billing === "annual" ? plan.annual : plan.monthly;
+                return (
+                  <div
+                    key={plan.id}
+                    className={`relative rounded-3xl border flex-col ${
+                      plan.popular
+                        ? "border-[#b5e550]/60 bg-[#b5e550]/[0.07] lg:-mt-3 lg:mb-3 shadow-[0_0_40px_rgba(181,229,80,0.12)]"
+                        : "border-white/10 glass-card"
+                    } ${activePlan === plan.id ? "flex" : "hidden lg:flex"}`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#b5e550] text-black text-xs font-black tracking-widest uppercase px-4 py-1 rounded-full whitespace-nowrap">
+                        ⭐ Top Offer
+                      </div>
+                    )}
+
+                    {/* Header */}
+                    <div className="p-6 sm:p-7">
+                      <h3 className="text-white text-xl sm:text-2xl font-black mb-1">
+                        {plan.name}
+                      </h3>
+                      <p className="text-slate-400 text-sm sm:text-base mb-5 min-h-[2.5rem]">
+                        {plan.tagline}
+                      </p>
+
+                      {/* {plan.popular && (
+                        <div
+                          className="mb-5 inline-flex flex-col items-start gap-1.5 px-4 py-3 rounded-2xl border border-red-500/50 bg-red-500/10"
+                          style={{ boxShadow: "0 0 20px rgba(239,68,68,0.15)" }}
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                            </span>
+                            <span className="text-red-400 text-xs font-black tracking-[0.15em] uppercase">
+                              Offer expires in
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {[
+                              { v: formatTime(timeLeft).h, l: "hr" },
+                              { v: formatTime(timeLeft).m, l: "min" },
+                              { v: formatTime(timeLeft).s, l: "sec" },
+                            ].map(({ v, l }, i) => (
+                              <div key={i} className="flex items-center gap-1">
+                                <div className="flex flex-col items-center">
+                                  <span className="font-mono font-black text-2xl sm:text-3xl text-white leading-none">
+                                    {v}
+                                  </span>
+                                  <span className="text-red-400/80 text-[10px] font-bold uppercase tracking-wide mt-0.5">
+                                    {l}
+                                  </span>
+                                </div>
+                                {i < 2 && (
+                                  <span className="text-red-400 font-black text-xl sm:text-2xl leading-none mb-3 mx-0.5">
+                                    :
+                                  </span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )} */}
+
+                      {billing === "annual" && (
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-md">
+                            Save {plan.save}%
+                          </span>
+                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-md">
+                            −{money(plan.saveYear)}/year
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex items-end gap-2">
+                        <span className="text-white font-black text-5xl sm:text-6xl leading-none">
+                          {money(price)}
+                        </span>
+                        <span className="text-slate-400 text-sm sm:text-base leading-tight mb-1">
+                          per
+                          <br />
+                          month
+                        </span>
+                      </div>
+                      <p className="text-slate-400 text-sm sm:text-base mt-2 mb-6">
+                        {billing === "annual"
+                          ? `${money(plan.annualBilled)} billed annually`
+                          : "billed monthly"}
+                      </p>
+
+                      <a
+                        href={appendUtmParams(BOOKING_URL)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3 transition-colors"
+                      >
+                        <span className="font-bold text-base sm:text-lg">
+                          Book call
+                        </span>
+                        <span className="text-xs sm:text-sm text-black/70">
+                          No commitment · 30 min
+                        </span>
+                      </a>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-white/10" />
+
+                    {/* What's included */}
+                    <div className="p-6 sm:p-7">
+                      <p className="text-white font-bold text-base sm:text-lg mb-1">
+                        What's included
+                      </p>
+                      {plan.featuresHeading && (
+                        <p className="text-slate-400 italic text-sm sm:text-base mb-4">
+                          {plan.featuresHeading}
+                        </p>
+                      )}
+                      <ul className="space-y-3 mt-3">
+                        {plan.features.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start gap-2.5 text-slate-300 text-sm sm:text-base"
+                          >
+                            <CheckCircle
+                              size={18}
+                              className="text-emerald-400 flex-shrink-0 mt-0.5"
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </AnimItem>
 
@@ -236,22 +346,7 @@ export default function Pricing() {
                 get back.
               </p>
 
-              <div className="flex items-center gap-2 mb-3">
-                <motion.span
-                  key={spotsLeft}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-red-400 font-black text-xl"
-                >
-                  🔴 {spotsLeft}
-                </motion.span>
-                <span className="text-red-400 font-bold text-sm sm:text-lg">
-                  spots remaining this month
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 mb-6">
+              {/* <div className="flex items-center gap-2 mb-6">
                 <span className="text-slate-400 font-bold text-sm sm:text-lg">
                   ⏱️ Offer expires in{" "}
                   <span className="font-mono text-white text-base">
@@ -259,20 +354,35 @@ export default function Pricing() {
                     {formatTime(timeLeft).s}
                   </span>
                 </span>
-              </div>
+              </div> */}
 
               <div className="flex justify-center">
-                <button
-                  onClick={() =>
-                    document
-                      .querySelector("#contact-form")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
+                <a
+                  href={appendUtmParams(BOOKING_URL)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8 mb-3"
                 >
-                  Check My Eligibility →
-                </button>
+                  Schedule a Call — It's Free →
+                </a>
               </div>
+
+              <div className="flex flex-col items-center gap-1.5 mb-4">
+                {[
+                  { plan: "Starter", spots: 4 },
+                  { plan: "Standart", spots: 2 },
+                  { plan: "Premium", spots: 3 },
+                ].map(({ plan, spots }) => (
+                  <p
+                    key={plan}
+                    className="text-red-400 text-sm sm:text-lg font-semibold"
+                  >
+                    <span className="text-white">{plan}</span> — ⚠️ Limited
+                    availability: {spots} spots left
+                  </p>
+                ))}
+              </div>
+
               <p className="text-center text-slate-500 text-sm sm:text-lg">
                 No credit card required · Cancel anytime · 30-day notice
               </p>

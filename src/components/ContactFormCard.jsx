@@ -59,6 +59,12 @@ export default function ContactFormCard() {
           >
             Schedule a Call — It's Free →
           </a>
+          <a
+            href="#pricing"
+            className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors mt-3"
+          >
+            View Pricing →
+          </a>
           <p className="text-center text-sm sm:text-lg text-gray-400 mt-4">
             No pressure · No commitment · Takes 30 minutes
           </p>
