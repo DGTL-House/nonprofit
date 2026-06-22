@@ -57,7 +57,7 @@ export default function Hero() {
                   />
                 </svg>
                 <span className="text-[#161514] text-base sm:text-lg font-semibold tracking-wide">
-                  Google for Nonprofits Partners
+                  Google for Nonprofits Partners - НАДА ССЫЛКА
                 </span>
               </div>
             </div>
