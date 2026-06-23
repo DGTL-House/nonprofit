@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -89,7 +89,7 @@ function FAQItem({ q, a, isOpen, onToggle }) {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -99,7 +99,7 @@ function FAQItem({ q, a, isOpen, onToggle }) {
             <p className="text-slate-400 text-sm sm:text-lg leading-relaxed pb-5">
               {a}
             </p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

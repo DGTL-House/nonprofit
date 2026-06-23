@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -49,7 +49,7 @@ export const slideRight = {
 // Animated section wrapper
 export function AnimSection({ children, className = "", skipInitial = false }) {
   return (
-    <motion.div
+    <m.div
       initial={skipInitial ? "visible" : "hidden"}
       whileInView="visible"
       viewport={{ once: true, amount: 0.12 }}
@@ -57,14 +57,14 @@ export function AnimSection({ children, className = "", skipInitial = false }) {
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
 export function AnimItem({ children, variant = fadeUp, className = "" }) {
   return (
-    <motion.div variants={variant} className={className}>
+    <m.div variants={variant} className={className}>
       {children}
-    </motion.div>
+    </m.div>
   );
 }

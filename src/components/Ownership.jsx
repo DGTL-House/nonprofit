@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Key, Shield, LogOut, X, ChevronRight } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -42,7 +42,7 @@ export default function Ownership() {
           </AnimItem>
           <div className="grid sm:grid-cols-2 gap-5">
             {points.map((point, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function Ownership() {
                     {point.desc}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </AnimSection>

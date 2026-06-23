@@ -19,9 +19,15 @@ export default function ContactFormCard() {
             Eligibility Call
           </h2>
           <p className="text-base sm:text-lg text-gray-500 mb-7">
-            Heads-up: the Google Ad Grant is $10K/month in free Google Ads, not
-            cash. We'll use it to bring donors directly to your nonprofit. $0 ad
-            spend — you only pay for our management.
+            Heads-up: the Google Ad Grant is $10K/month in free Google Ads,{" "}
+            <strong className="font-semibold text-gray-700 underline underline-offset-2">
+              not cash
+            </strong>
+            . $0 ad spend — you only{" "}
+            <strong className="font-semibold text-gray-700 underline underline-offset-2">
+              pay for our management
+            </strong>
+            .
           </p>
 
           <hr className="border-gray-100 mb-6" />

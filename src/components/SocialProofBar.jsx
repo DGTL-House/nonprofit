@@ -66,7 +66,7 @@ export default function SocialProofBar() {
             color: "from-emerald-500/15 to-emerald-700/5 border-emerald-500/20",
           },
         ].map((badge, i) => (
-          <motion.div
+          <m.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export default function SocialProofBar() {
                 {badge.sub}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div> */}
     </section>

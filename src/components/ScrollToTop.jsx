@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
 export default function ScrollToTop() {
@@ -14,7 +14,7 @@ export default function ScrollToTop() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.button
+        <m.button
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.7 }}
@@ -24,7 +24,7 @@ export default function ScrollToTop() {
           className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-900/40 glow-green hover:scale-110 transition-transform duration-200"
         >
           <ArrowUp size={18} className="text-white" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

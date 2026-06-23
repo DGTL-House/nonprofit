@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 import ContactFormCard from "./ContactFormCard";
@@ -63,7 +63,7 @@ export default function FinalCTA() {
               <AnimItem variant={fadeUp}>
                 <div className="space-y-3 mb-10">
                   {guarantees.map((g, i) => (
-                    <motion.div
+                    <m.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -77,7 +77,7 @@ export default function FinalCTA() {
                       <span className="text-slate-200 font-medium text-base sm:text-lg">
                         {g}
                       </span>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
               </AnimItem>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { DollarSign, Search, ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import {
@@ -154,7 +154,7 @@ function PhoneMockup() {
               </span>
             </div>
             {/* Ad card */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 8 }}
               animate={showAd ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, ease: "easeOut" }}
@@ -176,9 +176,9 @@ function PhoneMockup() {
                 <br />
                 {currentAd.desc2}
               </p>
-            </motion.div>
+            </m.div>
             {/* Skeleton organic results */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={showResults ? { opacity: 1 } : {}}
               transition={{ duration: 0.5 }}
@@ -207,7 +207,7 @@ function PhoneMockup() {
                   />
                 </div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>
@@ -231,7 +231,7 @@ export default function Opportunity() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -239,19 +239,19 @@ export default function Opportunity() {
               className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-10"
             >
               Here's what it looks like in Google Search
-            </motion.p>
-            <motion.div
+            </m.p>
+            <m.div
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
               viewport={{ once: true }}
             >
               <PhoneMockup />
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right: h2 + p + button */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
@@ -278,13 +278,13 @@ export default function Opportunity() {
                 Check My Eligibility →
               </button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Two column layout */}
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           {/* Left: Search queries visual */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -301,7 +301,7 @@ export default function Opportunity() {
             </div>
             <div className="space-y-3">
               {searchQueries.map((query, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -320,16 +320,16 @@ export default function Opportunity() {
                       Ad
                     </span>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
               → Your organization appears first. You pay $0.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Right: Stats & math */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -388,7 +388,7 @@ export default function Opportunity() {
                 </div>
               </div>
             </div> */}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Counter stats */}

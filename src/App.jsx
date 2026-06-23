@@ -21,6 +21,7 @@ const FAQ = lazy(() => import("./components/FAQ"));
 const FinalCTA = lazy(() => import("./components/FinalCTA"));
 const Footer = lazy(() => import("./components/Footer"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+const MotionProvider = lazy(() => import("./components/MotionProvider"));
 
 // Reserve vertical space so the deferred mount doesn't trigger a CLS spike
 // once the lazy chunks start streaming in.
@@ -43,21 +44,23 @@ export default function App() {
         */}
         <DeferredMount placeholder={belowFoldPlaceholder}>
           <Suspense fallback={belowFoldPlaceholder}>
-            <SocialProofBar />
-            <Opportunity />
-            <Problem />
-            <WhatIsGrants />
-            <Credibility />
-            <Guarantee />
-            <Ownership />
-            <Solution />
-            <FinalCTA />
-            <GooglePartnerAdvantage />
-            <Pricing />
-            <ContactFormCard />
-            <FAQ />
-            <Footer />
-            <ScrollToTop />
+            <MotionProvider>
+              <SocialProofBar />
+              <Opportunity />
+              <Problem />
+              <WhatIsGrants />
+              <Credibility />
+              <Guarantee />
+              <Ownership />
+              <Solution />
+              <FinalCTA />
+              <GooglePartnerAdvantage />
+              <Pricing />
+              <ContactFormCard />
+              <FAQ />
+              <Footer />
+              <ScrollToTop />
+            </MotionProvider>
           </Suspense>
         </DeferredMount>
       </main>

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import {
   AnimSection,
@@ -131,7 +131,7 @@ export default function Credibility() {
         </div>
 
         {/* Testimonials */}
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -139,7 +139,7 @@ export default function Credibility() {
           className="grid lg:grid-cols-3 gap-6 mb-8"
         >
           {testimonials.map((t, i) => (
-            <motion.div
+            <m.div
               key={i}
               variants={fadeUp}
               className="testimonial-card p-6 flex flex-col gap-4"
@@ -211,9 +211,9 @@ export default function Credibility() {
               <p className="text-slate-300 text-sm sm:text-lg leading-relaxed">
                 &ldquo;{t.quote}&rdquo;
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
         <div className="mt-4 sm:mt-6 mb-6 sm:mb-8 flex justify-center">
           <button
             onClick={scrollToEligibility}
@@ -234,7 +234,7 @@ export default function Credibility() {
               </p>
               <div className="flex flex-wrap gap-2.5 justify-center">
                 {niches.map((n, i) => (
-                  <motion.span
+                  <m.span
                     key={i}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -246,7 +246,7 @@ export default function Credibility() {
                     }
                   >
                     {n}
-                  </motion.span>
+                  </m.span>
                 ))}
               </div>
             </div>

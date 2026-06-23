@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -74,7 +74,7 @@ export default function HowItWorks() {
 
           <div className="space-y-8 sm:space-y-12">
             {steps.map((step, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function HowItWorks() {
                 <div
                   className={`w-full sm:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "sm:mr-auto sm:pr-6" : "sm:ml-auto sm:pl-6"}`}
                 >
-                  <motion.div
+                  <m.div
                     whileHover={{ y: -4 }}
                     className="glass-card rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/20"
                   >
@@ -122,9 +122,9 @@ export default function HowItWorks() {
                     <p className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                       {step.desc}
                     </p>
-                  </motion.div>
+                  </m.div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

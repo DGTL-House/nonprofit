@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle, Globe, ChevronRight } from "lucide-react";
 import {
   AnimSection,
@@ -50,7 +50,7 @@ export default function Solution() {
                 <h3 className="text-white font-bold text-base sm:text-lg mb-6">
                   Everything we take off your plate:
                 </h3>
-                <motion.div
+                <m.div
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -58,7 +58,7 @@ export default function Solution() {
                   className="space-y-1 sm:space-y-3"
                 >
                   {services.map((s, i) => (
-                    <motion.div
+                    <m.div
                       key={i}
                       variants={fadeUp}
                       className="flex items-start gap-3 p-3 rounded-xl hover:bg-emerald-500/5 transition-colors group"
@@ -69,9 +69,9 @@ export default function Solution() {
                       <span className="text-slate-300 text-sm sm:text-lg leading-relaxed">
                         {s.text}
                       </span>
-                    </motion.div>
+                    </m.div>
                   ))}
-                </motion.div>
+                </m.div>
               </div>
             </AnimItem>
           </AnimSection>

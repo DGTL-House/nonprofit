@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { AlertTriangle, TrendingDown, Users, Eye } from "lucide-react";
 import {
   AnimSection,
@@ -57,7 +57,7 @@ export default function Problem() {
             </p>
           </AnimItem>
           {/* Pain cards */}
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
@@ -65,7 +65,7 @@ export default function Problem() {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14"
           >
             {pains.map((pain, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 variants={fadeUp}
                 className="glass-card rounded-2xl p-6 hover:border-red-500/20 transition-all duration-300 group"
@@ -79,11 +79,11 @@ export default function Problem() {
                 <p className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                   {pain.desc}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
 
             {/* Closing insight */}
-            <motion.div
+            <m.div
               variants={fadeUp}
               className="sm:col-span-2 lg:col-span-3 rounded-2xl p-6 bg-gradient-to-r from-red-500/10 via-orange-500/5 to-red-500/10 border border-red-500/15"
             >
@@ -93,8 +93,8 @@ export default function Problem() {
                   The problem? The people who need you can't find you.
                 </span>
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
           <AnimItem variant={fadeUp}>
             <div className="flex justify-center mt-12 mb-8">
               <a

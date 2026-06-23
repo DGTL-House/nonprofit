@@ -216,7 +216,7 @@ export default function Pricing() {
                         <span className="text-slate-500 text-base sm:text-lg font-bold line-through leading-none mb-1.5">
                           {money(plan.oldPrice)}
                         </span>
-                        <span className="text-white font-black text-4xl sm:text-5xl leading-none">
+                        <span className="text-white font-black text-5xl sm:text-5xl leading-none">
                           {money(price)}
                         </span>
                         <span className="text-slate-400 text-xs sm:text-sm leading-tight mb-1">

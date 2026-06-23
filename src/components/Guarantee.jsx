@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ShieldCheck,
   Zap,
@@ -24,7 +24,7 @@ export default function Guarantee() {
 
               <div className="relative z-10 flex flex-col items-center">
                 {/* Shield icon + label stacked */}
-                <motion.div
+                <m.div
                   animate={{ y: [-4, 4, -4] }}
                   transition={{
                     duration: 3,
@@ -34,7 +34,7 @@ export default function Guarantee() {
                   className="w-24 h-24 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5 glow-green"
                 >
                   <ShieldCheck size={44} className="text-emerald-400" />
-                </motion.div>
+                </m.div>
 
                 {/* Label */}
                 <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-7">
@@ -77,7 +77,7 @@ export default function Guarantee() {
                       desc: "Once approved, we manage and optimize your campaigns to bring in real donors and volunteers.",
                     },
                   ].map((item, i) => (
-                    <motion.div
+                    <m.div
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function Guarantee() {
                       <div className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                         {item.desc}
                       </div>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
 
