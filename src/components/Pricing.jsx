@@ -213,7 +213,7 @@ export default function Pricing() {
                       )}
 
                       <div className="flex items-end gap-2 flex-wrap">
-                        <span className="text-slate-500 text-2xl sm:text-3xl font-bold line-through leading-none mb-1.5">
+                        <span className="text-slate-500 text-lg sm:text-xl font-bold line-through leading-none mb-2">
                           {money(plan.oldPrice)}
                         </span>
                         <span className="text-white font-black text-5xl sm:text-6xl leading-none">
