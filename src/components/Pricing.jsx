@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, Zap } from "lucide-react";
+import { CheckCircle, Zap, Clock } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
 import { appendUtmParams } from "../utils/utm.js";
+import FeatureComparison from "./FeatureComparison";
 
 const BOOKING_URL =
   "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
@@ -14,6 +15,8 @@ const plans = [
     tagline: "Google Ad Grant setup and ongoing management",
     monthly: 250,
     annual: 200,
+    oldPrice: 350,
+    spots: 4,
     annualBilled: 2400,
     save: 20,
     saveYear: 600,
@@ -31,6 +34,8 @@ const plans = [
     tagline: "Ad Grant + SEO, analytics & dedicated project manager",
     monthly: 500,
     annual: 350,
+    oldPrice: 650,
+    spots: 2,
     annualBilled: 4200,
     save: 30,
     saveYear: 1800,
@@ -52,6 +57,8 @@ const plans = [
     tagline: "A complete digital marketing team for your nonprofit",
     monthly: 1000,
     annual: 650,
+    oldPrice: 1250,
+    spots: 3,
     annualBilled: 7800,
     save: 35,
     saveYear: 4200,
@@ -94,7 +101,10 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="relative py-8 sm:py-16 overflow-hidden">
+    <section
+      id="pricing"
+      className="relative py-8 sm:py-16 overflow-hidden scroll-m-16"
+    >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-500/8 rounded-full blur-[180px] pointer-events-none" />
 
@@ -118,8 +128,8 @@ export default function Pricing() {
         <AnimSection>
           {/* Billing toggle */}
           <AnimItem variant={fadeUp}>
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-              <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10">
+            <div className="flex justify-center mb-8">
+              <div className="relative inline-flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10">
                 {["annual", "monthly"].map((b) => (
                   <button
                     key={b}
@@ -133,10 +143,13 @@ export default function Pricing() {
                     {b}
                   </button>
                 ))}
+
+                {/* Save badge anchored to the Annual option */}
+                <span className="absolute -top-3 left-1 -translate-y-full inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-full shadow-sm whitespace-nowrap">
+                  💚 Save up to 35%
+                  <span className="absolute -bottom-1 left-6 w-2 h-2 bg-[#eef9d0] rotate-45" />
+                </span>
               </div>
-              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-full">
-                💚 Save up to 35%
-              </span>
             </div>
           </AnimItem>
 
@@ -167,10 +180,10 @@ export default function Pricing() {
                 return (
                   <div
                     key={plan.id}
-                    className={`relative rounded-3xl border flex-col ${
+                    className={`relative rounded-3xl glass-card flex-col ${
                       plan.popular
-                        ? "border-[#b5e550]/60 bg-[#b5e550]/[0.07] lg:-mt-3 lg:mb-3 shadow-[0_0_40px_rgba(181,229,80,0.12)]"
-                        : "border-white/10 glass-card"
+                        ? "!border-2 !border-[#b5e550] shadow-[0_10px_40px_rgba(181,229,80,0.2)] lg:-mt-3 lg:mb-3"
+                        : ""
                     } ${activePlan === plan.id ? "flex" : "hidden lg:flex"}`}
                   >
                     {plan.popular && (
@@ -181,85 +194,63 @@ export default function Pricing() {
 
                     {/* Header */}
                     <div className="p-6 sm:p-7">
-                      <h3 className="text-white text-xl sm:text-2xl font-black mb-1">
+                      <h3 className="text-white text-2xl sm:text-3xl font-black mb-1">
                         {plan.name}
                       </h3>
                       <p className="text-slate-400 text-sm sm:text-base mb-5 min-h-[2.5rem]">
                         {plan.tagline}
                       </p>
 
-                      {/* {plan.popular && (
-                        <div
-                          className="mb-5 inline-flex flex-col items-start gap-1.5 px-4 py-3 rounded-2xl border border-red-500/50 bg-red-500/10"
-                          style={{ boxShadow: "0 0 20px rgba(239,68,68,0.15)" }}
-                        >
-                          <div className="flex items-center gap-1.5">
-                            <span className="relative flex h-2 w-2">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
-                            </span>
-                            <span className="text-red-400 text-xs font-black tracking-[0.15em] uppercase">
-                              Offer expires in
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            {[
-                              { v: formatTime(timeLeft).h, l: "hr" },
-                              { v: formatTime(timeLeft).m, l: "min" },
-                              { v: formatTime(timeLeft).s, l: "sec" },
-                            ].map(({ v, l }, i) => (
-                              <div key={i} className="flex items-center gap-1">
-                                <div className="flex flex-col items-center">
-                                  <span className="font-mono font-black text-2xl sm:text-3xl text-white leading-none">
-                                    {v}
-                                  </span>
-                                  <span className="text-red-400/80 text-[10px] font-bold uppercase tracking-wide mt-0.5">
-                                    {l}
-                                  </span>
-                                </div>
-                                {i < 2 && (
-                                  <span className="text-red-400 font-black text-xl sm:text-2xl leading-none mb-3 mx-0.5">
-                                    :
-                                  </span>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )} */}
-
                       {billing === "annual" && (
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-md">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-lg">
                             Save {plan.save}%
                           </span>
-                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-md">
+                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-lg">
                             −{money(plan.saveYear)}/year
                           </span>
                         </div>
                       )}
 
-                      <div className="flex items-end gap-2">
+                      <div className="flex items-end gap-2 flex-wrap">
+                        <span className="text-slate-500 text-2xl sm:text-3xl font-bold line-through leading-none mb-1.5">
+                          {money(plan.oldPrice)}
+                        </span>
                         <span className="text-white font-black text-5xl sm:text-6xl leading-none">
                           {money(price)}
                         </span>
-                        <span className="text-slate-400 text-sm sm:text-base leading-tight mb-1">
+                        <span className="text-slate-400 text-sm sm:text-base leading-tight mb-1.5">
                           per
                           <br />
                           month
                         </span>
                       </div>
-                      <p className="text-slate-400 text-sm sm:text-base mt-2 mb-6">
+                      <p className="text-slate-400 text-sm sm:text-base mt-2 mb-5">
                         {billing === "annual"
                           ? `${money(plan.annualBilled)} billed annually`
                           : "billed monthly"}
                       </p>
 
+                      {/* Countdown timer */}
+                      <div className="flex items-center justify-center gap-2 mb-5 px-4 py-2.5 rounded-xl bg-[#fdf1e7] border border-[#f6dcc6]">
+                        <Clock
+                          size={16}
+                          className="text-[#b07a4f] flex-shrink-0"
+                        />
+                        <span className="text-slate-500 text-sm sm:text-base">
+                          Offer ends in
+                        </span>
+                        <span className="font-mono font-black text-[#161514] text-sm sm:text-base tracking-wider">
+                          {formatTime(timeLeft).h} : {formatTime(timeLeft).m} :{" "}
+                          {formatTime(timeLeft).s}
+                        </span>
+                      </div>
+
                       <a
                         href={appendUtmParams(BOOKING_URL)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex flex-col items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3 transition-colors"
+                        className="flex flex-col items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3.5 transition-colors"
                       >
                         <span className="font-bold text-base sm:text-lg">
                           Book call
@@ -268,6 +259,10 @@ export default function Pricing() {
                           No commitment · 30 min
                         </span>
                       </a>
+
+                      <p className="text-red-500 text-sm sm:text-base font-semibold text-center mt-3">
+                        ⚠️ Limited availability: {plan.spots} spots left
+                      </p>
                     </div>
 
                     {/* Divider */}
@@ -302,6 +297,11 @@ export default function Pricing() {
                 );
               })}
             </div>
+          </AnimItem>
+
+          {/* Compare all features */}
+          <AnimItem variant={fadeUp}>
+            <FeatureComparison plans={plans} money={money} />
           </AnimItem>
 
           {/* Price match */}
@@ -365,22 +365,6 @@ export default function Pricing() {
                 >
                   Schedule a Call — It's Free →
                 </a>
-              </div>
-
-              <div className="flex flex-col items-center gap-1.5 mb-4">
-                {[
-                  { plan: "Starter", spots: 4 },
-                  { plan: "Standart", spots: 2 },
-                  { plan: "Premium", spots: 3 },
-                ].map(({ plan, spots }) => (
-                  <p
-                    key={plan}
-                    className="text-red-400 text-sm sm:text-lg font-semibold"
-                  >
-                    <span className="text-white">{plan}</span> — ⚠️ Limited
-                    availability: {spots} spots left
-                  </p>
-                ))}
               </div>
 
               <p className="text-center text-slate-500 text-sm sm:text-lg">

@@ -31,13 +31,15 @@ export default function Hero() {
         <div className="flex flex-col gap-3 sm:gap-8 lg:gap-10">
           {/* Google for Nonprofits Partners badge */}
           <div className="pt-6 lg:pt-12">
-            <p className="text-center text-sm sm:text-lg text-gray-400 mb-2">
+            <p className="text-center text-sm sm:text-lg text-gray-400 mb-1">
               Click to learn more
             </p>
+
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full sm:w-auto">
               <a
                 href="#google-partner-advantage"
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center transition-colors hover:border-[#d4e4a8] hover:bg-[#f8f7f3]">
+                className="attention-pulse flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center transition-colors hover:border-[#d4e4a8] hover:bg-[#f8f7f3]"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   width="20"
@@ -106,7 +108,7 @@ export default function Hero() {
 
               <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-3 sm:mb-6">
                 We handle Google Ad Grants end-to-end — so more donors,
-                volunteers, and partners find you. At $0 ad spend.{" "}
+                volunteers, and partners find you.{" "}
                 <strong className="text-[#52504C]">$0 ad spend.</strong>
               </p>
 

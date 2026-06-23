@@ -24,19 +24,6 @@ const GoogleG = ({ size = 18 }) => (
 
 const cards = [
   {
-    icon: Zap,
-    stat: "Hours",
-    statSub: "not days",
-    title: "Direct Google support line",
-    body: "When problems hit — account suspensions, ad rejections, grants not spending — we have a direct line to Google's partner team. Issues that take regular agencies 7–10 days, we resolve the same day.",
-  },
-  {
-    icon: Target,
-    stat: "Performance Max",
-    title: "Google's full ad inventory",
-    body: "Most Ad Grants agencies can only run search ads. As a Google Partner, we unlock Performance Max — reaching donors across Search, YouTube, Display, Gmail, and Maps. Up to 10× more reach from the same $10K grant.",
-  },
-  {
     icon: Handshake,
     statNode: (
       <span className="flex items-baseline gap-2">
@@ -48,6 +35,19 @@ const cards = [
     ),
     title: "Partner-subsidized rates",
     body: "For-profit businesses pay $1,000+/month for the exact same Google Ads management work. As a Google Partner focused exclusively on nonprofits, we subsidize our rates and pass the savings to you — starting at just $250/mo.",
+  },
+  {
+    icon: Zap,
+    stat: "Hours",
+    statSub: "not days",
+    title: "Direct Google support line",
+    body: "When problems hit — account suspensions, ad rejections, grants not spending — we have a direct line to Google's partner team. Issues that take regular agencies 7–10 days, we resolve the same day.",
+  },
+  {
+    icon: Target,
+    stat: "Performance Max",
+    title: "Google's full ad inventory",
+    body: "Most Ad Grants agencies can only run search ads. As a Google Partner, we unlock Performance Max — reaching donors across Search, YouTube, Display, Gmail, and Maps. Up to 10× more reach from the same $10K grant.",
   },
 ];
 
@@ -75,8 +75,8 @@ export default function GooglePartnerAdvantage() {
               We're Not Just Another Agency. We're a Google Partner.
             </h2>
             <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-14">
-              Direct access to Google's resources means we deliver results others
-              can't — at prices others can't match.
+              Direct access to Google's resources means we deliver results
+              others can't — at prices others can't match.
             </p>
           </AnimItem>
         </AnimSection>
