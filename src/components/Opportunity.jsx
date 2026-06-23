@@ -263,7 +263,8 @@ export default function Opportunity() {
             </h2>
             <p className="text-slate-300 text-center lg:text-left text-base sm:text-2xl mb-8 leading-relaxed">
               Google gives eligible nonprofits{" "}
-              <strong className="text-white">up to $10,000/month</strong>{" "}
+              <strong className="text-white">up to $10,000/month</strong> in free
+              Google Ads — so people searching for your cause find you first
             </p>
             <div className="flex justify-center lg:justify-start">
               <button

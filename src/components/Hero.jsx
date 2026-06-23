@@ -115,7 +115,7 @@ export default function Hero() {
               <div className="flex justify-center lg:justify-start">
                 <a
                   href="#contact-form"
-                  className="btn-primary text-base sm:text-2xl !py-2 sm:!py-4 !px-6 sm:!px-8"
+                  className="btn-primary attention-pulse text-base sm:text-2xl !py-2 sm:!py-4 !px-6 sm:!px-8"
                 >
                   Check My Eligibility →
                 </a>

@@ -174,30 +174,30 @@ export default function Pricing() {
 
           {/* Plan cards */}
           <AnimItem variant={scaleIn}>
-            <div className="grid lg:grid-cols-3 gap-5 mb-8 items-start">
+            <div className="grid lg:grid-cols-3 gap-5 mb-8 pt-3 items-stretch">
               {plans.map((plan) => {
                 const price = billing === "annual" ? plan.annual : plan.monthly;
                 return (
                   <div
                     key={plan.id}
-                    className={`relative rounded-3xl glass-card flex-col ${
+                    className={`relative rounded-3xl glass-card flex-col h-full ${
                       plan.popular
-                        ? "!border-2 !border-[#b5e550] shadow-[0_10px_40px_rgba(181,229,80,0.2)] lg:-mt-3 lg:mb-3"
+                        ? "!border-2 !border-[#b5e550] shadow-[0_10px_40px_rgba(181,229,80,0.2)]"
                         : ""
                     } ${activePlan === plan.id ? "flex" : "hidden lg:flex"}`}
                   >
                     {plan.popular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#b5e550] text-black text-xs font-black tracking-widest uppercase px-4 py-1 rounded-full whitespace-nowrap">
-                        ⭐ Top Offer
+                        ⭐ Best value
                       </div>
                     )}
 
                     {/* Header */}
                     <div className="p-6 sm:p-7">
-                      <h3 className="text-white text-2xl sm:text-3xl font-black mb-1">
+                      <h3 className="text-white text-xl sm:text-2xl font-black mb-1 min-h-[2rem]">
                         {plan.name}
                       </h3>
-                      <p className="text-slate-400 text-sm sm:text-base mb-5 min-h-[2.5rem]">
+                      <p className="text-slate-400 text-sm sm:text-base mb-5 min-h-[3rem]">
                         {plan.tagline}
                       </p>
 
@@ -212,14 +212,14 @@ export default function Pricing() {
                         </div>
                       )}
 
-                      <div className="flex items-end gap-2 flex-wrap">
-                        <span className="text-slate-500 text-lg sm:text-xl font-bold line-through leading-none mb-2">
+                      <div className="flex items-end gap-2 whitespace-nowrap">
+                        <span className="text-slate-500 text-base sm:text-lg font-bold line-through leading-none mb-1.5">
                           {money(plan.oldPrice)}
                         </span>
-                        <span className="text-white font-black text-5xl sm:text-6xl leading-none">
+                        <span className="text-white font-black text-4xl sm:text-5xl leading-none">
                           {money(price)}
                         </span>
-                        <span className="text-slate-400 text-sm sm:text-base leading-tight mb-1.5">
+                        <span className="text-slate-400 text-xs sm:text-sm leading-tight mb-1">
                           per
                           <br />
                           month

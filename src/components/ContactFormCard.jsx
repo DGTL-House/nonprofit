@@ -19,8 +19,9 @@ export default function ContactFormCard() {
             Eligibility Call
           </h2>
           <p className="text-base sm:text-lg text-gray-500 mb-7">
-            Find out in 30 minutes if your nonprofit qualifies for $10,000/month
-            in free Google Ads.
+            Heads-up: the Google Ad Grant is $10K/month in free Google Ads, not
+            cash. We'll use it to bring donors directly to your nonprofit. $0 ad
+            spend — you only pay for our management.
           </p>
 
           <hr className="border-gray-100 mb-6" />
