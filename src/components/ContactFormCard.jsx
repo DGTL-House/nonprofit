@@ -19,7 +19,7 @@ export default function ContactFormCard() {
             Eligibility Call
           </h2>
           <p className="text-base sm:text-lg text-gray-500 mb-7">
-            Heads-up: the Google Ad Grant is $10K/month in free Google Ads,{" "}
+            Google Ad Grant is $10K/month in free Google Ads,{" "}
             <strong className="font-semibold text-gray-700 underline underline-offset-2">
               not cash
             </strong>
