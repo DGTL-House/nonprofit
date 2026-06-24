@@ -119,9 +119,12 @@ export default function Credibility() {
         {/* Clutch badge */}
         <div className="flex justify-center mb-4">
           <img
-            src="/icons/poweredCluch.png"
+            src="/icons/poweredCluch.webp"
             alt="Clutch — Top Rated Google Ad Grants Agency"
             width="200"
+            height="55"
+            loading="lazy"
+            decoding="async"
             className="opacity-80 group-hover:opacity-100 transition-opacity"
             onError={(e) => {
               e.target.style.display = "none";
