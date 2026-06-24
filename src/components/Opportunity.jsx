@@ -259,12 +259,16 @@ export default function Opportunity() {
             className="flex-1 min-w-0"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center lg:text-left leading-tight mb-6">
-              $10,000/Month. Every Month. Already Yours If You Qualify.
+              $10,000/Month in Google Ad Credit. Every Month. Already Yours If
+              You Qualify.
             </h2>
             <p className="text-slate-300 text-center lg:text-left text-base sm:text-2xl mb-8 leading-relaxed">
-              Google gives eligible nonprofits{" "}
-              <strong className="text-white">up to $10,000/month</strong> in free
-              Google Ads — so people searching for your cause find you first
+              Google funds{" "}
+              <strong className="text-white">
+                $10,000/month in advertising
+              </strong>{" "}
+              for eligible nonprofits — so people searching for your cause find
+              your nonprofit first.
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
@@ -324,7 +328,7 @@ export default function Opportunity() {
               ))}
             </div>
             <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
-              → Your organization appears first. You pay $0.
+              → Your organization appears first. You pay $0 for the ads.
             </p>
           </m.div>
 

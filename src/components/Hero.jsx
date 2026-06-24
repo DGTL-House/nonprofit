@@ -101,14 +101,14 @@ export default function Hero() {
             <div className="flex-1 min-w-0 flex flex-col justify-center">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-3 sm:mb-6 text-center lg:text-left">
                 <span className="text-[#161514]">
-                  Get a Free $10,000/Month Google Grant for Your Nonprofit —
+                  Get a Free $10,000/Month Google Ad Credit for Your Nonprofit —
                   Guaranteed.
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-3 sm:mb-6">
-                We handle Google Ad Grants end-to-end — so more donors,
-                volunteers, and partners find you.{" "}
+                Google pays for the ads. We handle everything end-to-end — so
+                donors and volunteers find you on Google.{" "}
                 <strong className="text-[#52504C]">$0 ad spend.</strong>
               </p>
 

@@ -18,16 +18,18 @@ export default function ContactFormCard() {
             <br />
             Eligibility Call
           </h2>
+
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="inline-flex items-center gap-1.5 bg-[#f3ebe6] text-[#8a4b2f] text-sm sm:text-base font-bold px-4 py-2 rounded-full">
+              ✕ not cash
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-[#b5e550] text-black text-sm sm:text-base font-bold px-4 py-2 rounded-full">
+              ✓ $10K ad credit
+            </span>
+          </div>
           <p className="text-base sm:text-lg text-gray-500 mb-7">
-            Google Ad Grant is $10K/month in free Google Ads,{" "}
-            <strong className="font-semibold text-gray-700 underline underline-offset-2">
-              not cash
-            </strong>
-            . $0 ad spend — you only{" "}
-            <strong className="font-semibold text-gray-700 underline underline-offset-2">
-              pay for our management
-            </strong>
-            .
+            Google funds $10K/month in advertising. We run the campaigns, donors
+            and volunteers find your nonprofit on Search.
           </p>
 
           <hr className="border-gray-100 mb-6" />
@@ -63,12 +65,7 @@ export default function ContactFormCard() {
           >
             Schedule a Call — It's Free →
           </a>
-          <a
-            href="#pricing"
-            className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors mt-3"
-          >
-            View Pricing →
-          </a>
+
           <p className="text-center text-sm sm:text-lg text-gray-400 mt-4">
             No pressure · No commitment · Takes 30 minutes
           </p>
