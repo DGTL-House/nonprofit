@@ -244,7 +244,7 @@ export default function Opportunity() {
   return (
     <section
       id="ad-credit"
-      className="relative py-16 sm:py-24 overflow-hidden scroll-mt-[100px]"
+      className="relative pt-4 sm:pt-6 pb-16 sm:pb-24 overflow-hidden scroll-mt-16"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 1. Opening */}

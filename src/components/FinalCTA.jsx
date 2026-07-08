@@ -84,37 +84,49 @@ export default function FinalCTA() {
 
               {/* Social trust */}
               <AnimItem variant={fadeUp}>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                  <div className="flex -space-x-2">
+                <div className="flex items-center gap-5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                  <div className="flex -space-x-2 shrink-0">
                     {[
                       {
                         src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=faces&auto=format",
                         alt: "Sarah J.",
+                        initials: "SJ",
                       },
                       {
                         src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces&auto=format",
                         alt: "Marcus W.",
+                        initials: "MW",
                       },
                       {
                         src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces&auto=format",
                         alt: "Elena R.",
+                        initials: "ER",
                       },
                       {
                         src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces&auto=format",
                         alt: "Lisa B.",
+                        initials: "LB",
                       },
                     ].map((person, i) => (
-                      <img
-                        key={i}
-                        src={person.src}
-                        alt={person.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-9 h-9 rounded-full object-cover border-2 border-[#f8f7f3]"
-                      />
+                      <div key={i} className="relative w-9 h-9">
+                        <img
+                          src={person.src}
+                          alt={person.alt}
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            e.currentTarget.nextSibling.style.display = "flex";
+                          }}
+                          className="w-9 h-9 rounded-full object-cover border-2 border-[#f8f7f3]"
+                        />
+                        <div className="absolute inset-0 w-9 h-9 rounded-full border-2 border-[#f8f7f3] bg-gradient-to-br from-emerald-400 to-emerald-600 items-center justify-center text-white text-[11px] font-bold hidden">
+                          {person.initials}
+                        </div>
+                      </div>
                     ))}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="text-white font-semibold text-base sm:text-lg">
                       200+ nonprofits already growing
                     </div>
