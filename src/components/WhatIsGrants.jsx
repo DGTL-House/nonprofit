@@ -6,19 +6,19 @@ const credibility = [
     icon: Handshake,
     stat: "22+ years",
     title: "Official Google program",
-    body: "Established in 2003 — a permanent program running continuously for over two decades.",
+    body: "Google Ad Grants launched in 2003 — a permanent program, not a limited-time offer. It's run continuously for over two decades and shows no signs of slowing.",
   },
   {
     icon: BarChart3,
     stat: "$10 billion+",
     title: "Awarded in free advertising",
-    body: "In ad credits given to nonprofits since launch — more than $650M every month worldwide.",
+    body: "Google has awarded more than $10 billion in ad credits to registered nonprofits since the program began. Every month, $650M+ in credits flow to grantees globally.",
   },
   {
     icon: Globe,
     stat: "115,000+",
     title: "Nonprofits in 51 countries",
-    body: "Active grantees across every cause and size. Any registered 501(c)(3) can qualify.",
+    body: "From small local shelters to global organizations — active grantees span every cause and every scale. If you're a 501(c)(3), you're in good company.",
   },
 ];
 
@@ -42,8 +42,8 @@ export default function WhatIsGrants() {
               The Program Behind Your $10K/Month
             </h2>
             <p className="text-slate-400 text-center text-base sm:text-lg lg:text-2xl mb-12 max-w-3xl mx-auto">
-              Google Ad Grants is an official Google program — running since 2003,
-              with over $10 billion in free advertising awarded to nonprofits
+              Google Ad Grants is an official Google program. It's been running
+              since 2003 and has awarded over $10 billion to nonprofits
               worldwide.
             </p>
           </AnimItem>

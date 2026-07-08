@@ -48,8 +48,8 @@ export default function App() {
             <MotionProvider>
               <SocialProofBar />
               <Opportunity />
-              <Problem />
               <WhatIsGrants />
+              <Problem />
               <Credibility />
               <Guarantee />
               <Ownership />

@@ -21,30 +21,35 @@ const comparison = [
     id: "business",
     title: "Regular business",
     tone: "bad",
+    icon: Wallet,
     rows: [
       { label: "Cost per click", value: "$2–$10" },
       { label: "Monthly ad bill", value: "$10,000 out of pocket" },
-      { label: "Result", value: "Ads run at top of Google" },
+      { label: "Result", value: "Ads run at the top of Google." },
     ],
   },
   {
     id: "nonprofit",
     title: "Your nonprofit",
     tone: "good",
+    icon: Handshake,
     rows: [
       { label: "Cost per click", value: "$0" },
       { label: "Monthly ad bill", value: "$0" },
-      { label: "Result", value: "Same top spot. Google covers the bill." },
+      {
+        label: "Result",
+        value: "Same ads. Same top spot. Google covers the bill.",
+      },
     ],
   },
 ];
 
 const requirements = [
-  "5% click-through rate minimum",
-  "Strict account structure and compliance rules",
-  "Ongoing keyword and negative keyword research",
-  "Quality Score optimization per ad group",
-  "Compliant landing pages with conversion tracking",
+  "5% click-through rate minimum (industry average is 3–4%)",
+  "Strict account structure and campaign compliance rules",
+  "Ongoing keyword research — including negative keyword management",
+  "Quality Score optimization on every ad group",
+  "Compliant landing pages and full conversion tracking",
 ];
 
 function PhoneMockup() {
@@ -246,13 +251,14 @@ export default function Opportunity() {
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
-              Ad Credit Isn't Cash. It's Something Better.
+              Ad Credit Isn't Cash. It's Something Better
             </h2>
             <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-14">
               Google gives you a{" "}
               <strong className="text-white">$10,000/month allowance</strong>{" "}
-              that pays for your search ads — free ad clicks that would otherwise
-              cost you <strong className="text-white">$2–$10 each</strong>.
+              that pays for your search ads. Not money to your bank account —
+              free ad clicks that would otherwise cost you{" "}
+              <strong className="text-white">$2–$10 each</strong>.
             </p>
           </AnimItem>
         </AnimSection>
@@ -330,27 +336,33 @@ export default function Opportunity() {
 
         {/* 3. Comparison + bridge */}
         <AnimSection>
-          <div className="grid lg:grid-cols-2 gap-5 mb-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 mb-6">
             {comparison.map((col) => {
               const good = col.tone === "good";
+              const Icon = col.icon;
               return (
                 <AnimItem key={col.id} variant={fadeUp}>
                   <div
-                    className={`h-full rounded-2xl p-6 sm:p-8 ${
+                    className={`h-full rounded-2xl p-4 sm:p-8 ${
                       good
                         ? "bg-gradient-to-br from-emerald-500/10 to-emerald-700/5 border border-emerald-500/25"
-                        : "glass-card border-red-500/15"
+                        : "glass-card"
                     }`}
                   >
-                    <div className="flex items-center gap-2 mb-5">
-                      {good ? (
-                        <CheckCircle size={20} className="text-emerald-400" />
-                      ) : (
-                        <XCircle size={20} className="text-red-400" />
-                      )}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
+                      <div
+                        className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                          good ? "bg-emerald-500/15" : "bg-black/[0.06]"
+                        }`}
+                      >
+                        <Icon
+                          size={20}
+                          className={good ? "text-emerald-400" : "text-slate-500"}
+                        />
+                      </div>
                       <span
-                        className={`font-bold text-base sm:text-lg uppercase tracking-wide ${
-                          good ? "text-emerald-400" : "text-red-400"
+                        className={`font-bold text-xs sm:text-lg uppercase tracking-wide leading-tight ${
+                          good ? "text-emerald-400" : "text-slate-400"
                         }`}
                       >
                         {col.title}
@@ -360,13 +372,13 @@ export default function Opportunity() {
                       {col.rows.map((row) => (
                         <div
                           key={row.label}
-                          className="flex items-start justify-between gap-4 py-3"
+                          className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-0.5 sm:gap-4 py-2.5 sm:py-3"
                         >
-                          <span className="text-slate-400 text-sm sm:text-base">
+                          <span className="text-slate-400 text-xs sm:text-base">
                             {row.label}
                           </span>
                           <span
-                            className={`text-right font-bold text-sm sm:text-lg ${
+                            className={`sm:text-right font-bold text-sm sm:text-lg ${
                               good ? "text-white" : "text-slate-300"
                             }`}
                           >
@@ -396,8 +408,9 @@ export default function Opportunity() {
                 Sounds simple. Running it isn't.
               </h3>
               <p className="text-slate-400 text-center text-sm sm:text-lg mb-7 max-w-2xl mx-auto">
-                To keep the credit, Google enforces strict rules — miss them and
-                your grant freezes or your account gets suspended.
+                Google gives you the credit — but only if your account plays by
+                their rules. Miss a single requirement, and the grant is frozen
+                or the account is suspended.
               </p>
               <ul className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
                 {requirements.map((r) => (
@@ -413,6 +426,15 @@ export default function Opportunity() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-red-500/10 border border-red-500/25 px-4 py-3 max-w-2xl mx-auto">
+                <AlertTriangle
+                  size={18}
+                  className="text-red-500 flex-shrink-0"
+                />
+                <span className="text-red-500 font-bold text-sm sm:text-lg text-center">
+                  Break any of these — account suspended. Grant frozen.
+                </span>
+              </div>
             </div>
           </AnimItem>
         </AnimSection>
@@ -431,7 +453,8 @@ export default function Opportunity() {
                 Google Ads is a full-time profession — and it's ours. We handle
                 every requirement above so your{" "}
                 <strong className="text-white">$10K/month credit</strong>{" "}
-                actually converts into donors, volunteers, and awareness.
+                actually converts into donors, volunteers, and awareness. You
+                keep doing what you're here to do.
               </p>
               <button
                 onClick={scrollToEligibility}
