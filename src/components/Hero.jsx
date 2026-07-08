@@ -32,7 +32,7 @@ export default function Hero() {
           {/* Google for Nonprofits Partners badge */}
           <div className="pt-6 lg:pt-12">
             <p className="text-center text-sm sm:text-lg text-gray-400 mb-1">
-              Click to learn more
+              click to learn more
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full sm:w-auto">
@@ -101,8 +101,17 @@ export default function Hero() {
             <div className="flex-1 min-w-0 flex flex-col justify-center">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-3 sm:mb-6 text-center lg:text-left">
                 <span className="text-[#161514]">
-                  Get a Free $10,000/Month Google Ad Credit for Your Nonprofit —
-                  Guaranteed.
+                  Get a Free $10,000/Month{" "}
+                  <a
+                    href="#ad-credit"
+                    className="ad-credit-word whitespace-nowrap hover:opacity-80 transition-opacity"
+                  >
+                    Google Ad Credit
+                    <span className="sparkle-emoji" aria-hidden="true">
+                      ✨
+                    </span>
+                  </a>{" "}
+                  for Your Nonprofit — Guaranteed.
                 </span>
               </h1>
 
@@ -121,61 +130,32 @@ export default function Hero() {
                 </a>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 mt-2 sm:mt-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-400 text-sm sm:text-base font-bold">
-                    Fully done-for-you
-                  </span>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-gray-400" />
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-400 text-sm sm:text-base font-bold">
-                    Cancel anytime
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="flex flex-col items-center">
-            <div className="flex justify-center w-full mb-6">
-              <div className="relative flex flex-row items-center justify-center gap-4 w-full max-w-2xl px-6 py-5 rounded-2xl bg-[#f0eee6] border border-[#ebe9e0] shadow-md overflow-hidden">
-                <span className="absolute top-3 right-3 flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 opacity-70" />
+            <div className="flex flex-col items-center w-full mb-6">
+              <a
+                href="#ad-credit"
+                className="btn-primary attention-pulse text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-8"
+              >
+                What's Ad Credit?
+              </a>
+              <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#3f5028] text-[#3f5028] font-semibold text-sm sm:text-base px-4 py-2">
+                  ✕ not cash
                 </span>
-                <span className="text-4xl leading-none select-none drop-shadow">
-                  🎁
+                <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#3f5028] text-[#3f5028] font-semibold text-sm sm:text-base px-4 py-2">
+                  ✓ $10K ad credit
                 </span>
-                <div className="flex flex-col text-left">
-                  <span className="text-[#161514] text-sm sm:text-lg font-bold leading-snug">
-                    We get your grant approved —{" "}
-                    <a
-                      href="#contact-form"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document
-                          .querySelector("#contact-form")
-                          ?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-emerald-700 underline underline-offset-4 decoration-dotted hover:text-emerald-900 transition-colors cursor-pointer"
-                    >
-                      free
-                    </a>
-                    .
-                  </span>
-                  <span className="text-[#52504C] text-xs sm:text-sm font-normal leading-snug mt-0.5">
-                    So you see it&apos;s real before you commit.
-                  </span>
-                </div>
               </div>
             </div>
 
             <div className="lg:hidden">
               <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
                 <a
-                  href="#opportunity"
+                  href="#ad-credit"
                   className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"
                 >
                   See How It Works

@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { m } from "framer-motion";
-import { DollarSign, Search, ArrowRight } from "lucide-react";
-import { useInView } from "react-intersection-observer";
 import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  slideLeft,
-  slideRight,
-} from "../utils/animations";
-import { useCounter } from "../hooks/useCounter";
+  Search,
+  Wallet,
+  Handshake,
+  AlertTriangle,
+  ShieldCheck,
+} from "lucide-react";
+import { useInView } from "react-intersection-observer";
+import { AnimSection, AnimItem, fadeUp, slideLeft } from "../utils/animations";
 
 const searchQueries = [
   '"volunteer opportunities"',
@@ -17,21 +16,36 @@ const searchQueries = [
   '"donate to animal shelter"',
 ];
 
-function CounterStat({ end, prefix = "", suffix = "", label, decimals = 0 }) {
-  const { count, ref } = useCounter(end, 2200);
-  return (
-    <div ref={ref} className="text-center">
-      <div className="text-2xl sm:text-4xl lg:text-5xl font-black gradient-text mb-2">
-        {prefix}
-        {decimals > 0 ? count.toFixed(decimals) : count.toLocaleString()}
-        {suffix}
-      </div>
-      <div className="text-slate-400 text-sm sm:text-base lg:text-lg font-medium">
-        {label}
-      </div>
-    </div>
-  );
-}
+const comparison = [
+  {
+    id: "business",
+    title: "Regular business",
+    tone: "bad",
+    rows: [
+      { label: "Cost per click", value: "$2–$10" },
+      { label: "Monthly ad bill", value: "$10,000 out of pocket" },
+      { label: "Result", value: "Ads run at top of Google" },
+    ],
+  },
+  {
+    id: "nonprofit",
+    title: "Your nonprofit",
+    tone: "good",
+    rows: [
+      { label: "Cost per click", value: "$0" },
+      { label: "Monthly ad bill", value: "$0" },
+      { label: "Result", value: "Same top spot. Google covers the bill." },
+    ],
+  },
+];
+
+const requirements = [
+  "5% click-through rate minimum",
+  "Strict account structure and compliance rules",
+  "Ongoing keyword and negative keyword research",
+  "Quality Score optimization per ad group",
+  "Compliant landing pages with conversion tracking",
+];
 
 function PhoneMockup() {
   const [typedText, setTypedText] = useState("");
@@ -221,13 +235,29 @@ export default function Opportunity() {
       .querySelector("#contact-form")
       ?.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <section
-      id="opportunity"
+      id="ad-credit"
       className="relative py-16 sm:py-24 overflow-hidden scroll-mt-[100px]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Phone mockup demo — left, h2+p — right */}
+        {/* 1. Opening */}
+        <AnimSection>
+          <AnimItem variant={fadeUp}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
+              Ad Credit Isn't Cash. It's Something Better.
+            </h2>
+            <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-14">
+              Google gives you a{" "}
+              <strong className="text-white">$10,000/month allowance</strong>{" "}
+              that pays for your search ads — free ad clicks that would otherwise
+              cost you <strong className="text-white">$2–$10 each</strong>.
+            </p>
+          </AnimItem>
+        </AnimSection>
+
+        {/* 2. Phone mockup + search examples */}
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
@@ -250,180 +280,167 @@ export default function Opportunity() {
             </m.div>
           </div>
 
-          {/* Right: h2 + p + button */}
-          <m.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            viewport={{ once: true }}
-            className="flex-1 min-w-0"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center lg:text-left leading-tight mb-6">
-              $10,000/Month in Google Ad Credit. Every Month. Already Yours If
-              You Qualify.
-            </h2>
-            <p className="text-slate-300 text-center lg:text-left text-base sm:text-2xl mb-8 leading-relaxed">
-              Google funds{" "}
-              <strong className="text-white">
-                $10,000/month in advertising
-              </strong>{" "}
-              for eligible nonprofits — so people searching for your cause find
-              your nonprofit first.
-            </p>
-            <div className="flex justify-center lg:justify-start">
-              <button
-                onClick={() =>
-                  document
-                    .querySelector("#contact-form")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
-              >
-                Check My Eligibility →
-              </button>
-            </div>
-          </m.div>
-        </div>
-
-        {/* Two column layout */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          {/* Left: Search queries visual */}
+          {/* Right: search examples + green callout */}
           <m.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideLeft}
-            className="glass-card rounded-2xl p-6 sm:p-8"
+            className="flex-1 min-w-0 w-full"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                <Search size={20} className="text-emerald-400" />
+            <div className="glass-card rounded-2xl p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                  <Search size={20} className="text-emerald-400" />
+                </div>
+                <h3 className="text-white font-bold text-base sm:text-lg">
+                  People are already searching for you:
+                </h3>
               </div>
-              <h3 className="text-white font-bold text-base sm:text-lg">
-                People are already searching for you:
-              </h3>
-            </div>
-            <div className="space-y-3">
-              {searchQueries.map((query, i) => (
-                <m.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
-                >
-                  <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                    <Search size={12} className="text-emerald-400" />
-                  </div>
-                  <span className="text-slate-300 text-sm sm:text-lg font-mono">
-                    {query}
-                  </span>
-                  <div className="ml-auto">
-                    <span className="text-sm sm:text-lg text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                      Ad
+              <div className="space-y-3">
+                {searchQueries.map((query, i) => (
+                  <m.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
+                  >
+                    <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <Search size={12} className="text-emerald-400" />
+                    </div>
+                    <span className="text-slate-300 text-sm sm:text-lg font-mono">
+                      {query}
                     </span>
-                  </div>
-                </m.div>
-              ))}
-            </div>
-            <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
-              → Your organization appears first. You pay $0 for the ads.
-            </p>
-          </m.div>
-
-          {/* Right: Stats & math */}
-          <m.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={slideRight}
-            className="flex flex-col gap-4"
-          >
-            {/* Big dollar visual */}
-            <div className="glass-card rounded-2xl p-8 text-center border border-emerald-500/15 flex-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl" />
-              <div className="relative z-10">
-                <div className="text-7xl sm:text-8xl font-black gradient-text mb-2 leading-none">
-                  $10K
-                </div>
-                <div className="text-slate-300 text-sm sm:text-lg font-semibold mb-1">
-                  per month in free ads
-                </div>
-                <div className="text-slate-500 text-sm sm:text-lg">
-                  Google funds it completely
-                </div>
-                <div className="mt-5 pt-5 border-t border-white/[0.06] grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-2xl font-black text-white">$120K</div>
-                    <div className="text-slate-400 text-sm sm:text-lg mt-0.5">
-                      per year total value
+                    <div className="ml-auto">
+                      <span className="text-sm sm:text-lg text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                        Ad
+                      </span>
                     </div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-black text-white">$0</div>
-                    <div className="text-slate-400 text-sm sm:text-lg mt-0.5">
-                      ad spend from you
-                    </div>
-                  </div>
-                </div>
+                  </m.div>
+                ))}
               </div>
+              <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
+                → Your organization appears first. You pay $0 for the ads.
+              </p>
             </div>
-
-            {/* Urgency math */}
-            {/* <div className="urgency-box p-6">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl">⚠️</span>
-                <div>
-                  <p className="text-[#c44a32] font-bold mb-1">
-                    Every month you wait...
-                  </p>
-                  <p className="text-slate-300 text-sm sm:text-lg leading-relaxed">
-                    ...is{" "}
-                    <strong className="text-[#c44a32]">
-                      up to $10,000 in free advertising
-                    </strong>{" "}
-                    that disappears forever. It doesn't accumulate or carry
-                    over. Waiting 3 months to start costs you{" "}
-                    <strong className="text-[#c44a32]">
-                      $30,000 in potential reach.
-                    </strong>
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </m.div>
         </div>
 
-        {/* Counter stats */}
+        {/* 3. Comparison + bridge */}
+        <AnimSection>
+          <div className="grid lg:grid-cols-2 gap-5 mb-6">
+            {comparison.map((col) => {
+              const good = col.tone === "good";
+              return (
+                <AnimItem key={col.id} variant={fadeUp}>
+                  <div
+                    className={`h-full rounded-2xl p-6 sm:p-8 ${
+                      good
+                        ? "bg-gradient-to-br from-emerald-500/10 to-emerald-700/5 border border-emerald-500/25"
+                        : "glass-card border-red-500/15"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-5">
+                      {good ? (
+                        <CheckCircle size={20} className="text-emerald-400" />
+                      ) : (
+                        <XCircle size={20} className="text-red-400" />
+                      )}
+                      <span
+                        className={`font-bold text-base sm:text-lg uppercase tracking-wide ${
+                          good ? "text-emerald-400" : "text-red-400"
+                        }`}
+                      >
+                        {col.title}
+                      </span>
+                    </div>
+                    <div className="divide-y divide-white/[0.06]">
+                      {col.rows.map((row) => (
+                        <div
+                          key={row.label}
+                          className="flex items-start justify-between gap-4 py-3"
+                        >
+                          <span className="text-slate-400 text-sm sm:text-base">
+                            {row.label}
+                          </span>
+                          <span
+                            className={`text-right font-bold text-sm sm:text-lg ${
+                              good ? "text-white" : "text-slate-300"
+                            }`}
+                          >
+                            {row.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </AnimItem>
+              );
+            })}
+          </div>
+          <AnimItem variant={fadeUp}>
+            <p className="text-center text-[#3d4a1f] font-bold text-lg sm:text-2xl mb-14 max-w-3xl mx-auto">
+              Same clicks. Same top-of-Google visibility. You just don't pay for
+              them.
+            </p>
+          </AnimItem>
+        </AnimSection>
+
+        {/* 4. Requirements reality */}
         <AnimSection>
           <AnimItem variant={fadeUp}>
-            <div className="glass-card rounded-2xl p-8 sm:p-10">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-                <CounterStat
-                  end={120000}
-                  prefix="$"
-                  label="Per year in free ads"
-                  suffix=""
-                />
-                <CounterStat end={200} suffix="+" label="Nonprofits helped" />
-                <CounterStat end={99} suffix="%" label="Grant approval rate" />
-                <CounterStat
-                  end={30}
-                  suffix=" days"
-                  label="To live campaigns"
-                />
-              </div>
+            <div className="glass-card rounded-2xl p-6 sm:p-9 mb-6">
+              <h3 className="text-white font-black text-2xl sm:text-3xl text-center mb-2">
+                Sounds simple. Running it isn't.
+              </h3>
+              <p className="text-slate-400 text-center text-sm sm:text-lg mb-7 max-w-2xl mx-auto">
+                To keep the credit, Google enforces strict rules — miss them and
+                your grant freezes or your account gets suspended.
+              </p>
+              <ul className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
+                {requirements.map((r) => (
+                  <li
+                    key={r}
+                    className="flex items-start gap-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-slate-300 text-sm sm:text-lg"
+                  >
+                    <AlertTriangle
+                      size={18}
+                      className="text-amber-500 flex-shrink-0 mt-0.5"
+                    />
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </div>
           </AnimItem>
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={scrollToEligibility}
-              className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
-            >
-              Check My Eligibility →
-            </button>
-          </div>
+        </AnimSection>
+
+        {/* 5 + 6. Value proposition + CTA */}
+        <AnimSection>
+          <AnimItem variant={fadeUp}>
+            <div className="rounded-2xl p-8 sm:p-10 bg-gradient-to-br from-emerald-500/10 to-emerald-700/5 border border-emerald-500/20 text-center">
+              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5">
+                <ShieldCheck size={32} className="text-emerald-400" />
+              </div>
+              <h3 className="text-white font-black text-2xl sm:text-3xl mb-3 leading-tight">
+                Your team runs the mission. Ours runs the account.
+              </h3>
+              <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                Google Ads is a full-time profession — and it's ours. We handle
+                every requirement above so your{" "}
+                <strong className="text-white">$10K/month credit</strong>{" "}
+                actually converts into donors, volunteers, and awareness.
+              </p>
+              <button
+                onClick={scrollToEligibility}
+                className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8 mx-auto"
+              >
+                Check My Eligibility →
+              </button>
+            </div>
+          </AnimItem>
         </AnimSection>
       </div>
     </section>

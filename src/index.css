@@ -358,6 +358,60 @@ samp {
     }
 }
 
+/* --------- Hero "Google Ad Credit" shimmering link + sparkle --------- */
+@keyframes ad-credit-shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.ad-credit-word {
+    background: linear-gradient(90deg,
+            #3f5028 0%,
+            #8fbf3f 25%,
+            #3f5028 50%,
+            #8fbf3f 75%,
+            #3f5028 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: ad-credit-shimmer 3s linear infinite;
+}
+
+@keyframes sparkle-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(15deg);
+    }
+}
+
+.sparkle-emoji {
+    display: inline-block;
+    margin-left: 0.12em;
+    font-size: 0.65em;
+    vertical-align: super;
+    -webkit-text-fill-color: initial;
+    color: initial;
+    animation: sparkle-twinkle 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ad-credit-word,
+    .sparkle-emoji {
+        animation: none;
+    }
+}
+
 @keyframes marquee {
     0% {
         transform: translateX(0);
@@ -376,6 +430,85 @@ samp {
 
 .marquee-track:hover {
     animation-play-state: paused;
+}
+
+/* --------- Floating block switcher --------- */
+.block-switcher {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.block-switcher.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Each nav item is its own standalone green pill. */
+.switch-pill {
+    background: #3f5028;
+    color: #eaf6cc;
+    border: 1px solid rgba(170, 201, 118, 0.55);
+    box-shadow: 0 6px 18px rgba(63, 80, 40, 0.35);
+    text-decoration: none;
+    /* springy release so a tap bounces back */
+    transition:
+        transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.switch-pill:hover {
+    background: #4d6132;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Press feedback — pushes in on hold (mouse and touch). */
+.switch-pill:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 8px rgba(63, 80, 40, 0.45);
+}
+
+/* Section currently in view — bright lime pill. */
+.switch-pill.is-active {
+    background: #c4ed82;
+    color: #2d3a1c;
+    border-color: #c4ed82;
+    box-shadow: 0 8px 22px rgba(170, 201, 118, 0.55);
+}
+
+/* Click "pop" — a quick bounce played via JS on tap. */
+@keyframes switch-pop {
+    0% {
+        transform: scale(0.9);
+    }
+
+    55% {
+        transform: scale(1.09);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.switch-pill.tapped {
+    animation: switch-pop 0.34s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .block-switcher,
+    .switch-pill,
+    .switch-pill.tapped {
+        transition: none;
+        animation: none;
+    }
 }
 
 @keyframes gradientShift {

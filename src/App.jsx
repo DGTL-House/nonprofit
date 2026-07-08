@@ -21,6 +21,7 @@ const FAQ = lazy(() => import("./components/FAQ"));
 const FinalCTA = lazy(() => import("./components/FinalCTA"));
 const Footer = lazy(() => import("./components/Footer"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+const BlockSwitcher = lazy(() => import("./components/BlockSwitcher"));
 const MotionProvider = lazy(() => import("./components/MotionProvider"));
 
 // Reserve vertical space so the deferred mount doesn't trigger a CLS spike
@@ -60,6 +61,7 @@ export default function App() {
               <FAQ />
               <Footer />
               <ScrollToTop />
+              <BlockSwitcher />
             </MotionProvider>
           </Suspense>
         </DeferredMount>
