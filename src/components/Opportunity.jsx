@@ -265,18 +265,19 @@ export default function Opportunity() {
         </AnimSection>
 
         {/* 2. Phone mockup + search examples */}
+        <m.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-6 sm:mb-8"
+        >
+          Here's what it looks like in Google Search
+        </m.p>
+
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-8 sm:mb-10">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
-            <m.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-4 sm:mb-5"
-            >
-              Here's what it looks like in Google Search
-            </m.p>
             <m.div
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
