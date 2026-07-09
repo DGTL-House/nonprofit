@@ -22,6 +22,12 @@ export default function Footer() {
               Helping nonprofits access and maximize Google Ad Grants since
               2018. Certified partner. 200+ organizations helped.
             </p>
+            <a
+              href="#ad-credit"
+              className="inline-flex items-center gap-1.5 text-slate-500 hover:text-emerald-400 text-sm sm:text-lg font-semibold transition-colors"
+            >
+              What's Ad Credit? →
+            </a>
           </div>
 
           {/* Contacts */}

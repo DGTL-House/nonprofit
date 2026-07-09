@@ -12,7 +12,7 @@ const plans = [
     id: "starter",
     tab: "Starter",
     name: "Ad Grant Management",
-    tagline: "Google Ad Grant setup and ongoing management",
+    tagline: "Get $10K/month from Google. We handle everything",
     monthly: 250,
     annual: 200,
     oldPrice: 500,
@@ -21,17 +21,23 @@ const plans = [
     save: 20,
     saveYear: 600,
     features: [
-      "Google Ad Grant application & setup",
-      "Campaign creation & launch",
-      "Keyword research",
-      "Ongoing Ad Grant management",
+      "Google for Nonprofits registration",
+      "Google Ad Grant application & approval",
+      "Conversion tracking setup in Google Ads",
+      "Performance Max campaign setup",
+      "Ongoing high-intent keyword research",
+      "Ongoing campaign creation, testing, and launch",
+      "Ongoing optimization to reach the full $10K/month",
+      "Grant compliance monitoring (stay eligible)",
+      "Monthly performance reporting",
     ],
   },
   {
     id: "standard",
     tab: "Standard",
     name: "Growth Partner",
-    tagline: "Ad Grant + SEO, analytics & dedicated project manager",
+    tagline: "Maximize your Grant spend. Grow organic traffic",
+    badge: "Spend the full $10K faster",
     monthly: 500,
     annual: 350,
     oldPrice: 1000,
@@ -40,21 +46,24 @@ const plans = [
     save: 30,
     saveYear: 1800,
     popular: true,
-    featuresHeading: "Everything in Ad Grant Management",
+    featuresHeading: "Everything in Ad Grant Management, plus:",
     features: [
-      "Website SEO optimization",
+      "SEO to lower your cost per click",
+      "SEO to grow organic traffic",
       "Full web analytics setup",
+      "GA4, GTM, GSC and Lookers reports",
+      "Heatmaps & visitor recordings setup",
       "Personal project manager",
-      "Light website edits included",
-      "Up to 4 hrs/mo SEO work",
-      "Big updates at 70% off agency rates",
+      "50% off any website support",
+      "Monthly strategy call",
     ],
   },
   {
     id: "premium",
     tab: "Premium",
     name: "Impact Partner",
-    tagline: "A complete digital marketing team for your nonprofit",
+    tagline: "Turn your Grant into more donations",
+    badge: "Full-service marketing",
     monthly: 1000,
     annual: 650,
     oldPrice: 2000,
@@ -62,14 +71,16 @@ const plans = [
     annualBilled: 7800,
     save: 35,
     saveYear: 4200,
-    featuresHeading: "Everything in Growth Partner",
+    featuresHeading: "Everything in Growth Partner, plus:",
     features: [
       "Local SEO & Google Business Profile",
-      "Website edits & new page creation",
+      "AEO - Answer Engine Optimization",
+      "CRO - Conversion rate optimization to grow donations",
       "Blog research, writing & publishing",
       "Social media content & posting",
-      "Up to 4 hrs/mo SEO work",
-      "Up to 5 hrs/mo dev support",
+      "Email marketing + automated donor sequences",
+      "70% off any website support",
+      "Extra 2 hrs/mo of SEO work",
     ],
   },
 ];
@@ -103,7 +114,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative py-8 sm:py-16 overflow-hidden scroll-m-16"
+      className="relative py-8 sm:py-16 overflow-hidden scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-500/8 rounded-full blur-[180px] pointer-events-none" />
@@ -197,9 +208,18 @@ export default function Pricing() {
                       <h3 className="text-white text-xl sm:text-2xl font-black mb-1 min-h-[2rem]">
                         {plan.name}
                       </h3>
-                      <p className="text-slate-400 text-sm sm:text-base mb-5 min-h-[3rem]">
+                      <p className="text-slate-400 text-sm sm:text-base mb-3 min-h-[3rem]">
                         {plan.tagline}
                       </p>
+
+                      {/* Reserve the row even without a badge so the CTAs stay aligned */}
+                      <div className="mb-4 min-h-9">
+                        {plan.badge && (
+                          <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] border border-[#d4e4a8] px-3 py-1.5 rounded-full">
+                            ⚡ {plan.badge}
+                          </span>
+                        )}
+                      </div>
 
                       {billing === "annual" && (
                         <div className="flex flex-wrap gap-2 mb-4">

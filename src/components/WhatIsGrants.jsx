@@ -31,7 +31,7 @@ export default function WhatIsGrants() {
   return (
     <section
       id="what-is-grants"
-      className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/70 scroll-mt-20"
+      className="relative py-8 sm:py-16 overflow-hidden bg-[#f0eee6]/70 scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="absolute top-0 left-1/3 w-96 h-96 bg-blue-500/6 rounded-full blur-[140px] pointer-events-none" />
 
@@ -39,7 +39,7 @@ export default function WhatIsGrants() {
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
-              The Program Behind Your $10K/Month
+              What Is Google Ad Grants?
             </h2>
             <p className="text-slate-400 text-center text-base sm:text-lg lg:text-2xl mb-12 max-w-3xl mx-auto">
               Google Ad Grants is an official Google program. It's been running

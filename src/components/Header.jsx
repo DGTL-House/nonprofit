@@ -68,6 +68,7 @@ const BOOKING_URL =
   "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 const navLinks = [
+  { label: "What's Ad Credit?", href: "#ad-credit" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Cases", href: "#credibility" },
   { label: "Pricing", href: "#pricing" },

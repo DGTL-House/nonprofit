@@ -51,7 +51,7 @@ export default function App() {
               <WhatIsGrants />
               <Problem />
               <Credibility />
-              <Guarantee />
+              {/* <Guarantee /> */}
               <Ownership />
               <Solution />
               <FinalCTA />

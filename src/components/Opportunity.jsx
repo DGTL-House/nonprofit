@@ -244,27 +244,28 @@ export default function Opportunity() {
   return (
     <section
       id="ad-credit"
-      className="relative pt-4 sm:pt-6 pb-16 sm:pb-24 overflow-hidden scroll-mt-16"
+      className="relative py-8 sm:py-16 overflow-hidden scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 1. Opening */}
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
-              Ad Credit Isn't Cash. It's Something Better
+              Ad Credit Isn't Cash.
+              <br />
+              <span className="text-[#3f5028]">It's Something Better</span>
             </h2>
-            <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-14">
-              Google gives you a{" "}
-              <strong className="text-white">$10,000/month allowance</strong>{" "}
-              that pays for your search ads. Not money to your bank account —
-              free ad clicks that would otherwise cost you{" "}
-              <strong className="text-white">$2–$10 each</strong>.
+            <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-6 sm:mb-8">
+              Google gives you a free{" "}
+              <strong className="text-white">$10,000/month budget</strong> for
+              search ads. People are already searching for organizations like
+              yours — it brings donors and volunteers straight to your site.
             </p>
           </AnimItem>
         </AnimSection>
 
         {/* 2. Phone mockup + search examples */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-8 sm:mb-10">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
             <m.p
@@ -272,7 +273,7 @@ export default function Opportunity() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-10"
+              className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-4 sm:mb-5"
             >
               Here's what it looks like in Google Search
             </m.p>
@@ -330,6 +331,14 @@ export default function Opportunity() {
               <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
                 → Your organization appears first. You pay $0 for the ads.
               </p>
+              <div className="flex justify-center mt-6">
+                <button
+                  onClick={scrollToEligibility}
+                  className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
+                >
+                  Check My Eligibility →
+                </button>
+              </div>
             </div>
           </m.div>
         </div>
@@ -393,7 +402,7 @@ export default function Opportunity() {
             })}
           </div>
           <AnimItem variant={fadeUp}>
-            <p className="text-center text-[#3d4a1f] font-bold text-lg sm:text-2xl mb-14 max-w-3xl mx-auto">
+            <p className="text-center text-[#3d4a1f] font-bold text-lg sm:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto">
               Same clicks. Same top-of-Google visibility. You just don't pay for
               them.
             </p>
@@ -405,7 +414,9 @@ export default function Opportunity() {
           <AnimItem variant={fadeUp}>
             <div className="glass-card rounded-2xl p-6 sm:p-9 mb-6">
               <h3 className="text-white font-black text-2xl sm:text-3xl text-center mb-2">
-                Sounds simple. Running it isn't.
+                Sounds simple.
+                <br className="sm:hidden" />{" "}
+                Running it isn't.
               </h3>
               <p className="text-slate-400 text-center text-sm sm:text-lg mb-7 max-w-2xl mx-auto">
                 Google gives you the credit — but only if your account plays by

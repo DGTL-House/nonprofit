@@ -37,7 +37,7 @@ const pains = [
 
 export default function Problem() {
   return (
-    <section className="relative pt-0 pb-8 sm:pb-12 overflow-hidden">
+    <section className="relative py-8 sm:py-16 overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -96,7 +96,7 @@ export default function Problem() {
             </m.div>
           </m.div>
           <AnimItem variant={fadeUp}>
-            <div className="flex justify-center mt-12 mb-8">
+            <div className="flex justify-center mt-8">
               <a
                 href="#contact-form"
                 className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"

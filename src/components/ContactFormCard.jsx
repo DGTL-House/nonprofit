@@ -5,7 +5,10 @@ const BOOKING_URL =
 
 export default function ContactFormCard() {
   return (
-    <section id="contact-form" className="py-8 sm:py-16 bg-gray-50 scroll-m-2">
+    <section
+      id="contact-form"
+      className="py-8 sm:py-16 bg-gray-50 scroll-mt-10 sm:scroll-mt-2"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="bg-[#ffffff] rounded-3xl border border-gray-100 p-6 sm:p-10">
           <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -23,9 +26,12 @@ export default function ContactFormCard() {
             <span className="inline-flex items-center gap-1.5 bg-[#f3ebe6] text-[#8a4b2f] text-sm sm:text-base font-bold px-4 py-2 rounded-full">
               ✕ not cash
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#b5e550] text-black text-sm sm:text-base font-bold px-4 py-2 rounded-full">
+            <a
+              href="#ad-credit"
+              className="inline-flex items-center gap-1.5 bg-[#b5e550] hover:bg-[#a3d444] text-black text-sm sm:text-base font-bold px-4 py-2 rounded-full transition-colors"
+            >
               ✓ $10K ad credit
-            </span>
+            </a>
           </div>
           <p className="text-base sm:text-lg text-gray-500 mb-7">
             Google funds $10K/month in advertising. We run the campaigns, donors

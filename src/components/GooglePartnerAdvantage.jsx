@@ -55,7 +55,7 @@ export default function GooglePartnerAdvantage() {
   return (
     <section
       id="google-partner-advantage"
-      className="relative py-16 sm:py-20 overflow-hidden bg-[#f5f1e8] scroll-mt-24"
+      className="relative py-8 sm:py-16 overflow-hidden bg-[#f5f1e8] scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <AnimSection>

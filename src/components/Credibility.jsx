@@ -99,7 +99,7 @@ export default function Credibility() {
   return (
     <section
       id="credibility"
-      className="relative py-8 sm:py-16 overflow-hidden"
+      className="relative py-8 sm:py-16 overflow-hidden scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/6 rounded-full blur-[140px] pointer-events-none" />
 

@@ -6,51 +6,83 @@ const groups = [
   {
     title: "Google Ad Grant",
     rows: [
-      { label: "Google for Nonprofits registration", values: [true, true, true] },
       {
-        label: "Ad Grant application & account setup",
+        label: "Google for Nonprofits registration",
         values: [true, true, true],
       },
-      { label: "Campaign creation & launch", values: [true, true, true] },
-      { label: "Keyword research", values: [true, true, true] },
-      { label: "Ongoing Ad Grant management", values: [true, true, true] },
-      { label: "Monthly campaign improvements", values: [true, true, true] },
-      { label: "Monthly performance report", values: [true, true, true] },
+      { label: "Ad Grant application & approval", values: [true, true, true] },
+      {
+        label: "Conversion tracking setup in Google Ads",
+        values: [true, true, true],
+      },
+      { label: "Performance Max campaign setup", values: [true, true, true] },
+      {
+        label: "Ongoing high-intent keyword research",
+        values: [true, true, true],
+      },
+      {
+        label: "Ongoing campaign creation, testing, and launch",
+        values: [true, true, true],
+      },
+      {
+        label: "Ongoing optimization to reach the full $10K/month",
+        values: [true, true, true],
+      },
+      { label: "Grant compliance monitoring", values: [true, true, true] },
+      {
+        label: "Heatmaps & visitor recordings setup",
+        values: [false, true, true],
+      },
+      {
+        label: "Monthly performance reporting",
+        values: ["Monthly report", "Monthly report", "Monthly report"],
+      },
     ],
   },
   {
-    title: "SEO & Analytics",
+    title: "AEO, SEO & Organic Growth",
     rows: [
-      { label: "Website SEO optimization", values: [false, true, true] },
-      { label: "Full web analytics setup", values: [false, true, true] },
+      { label: "On-page SEO", values: [false, "2 hrs/mo", "4 hrs/mo"] },
+      { label: "Technical SEO", values: [false, true, true] },
       {
-        label: "Local SEO / Google Business Profile",
+        label: "Full web analytics setup (GA4, GTM, GSC and Lookers reports)",
+        values: [false, true, true],
+      },
+      {
+        label: "AEO - Answer Engine Optimization",
         values: [false, false, true],
       },
-      { label: "SEO work hours", values: [false, "4 hrs/mo", "4 hrs/mo"] },
+      {
+        label: "Local SEO & Google Business Profile",
+        values: [false, false, true],
+      },
     ],
   },
   {
     title: "Website",
     rows: [
       {
-        label: "Website edits",
-        values: ["50% off", "Light edits included", "Edits + new pages"],
+        label: "CRO - Conversion rate optimization",
+        values: [false, false, true],
       },
       {
-        label: "Larger website updates",
-        values: ["50% off", "70% off", "Included in scope"],
+        label: "Website support",
+        values: ["full price", "50% off", "70% off"],
       },
-      { label: "Dev support hours", values: [false, false, "5 hrs/mo"] },
     ],
   },
   {
     title: "Content & Social",
     rows: [
-      { label: "Blog research & writing", values: [false, false, true] },
-      { label: "Blog publishing", values: [false, false, true] },
-      { label: "Social media content", values: [false, false, true] },
-      { label: "Social media posting", values: [false, false, true] },
+      {
+        label: "Blog research, writing & publishing",
+        values: [false, false, true],
+      },
+      { label: "Social media content & posting", values: [false, false, true] },
+      {
+        label: "Email marketing (up to 3/mo + automation)",
+        values: [false, false, true],
+      },
     ],
   },
   {

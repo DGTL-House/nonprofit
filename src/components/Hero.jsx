@@ -38,7 +38,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full sm:w-auto">
               <a
                 href="#google-partner-advantage"
-                className="attention-pulse flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center transition-colors hover:border-[#d4e4a8] hover:bg-[#f8f7f3]"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center transition-colors hover:border-[#d4e4a8] hover:bg-[#f8f7f3]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -142,13 +142,10 @@ export default function Hero() {
               >
                 What's Ad Credit?
               </a>
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
-                <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#3f5028] text-[#3f5028] font-semibold text-sm sm:text-base px-4 py-2">
-                  ✕ not cash
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#3f5028] text-[#3f5028] font-semibold text-sm sm:text-base px-4 py-2">
-                  ✓ $10K ad credit
-                </span>
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-3">
+                <span>✕ not cash</span>
+                <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
+                <span>✓ $10K ad credit</span>
               </div>
             </div>
 
