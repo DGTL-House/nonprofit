@@ -31,14 +31,10 @@ export default function Hero() {
         <div className="flex flex-col gap-3 sm:gap-8 lg:gap-10">
           {/* Google for Nonprofits Partners badge */}
           <div className="pt-6 lg:pt-12">
-            <p className="text-center text-sm sm:text-lg text-gray-400 mb-1">
-              click to learn more
-            </p>
-
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full sm:w-auto">
               <a
                 href="#google-partner-advantage"
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center transition-colors hover:border-[#d4e4a8] hover:bg-[#f8f7f3]"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -129,20 +125,19 @@ export default function Hero() {
                   Check My Eligibility →
                 </a>
               </div>
-
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center w-full mb-6">
+            <div className="flex flex-col items-center w-full mb-2 sm:mb-6">
               <a
                 href="#ad-credit"
                 className="btn-primary attention-pulse text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-8"
               >
                 What's Ad Credit?
               </a>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-3">
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-1.5 sm:mt-3">
                 <span>✕ not cash</span>
                 <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
                 <span>✓ $10K ad credit</span>
@@ -150,13 +145,7 @@ export default function Hero() {
             </div>
 
             <div className="lg:hidden">
-              <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
-                <a
-                  href="#ad-credit"
-                  className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"
-                >
-                  See How It Works
-                </a>
+              <div className="flex flex-col sm:flex-row items-center gap-4 mb-3 sm:mb-6">
                 <a
                   href="#credibility"
                   className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"

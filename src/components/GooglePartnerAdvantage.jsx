@@ -74,7 +74,7 @@ export default function GooglePartnerAdvantage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
               We're Not Just Another Agency. We're a Google Partner.
             </h2>
-            <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-14">
+            <p className="text-slate-400 text-center text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-3 sm:mb-14">
               Direct access to Google's resources means we deliver results
               others can't — at prices others can't match.
             </p>

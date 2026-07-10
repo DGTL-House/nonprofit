@@ -259,7 +259,7 @@ export default function Opportunity() {
               Google gives you a free{" "}
               <strong className="text-white">$10,000/month budget</strong> for
               search ads. People are already searching for organizations like
-              yours — it brings donors and volunteers straight to your site.
+              yours — it brings donors and volunteers to your site.
             </p>
           </AnimItem>
         </AnimSection>
@@ -367,7 +367,9 @@ export default function Opportunity() {
                       >
                         <Icon
                           size={20}
-                          className={good ? "text-emerald-400" : "text-slate-500"}
+                          className={
+                            good ? "text-emerald-400" : "text-slate-500"
+                          }
                         />
                       </div>
                       <span
@@ -416,8 +418,7 @@ export default function Opportunity() {
             <div className="glass-card rounded-2xl p-6 sm:p-9 mb-6">
               <h3 className="text-white font-black text-2xl sm:text-3xl text-center mb-2">
                 Sounds simple.
-                <br className="sm:hidden" />{" "}
-                Running it isn't.
+                <br className="sm:hidden" /> Running it isn't.
               </h3>
               <p className="text-slate-400 text-center text-sm sm:text-lg mb-7 max-w-2xl mx-auto">
                 Google gives you the credit — but only if your account plays by
