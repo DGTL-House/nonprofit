@@ -146,9 +146,9 @@ export default function WhatIsGrants() {
 
           {/* Official program note */}
           <AnimItem variant={fadeUp}>
-            <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.07]">
+            <div className="flex items-center lg:justify-center gap-3 px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.07]">
               <Award size={24} className="text-yellow-400 flex-shrink-0" />
-              <div>
+              <div className="lg:text-center">
                 <p className="text-white text-sm sm:text-lg font-semibold">
                   Official Google Program
                 </p>

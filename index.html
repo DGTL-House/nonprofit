@@ -13,14 +13,16 @@
     content="Google Ad Grants, nonprofits, free Google advertising, 501c3 advertising, Google for Nonprofits, nonprofit marketing, grant management, Google Ad Grant agency, DGTL-House" />
   <meta name="author" content="DGTL-House" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <link rel="canonical" href="https://grants.dgtl-house.com/" />
+  <link rel="canonical" href="https://ad-credit.dgtl-house.com/" />
   <meta name="format-detection" content="telephone=no" />
 
-  <!-- Preload LCP image (mobile-first: tiny 480w by default, larger picked from srcset on bigger screens) -->
-  <link rel="preload" as="image" href="/home-img-480.webp"
-    imagesrcset="/home-img-480.webp 480w, /home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
-    imagesizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
-    fetchpriority="high" />
+  <!-- Preload the LCP image. These MUST mirror the <picture> in Hero.jsx exactly:
+       a single srcset-based preload made the browser pick 720w on mobile while
+       <picture>'s media source rendered 480w — two downloads for one image. -->
+  <link rel="preload" as="image" media="(max-width: 639px)" href="/home-img-480.webp" fetchpriority="high" />
+  <link rel="preload" as="image" media="(min-width: 640px)" href="/home-img-720.webp"
+    imagesrcset="/home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
+    imagesizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, 384px" fetchpriority="high" />
 
   <!-- Speed up the booking widget handshake -->
   <link rel="preconnect" href="https://api.dgtl-house.com" />
@@ -34,11 +36,11 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="DGTL-House" />
-  <meta property="og:url" content="https://grants.dgtl-house.com/" />
+  <meta property="og:url" content="https://ad-credit.dgtl-house.com/" />
   <meta property="og:title" content="Google Ad Grants for Nonprofits — $10K/Month in Free Ads" />
   <meta property="og:description"
     content="Get up to $10,000/month in free Google Ads for your nonprofit. Certified Google Partner, near-100% approval rate. Grant first — payment after." />
-  <meta property="og:image" content="https://grants.dgtl-house.com/home-img.webp" />
+  <meta property="og:image" content="https://ad-credit.dgtl-house.com/home-img.webp" />
   <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:width" content="1840" />
   <meta property="og:image:height" content="971" />
@@ -51,7 +53,7 @@
   <meta name="twitter:title" content="Google Ad Grants for Nonprofits — $10K/Month in Free Ads" />
   <meta name="twitter:description"
     content="Get up to $10,000/month in free Google Ads for your nonprofit. Certified Google Partner. Grant first — payment after." />
-  <meta name="twitter:image" content="https://grants.dgtl-house.com/home-img.webp" />
+  <meta name="twitter:image" content="https://ad-credit.dgtl-house.com/home-img.webp" />
   <meta name="twitter:image:alt" content="Nonprofit team running Google Ad Grants with DGTL-House" />
 
   <!-- JSON-LD: Organization -->
@@ -60,9 +62,9 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "DGTL-House",
-    "url": "https://grants.dgtl-house.com",
-    "logo": "https://grants.dgtl-house.com/nonprofit-logo.svg",
-    "image": "https://grants.dgtl-house.com/home-img.webp",
+    "url": "https://ad-credit.dgtl-house.com",
+    "logo": "https://ad-credit.dgtl-house.com/nonprofit-logo.svg",
+    "image": "https://ad-credit.dgtl-house.com/home-img.webp",
     "description": "Google Ad Grants management for nonprofits. We get your grant approved and manage your campaigns end-to-end — at no upfront cost.",
     "telephone": "+12245848401",
     "email": "nonprofit@dgtl-house.com",
@@ -128,7 +130,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "DGTL-House — Google Ad Grants for Nonprofits",
-    "url": "https://grants.dgtl-house.com",
+    "url": "https://ad-credit.dgtl-house.com",
     "inLanguage": "en-US"
   }
   </script>

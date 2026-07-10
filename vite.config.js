@@ -11,19 +11,14 @@ export default defineConfig({
     chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
-        // Split heavy vendor libraries into separate chunks so they can be
-        // cached independently and downloaded in parallel on mobile.
+        // Only React is pinned to a manual chunk — it's the one vendor the
+        // entry genuinely needs. framer-motion / lucide-react / the observer
+        // are reached exclusively through React.lazy(), so we let rolldown
+        // chunk them off the dynamic-import graph. Forcing them into named
+        // manual chunks made the *entry* chunk statically import them (~92 KB
+        // of unused JS on the critical path, plus modulepreload hints).
         manualChunks(id) {
           if (!id.includes("node_modules")) return undefined;
-          if (
-            id.includes("framer-motion") ||
-            id.includes("motion-dom") ||
-            id.includes("motion-utils")
-          ) {
-            return "motion";
-          }
-          if (id.includes("lucide-react")) return "icons";
-          if (id.includes("react-intersection-observer")) return "observer";
           if (
             id.includes("/react/") ||
             id.includes("/react-dom/") ||

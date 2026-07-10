@@ -85,7 +85,7 @@ export default function Hero() {
                     alt="Nonprofit volunteers working with Google Ad Grants"
                     width="920"
                     height="614"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     loading="eager"
                     decoding="async"
                     className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
@@ -117,20 +117,35 @@ export default function Hero() {
                 <strong className="text-[#52504C]">$0 ad spend.</strong>
               </p>
 
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex items-start justify-center lg:justify-start gap-4">
                 <a
                   href="#contact-form"
-                  className="btn-primary attention-pulse text-base sm:text-2xl !py-2 sm:!py-4 !px-6 sm:!px-8"
+                  className="btn-primary attention-pulse whitespace-nowrap text-base sm:text-2xl lg:text-lg xl:text-xl !py-2 sm:!py-4 !px-6 sm:!px-8 lg:!px-6 xl:!px-7"
                 >
                   Check My Eligibility →
                 </a>
+                {/* Desktop only — on mobile this button lives in Row 2 below. */}
+                <div className="hidden lg:flex flex-col items-center">
+                  <a
+                    href="#ad-credit"
+                    className="btn-primary attention-pulse whitespace-nowrap text-base sm:text-2xl lg:text-lg xl:text-xl !py-2 sm:!py-4 !px-6 sm:!px-8 lg:!px-6 xl:!px-7"
+                  >
+                    What's Ad Credit?
+                  </a>
+                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-3">
+                    <span>✕ not cash</span>
+                    <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
+                    <span>✓ $10K ad credit</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center w-full mb-2 sm:mb-6">
+            {/* Mobile/tablet only — on desktop these sit next to the hero CTA. */}
+            <div className="flex lg:hidden flex-col items-center w-full mb-2 sm:mb-6">
               <a
                 href="#ad-credit"
                 className="btn-primary attention-pulse text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-8"
@@ -155,7 +170,8 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center gap-3 mb-4 sm:mb-10">
+            {/* Mobile/tablet only */}
+            <div className="flex lg:hidden flex-col items-center gap-3 mb-4 sm:mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0eee6]">
                 <ClockIcon size={16} className="text-[#3f5028]" />
                 <span className="text-[#52504C] text-sm sm:text-lg font-medium">

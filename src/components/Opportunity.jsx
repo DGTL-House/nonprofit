@@ -406,8 +406,8 @@ export default function Opportunity() {
           </div>
           <AnimItem variant={fadeUp}>
             <p className="text-center text-[#3d4a1f] font-bold text-lg sm:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto">
-              Same clicks. Same top-of-Google visibility. You just don't pay for
-              them.
+              Same clicks. Same top-of-Google visibility.
+              <br className="hidden lg:block" /> You just don't pay for them.
             </p>
           </AnimItem>
         </AnimSection>
@@ -426,14 +426,19 @@ export default function Opportunity() {
                 or the account is suspended.
               </p>
               <ul className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
-                {requirements.map((r) => (
+                {requirements.map((r, i) => (
                   <li
                     key={r}
-                    className="flex items-start gap-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-slate-300 text-sm sm:text-lg"
+                    className={`flex items-start gap-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-slate-300 text-sm sm:text-lg ${
+                      // Odd count: center the last card across both columns.
+                      i === requirements.length - 1 && requirements.length % 2
+                        ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.375rem)]"
+                        : ""
+                    }`}
                   >
                     <AlertTriangle
-                      size={18}
-                      className="text-amber-500 flex-shrink-0 mt-0.5"
+                      size={24}
+                      className="text-amber-500 flex-shrink-0 mt-0.5 w-6 h-6 sm:w-7 sm:h-7"
                     />
                     {r}
                   </li>

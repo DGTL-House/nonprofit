@@ -79,6 +79,15 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // The header is prerendered into index.html, so the first client render must
+  // produce the exact same href the build produced — otherwise every visitor
+  // arriving with UTM params (i.e. every ad click) hits a hydration mismatch
+  // and React throws the prerendered DOM away. Decorate the link afterwards.
+  const [bookingUrl, setBookingUrl] = useState(BOOKING_URL);
+  useEffect(() => {
+    setBookingUrl(appendUtmParams(BOOKING_URL));
+  }, []);
+
   useEffect(() => {
     let ticking = false;
     let lastScrolled = false;
@@ -129,7 +138,6 @@ export default function Header() {
             alt="DGTL-House — Google Ad Grants for Nonprofits"
             width="160"
             height="32"
-            fetchpriority="high"
             decoding="async"
             className="h-8 w-auto group-hover:opacity-90 transition-opacity duration-300"
           />
@@ -153,7 +161,7 @@ export default function Header() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href={appendUtmParams(BOOKING_URL)}
+            href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary !text-lg !py-2.5 !px-5"
@@ -188,7 +196,7 @@ export default function Header() {
             ))}
             <div className="pt-3 border-t border-white/[0.06] mt-2">
               <a
-                href={appendUtmParams(BOOKING_URL)}
+                href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary w-full justify-center !py-2.5 !px-5"
