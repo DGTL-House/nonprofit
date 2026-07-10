@@ -171,7 +171,7 @@ export default function Hero() {
             </div>
 
             {/* Mobile/tablet only */}
-            <div className="flex lg:hidden flex-col items-center gap-3 mb-4 sm:mb-10">
+            <div className="flex lg:hidden flex-col items-center gap-3 mb-10 sm:mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0eee6]">
                 <ClockIcon size={16} className="text-[#3f5028]" />
                 <span className="text-[#52504C] text-sm sm:text-lg font-medium">
