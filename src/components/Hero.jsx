@@ -114,7 +114,9 @@ export default function Hero() {
               <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-3 sm:mb-6">
                 Google pays for the ads. We handle everything end-to-end — so
                 donors and volunteers find you on Google.{" "}
-                <strong className="text-[#52504C]">$0 ad spend.</strong>
+                <strong className="text-[#52504C]">
+                  $0 ad spend paid by you — service fee only.
+                </strong>
               </p>
 
               <div className="flex items-start justify-center lg:justify-start gap-4">
