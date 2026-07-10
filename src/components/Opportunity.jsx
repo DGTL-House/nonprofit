@@ -247,7 +247,6 @@ export default function Opportunity() {
       className="relative py-8 sm:py-16 overflow-hidden scroll-mt-10 sm:scroll-mt-2"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* 1. Opening */}
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
