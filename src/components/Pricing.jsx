@@ -89,7 +89,7 @@ const money = (n) => `$${n.toLocaleString("en-US")}`;
 
 export default function Pricing() {
   const [timeLeft, setTimeLeft] = useState(10783); // 2:59:43
-  const [billing, setBilling] = useState("monthly");
+  const [billing, setBilling] = useState("annual");
   const [activePlan, setActivePlan] = useState("standard");
 
   useEffect(() => {
