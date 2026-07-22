@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { appendUtmParams } from "../utils/utm.js";
 
 // Inline SVGs (formerly from lucide-react) so the icons chunk stays off the
 // critical path. The header is rendered on first paint, so every kilobyte
@@ -64,8 +63,9 @@ function ChevronRightIcon({ size = 16 }) {
   );
 }
 
-const BOOKING_URL =
-  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
+// The header CTA sends visitors into the eligibility quiz, not straight to
+// the booking widget — the quiz screen carries the booking link itself.
+const CTA_HREF = "#contact-form";
 
 const navLinks = [
   { label: "What's Ad Credit?", href: "#ad-credit" },
@@ -78,15 +78,6 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // The header is prerendered into index.html, so the first client render must
-  // produce the exact same href the build produced — otherwise every visitor
-  // arriving with UTM params (i.e. every ad click) hits a hydration mismatch
-  // and React throws the prerendered DOM away. Decorate the link afterwards.
-  const [bookingUrl, setBookingUrl] = useState(BOOKING_URL);
-  useEffect(() => {
-    setBookingUrl(appendUtmParams(BOOKING_URL));
-  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -112,7 +103,19 @@ export default function Header() {
   const handleNav = (href) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    // Every target below the hero is behind DeferredMount + a lazy chunk, so a
+    // click during the first moments on the page can land before the section
+    // exists. Poll briefly instead of silently doing nothing.
+    let tries = 0;
+    const retry = setInterval(() => {
+      const late = document.querySelector(href);
+      if (late) late.scrollIntoView({ behavior: "smooth" });
+      if (late || ++tries > 30) clearInterval(retry);
+    }, 100);
   };
 
   return (
@@ -161,12 +164,14 @@ export default function Header() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href={bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CTA_HREF}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNav(CTA_HREF);
+            }}
             className="btn-primary !text-lg !py-2.5 !px-5"
           >
-            Schedule call
+            Check My Eligibility
             <ChevronRightIcon size={16} />
           </a>
         </div>
@@ -196,12 +201,14 @@ export default function Header() {
             ))}
             <div className="pt-3 border-t border-white/[0.06] mt-2">
               <a
-                href={bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={CTA_HREF}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav(CTA_HREF);
+                }}
                 className="btn-primary w-full justify-center !py-2.5 !px-5"
               >
-                Schedule call
+                Check My Eligibility
                 <ChevronRightIcon size={16} />
               </a>
             </div>

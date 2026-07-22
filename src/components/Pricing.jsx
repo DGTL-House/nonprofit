@@ -378,12 +378,10 @@ export default function Pricing() {
 
               <div className="flex justify-center">
                 <a
-                  href={appendUtmParams(BOOKING_URL)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact-form"
                   className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8 mb-3"
                 >
-                  Schedule a Call — It's Free →
+                  Check My Eligibility →
                 </a>
               </div>
 

@@ -1,0 +1,186 @@
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft } from "lucide-react";
+
+// 5 questions, one screen each. Answers are collected locally only —
+// nothing is sent anywhere yet (see ContactFormCard for the hand-off point).
+const QUESTIONS = [
+  {
+    id: "grant_status",
+    question: "Do you currently have a Google Ad Grant?",
+    options: [
+      "Yes, we have an active Google Ad Grant",
+      "We applied, but Google rejected us",
+      "No, not yet",
+    ],
+  },
+  {
+    id: "marketing_owner",
+    question: "Who handles marketing at your organization?",
+    options: [
+      "Me — I'm the founder/director",
+      "We have a marketing person or team",
+      "A volunteer or part-time helper",
+      "No one right now",
+    ],
+  },
+  {
+    id: "team_size",
+    question: "How big is your team?",
+    options: [
+      "Just me / 1–2 people",
+      "3–10",
+      "11–50",
+      "50+",
+      "Mostly volunteers",
+    ],
+  },
+  {
+    id: "priority",
+    question: "What matters most to your nonprofit right now?",
+    options: [
+      "More donations",
+      "More volunteers",
+      "Awareness for our cause",
+      "Program sign-ups / service reach",
+    ],
+  },
+  {
+    id: "mission",
+    question: "What's your mission focus?",
+    options: [
+      "Education & Youth",
+      "Health & Medical",
+      "Human Services",
+      "Rights & Advocacy",
+      "Animals & Environment",
+      "Culture & Community",
+      "Other",
+    ],
+  },
+];
+
+// Endowed progress — the bar never starts at zero, so the first question
+// already feels like part of the way in.
+const PROGRESS_HEAD_START = 18;
+const ADVANCE_DELAY = 280;
+
+export default function EligibilityQuiz({ onComplete }) {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  // Answer pending its auto-advance — keeps the card highlighted meanwhile.
+  const [pending, setPending] = useState(null);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  const q = QUESTIONS[step];
+  const progress =
+    PROGRESS_HEAD_START + (step / QUESTIONS.length) * (100 - PROGRESS_HEAD_START);
+  const chosen = pending ?? answers[q.id] ?? null;
+
+  const handleSelect = (option) => {
+    if (pending) return; // ignore double taps while the advance is queued
+    setPending(option);
+    const next = { ...answers, [q.id]: option };
+    setAnswers(next);
+
+    timerRef.current = setTimeout(() => {
+      setPending(null);
+      if (step === QUESTIONS.length - 1) onComplete(next);
+      else setStep(step + 1);
+    }, ADVANCE_DELAY);
+  };
+
+  const handleBack = () => {
+    clearTimeout(timerRef.current);
+    setPending(null);
+    setStep((s) => Math.max(0, s - 1));
+  };
+
+  return (
+    <div className="bg-[#ffffff] rounded-3xl border border-gray-100 p-6 sm:p-10">
+      {/* Header — static across every question */}
+      <div className="mb-6">
+        {/* Row is reserved even on Q1 so the header doesn't shift on Q2 */}
+        <div className="h-6 mb-1">
+          {step > 0 && (
+            <button
+              type="button"
+              onClick={handleBack}
+              aria-label="Previous question"
+              className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-gray-700 transition-colors"
+            >
+              <ArrowLeft size={16} />
+              Back
+            </button>
+          )}
+        </div>
+
+        <h2 className="text-3xl sm:text-5xl font-bold leading-tight text-center mb-2">
+          Before we book — tell us about you
+        </h2>
+        <p className="text-base sm:text-lg text-gray-500 text-center mb-5">
+          5 questions · under 60 seconds
+        </p>
+
+        <div
+          className="h-1.5 w-full rounded-full bg-gray-100 overflow-hidden"
+          role="progressbar"
+          aria-valuenow={step + 1}
+          aria-valuemin={1}
+          aria-valuemax={QUESTIONS.length}
+          aria-label={`Question ${step + 1} of ${QUESTIONS.length}`}
+        >
+          <div
+            className="h-full rounded-full bg-[#b5e550] transition-[width] duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <p className="text-xs sm:text-sm font-semibold text-gray-400 mt-2 text-center">
+          Question {step + 1} of {QUESTIONS.length}
+        </p>
+      </div>
+
+      {/* One question per screen */}
+      <div key={q.id} className="quiz-fade">
+        <h3 className="text-xl sm:text-3xl font-bold leading-snug text-center mb-6">
+          {q.question}
+        </h3>
+
+        <div className="flex flex-col gap-3">
+          {q.options.map((option) => {
+            const on = chosen === option;
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => handleSelect(option)}
+                aria-pressed={on}
+                className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
+                  on
+                    ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
+                    : "border-gray-200 bg-[#ffffff] text-gray-700 hover:border-[#b5e550] hover:bg-[#f7fce9]"
+                }`}
+              >
+                <span
+                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-[10px] font-bold ${
+                    on
+                      ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
+                      : "border-gray-300"
+                  }`}
+                >
+                  {on ? "✓" : ""}
+                </span>
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <p className="text-center text-sm text-gray-400 mt-6">
+        No email required · Your answers stay private
+      </p>
+    </div>
+  );
+}

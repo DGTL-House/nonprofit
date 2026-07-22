@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"exit:$?\")",
+      "Bash(npm run *)",
+      "Read(//tmp/claude-501/-Users-apple-Documents-GitHub-nonprofit/e9d21262-4dd9-4010-9fee-a7a4bd9de26c/scratchpad/**)",
+      "Bash(curl -s -o /dev/null -w \"page:%{http_code}\\\\n\" http://localhost:5174/)",
+      "Bash(curl -s \"http://localhost:5174/src/components/EligibilityQuiz.jsx\")",
+      "Bash(curl -s \"http://localhost:5174/src/components/ContactFormCard.jsx\")"
+    ]
+  }
+}

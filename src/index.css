@@ -511,6 +511,37 @@ samp {
     }
 }
 
+/* --------- Eligibility quiz --------- */
+/* Focus mode — while the quiz is on screen the page chrome steps aside. */
+body.quiz-focus header,
+body.quiz-focus .block-switcher {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease !important;
+}
+
+@keyframes quizFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.quiz-fade {
+    animation: quizFade 0.28s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quiz-fade {
+        animation: none;
+    }
+}
+
 @keyframes gradientShift {
 
     0%,
