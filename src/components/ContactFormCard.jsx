@@ -1,7 +1,7 @@
 import { appendUtmParams } from "../utils/utm.js";
 
 const BOOKING_URL =
-  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
+  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 export default function ContactFormCard() {
   return (
