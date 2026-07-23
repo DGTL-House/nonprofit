@@ -3,7 +3,7 @@ import { CheckCircle, Zap, Clock } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
 import { appendUtmParams } from "../utils/utm.js";
 import FeatureComparison from "./FeatureComparison";
-//url
+//kjhfdskjfsdlfsd
 const BOOKING_URL =
   "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
 
