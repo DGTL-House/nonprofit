@@ -5,7 +5,7 @@ import { appendUtmParams } from "../utils/utm.js";
 import FeatureComparison from "./FeatureComparison";
 
 const BOOKING_URL =
-  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
+  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 const plans = [
   {
