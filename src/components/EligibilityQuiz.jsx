@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
-// 5 questions, one screen each. Answers are collected locally only —
+// 6 questions, one screen each. Answers are collected locally only —
 // nothing is sent anywhere yet (see ContactFormCard for the hand-off point).
+// The last question routes the visitor: only a 501(c)(3) reaches the booking
+// screen, everyone else gets the "not eligible yet" screen. The routing flag is
+// computed here and handed to onComplete so the answer strings stay in one file.
+const STATUS_QUESTION_ID = "nonprofit_status";
+const STATUS_ELIGIBLE = "Yes";
+
 const QUESTIONS = [
   {
     id: "grant_status",
@@ -57,6 +63,12 @@ const QUESTIONS = [
       "Other",
     ],
   },
+  {
+    id: STATUS_QUESTION_ID,
+    question: "Does your organization have valid 501(c)(3) status?",
+    note: "501(c)(3) is required by Google for this program.",
+    options: [STATUS_ELIGIBLE, "No"],
+  },
 ];
 
 // Endowed progress — the bar never starts at zero, so the first question
@@ -86,8 +98,11 @@ export default function EligibilityQuiz({ onComplete }) {
 
     timerRef.current = setTimeout(() => {
       setPending(null);
-      if (step === QUESTIONS.length - 1) onComplete(next);
-      else setStep(step + 1);
+      if (step === QUESTIONS.length - 1) {
+        onComplete(next, next[STATUS_QUESTION_ID] === STATUS_ELIGIBLE);
+      } else {
+        setStep(step + 1);
+      }
     }, ADVANCE_DELAY);
   };
 
@@ -120,7 +135,7 @@ export default function EligibilityQuiz({ onComplete }) {
           Before we book — tell us about you
         </h2>
         <p className="text-base sm:text-lg text-gray-500 text-center mb-5">
-          5 questions · under 60 seconds
+          {QUESTIONS.length} questions · under 60 seconds
         </p>
 
         <div
@@ -143,11 +158,13 @@ export default function EligibilityQuiz({ onComplete }) {
 
       {/* One question per screen */}
       <div key={q.id} className="quiz-fade">
-        <h3 className="text-xl sm:text-3xl font-bold leading-snug text-center mb-6">
+        <h3 className="text-xl sm:text-3xl font-bold leading-snug text-center mb-2">
           {q.question}
         </h3>
-
-        <div className="flex flex-col gap-3">
+        {q.note && (
+          <p className="text-sm text-gray-400 text-center mb-4">{q.note}</p>
+        )}
+        <div className="mt-4 flex flex-col gap-3">
           {q.options.map((option) => {
             const on = chosen === option;
             return (

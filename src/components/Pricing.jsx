@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { CheckCircle, Zap, Clock } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
-import { appendUtmParams } from "../utils/utm.js";
 import FeatureComparison from "./FeatureComparison";
 //kjhfdskjfsdlfsd
-const BOOKING_URL =
-  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
 
 const plans = [
   {
@@ -267,17 +264,10 @@ export default function Pricing() {
                       </div>
 
                       <a
-                        href={appendUtmParams(BOOKING_URL)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3.5 transition-colors"
+                        href="#contact-form"
+                        className="flex items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3.5 transition-colors font-bold text-base sm:text-lg"
                       >
-                        <span className="font-bold text-base sm:text-lg">
-                          Book call
-                        </span>
-                        <span className="text-xs sm:text-sm text-black/70">
-                          No commitment · 30 min
-                        </span>
+                        Check My Eligibility →
                       </a>
 
                       <p className="text-red-500 text-sm sm:text-base font-semibold text-center mt-3">

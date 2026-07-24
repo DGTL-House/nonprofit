@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { appendUtmParams } from "../utils/utm.js";
 import EligibilityQuiz from "./EligibilityQuiz";
+import NotEligibleCard from "./NotEligibleCard";
 
 const BOOKING_URL =
   "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
@@ -12,6 +13,9 @@ const LEGACY_STORAGE_KEYS = ["eligibility-quiz-v1", "eligibility-quiz-v2"];
 
 export default function ContactFormCard() {
   const [answers, setAnswers] = useState(null);
+  // Set by the quiz's final question: 501(c)(3) → booking, otherwise the
+  // "not eligible yet" screen.
+  const [eligible, setEligible] = useState(false);
   const sectionRef = useRef(null);
 
   // Clear results saved by earlier builds so returning visitors aren't left
@@ -44,8 +48,9 @@ export default function ContactFormCard() {
     };
   }, [answers]);
 
-  const handleComplete = (collected) => {
+  const handleComplete = (collected, isEligible) => {
     setAnswers(collected);
+    setEligible(isEligible);
     sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -54,14 +59,14 @@ export default function ContactFormCard() {
       ref={sectionRef}
       id="contact-form"
       className={`bg-gray-50 scroll-mt-10 sm:scroll-mt-2 ${
-        answers
-          ? "py-8 sm:py-16"
-          : "min-h-svh py-10 sm:py-16 flex items-center"
+        answers ? "py-8 sm:py-16" : "min-h-svh py-10 sm:py-16 flex items-center"
       }`}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full">
         {!answers ? (
           <EligibilityQuiz onComplete={handleComplete} />
+        ) : !eligible ? (
+          <NotEligibleCard />
         ) : (
           <div className="bg-[#ffffff] rounded-3xl border border-gray-100 p-6 sm:p-10 quiz-fade">
             <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -86,11 +91,6 @@ export default function ContactFormCard() {
                 ✓ $10K ad credit
               </a>
             </div>
-            <p className="text-base sm:text-lg text-gray-500 mb-7">
-              Based on your answers, your nonprofit is a good candidate for the
-              Google Ad Grant. On the call we'll confirm your eligibility and
-              map out what your first campaigns should look like.
-            </p>
 
             <hr className="border-gray-100 mb-6" />
 
@@ -124,8 +124,7 @@ export default function ContactFormCard() {
                   Check your time zone
                 </p>
                 <p className="text-gray-500 text-sm sm:text-base">
-                  Times shown in your local time zone. Please double-check it
-                  before picking a slot.
+                  Times shown in your local time zone. Please double-check it.
                 </p>
               </div>
             </div>
