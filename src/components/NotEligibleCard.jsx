@@ -24,7 +24,7 @@ export default function NotEligibleCard() {
       </span>
 
       <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-3">
-        501(c)(3) Comes First
+        Google Requires 501(c)(3) Status
       </h2>
 
       <p className="text-base sm:text-lg text-gray-500 mb-7">

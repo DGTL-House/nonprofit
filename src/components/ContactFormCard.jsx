@@ -116,20 +116,24 @@ export default function ContactFormCard() {
               ))}
             </ul>
 
-            {/* Time zone + booking notices — before the CTA on purpose */}
-            <div className="flex items-start gap-3 rounded-2xl bg-[#f4f4f2] border border-[#e2e1dc] p-4 sm:p-5 mb-4">
-              <span className="text-lg leading-none mt-0.5">🕒</span>
-              <div>
-                <p className="font-bold text-gray-700 text-base sm:text-lg mb-1">
-                  Check your time zone
-                </p>
-                <p className="text-gray-500 text-sm sm:text-base">
-                  Times shown in your local time zone. Please double-check it.
-                </p>
-              </div>
-            </div>
+            {/* CTA Button */}
+            <a
+              href={appendUtmParams(BOOKING_URL)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors"
+            >
+              Schedule a Call — It's Free →
+            </a>
 
-            <div className="flex items-start gap-3 rounded-2xl bg-[#fff8e6] border border-[#f1dfae] p-4 sm:p-5 mb-8">
+            <p className="text-center text-sm sm:text-lg text-gray-400 mt-4">
+              Check your time zone
+              <br />
+              Times shown in your local time zone. Please double-check it.
+            </p>
+
+            {/* Booking confirmation notice — last, so it's the final thing read */}
+            <div className="flex items-start gap-3 rounded-2xl bg-[#fff8e6] border border-[#f1dfae] p-4 sm:p-5 mt-6">
               <span className="text-lg leading-none mt-0.5">⚠️</span>
               <div>
                 <p className="font-bold text-[#7a5a12] text-base sm:text-lg mb-1">
@@ -143,20 +147,6 @@ export default function ContactFormCard() {
                 </p>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <a
-              href={appendUtmParams(BOOKING_URL)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors"
-            >
-              Schedule a Call — It's Free →
-            </a>
-
-            <p className="text-center text-sm sm:text-lg text-gray-400 mt-4">
-              No pressure · No commitment · Takes 30 minutes
-            </p>
           </div>
         )}
       </div>
