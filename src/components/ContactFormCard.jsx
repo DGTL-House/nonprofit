@@ -126,10 +126,10 @@ export default function ContactFormCard() {
               Schedule a Call — It's Free →
             </a>
 
-            <p className="text-center text-sm sm:text-lg text-gray-400 mt-4">
+            <p className="text-center text-sm sm:text-lg text-gray-400 mt-2">
               Check your time zone
               <br />
-              Times shown in your local time zone. Please double-check it.
+              Times shown in your local time zone.
             </p>
 
             {/* Booking confirmation notice — last, so it's the final thing read */}
