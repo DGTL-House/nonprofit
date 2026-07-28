@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const PHONE = "+1 (111) 111-2222";
-const PHONE_HREF = "tel:+11111112222";
+const PHONE = "+1 (224) 313-4445";
+const PHONE_HREF = "tel:+1224313445";
 const IRS_URL =
   "https://www.irs.gov/charities-non-profits/application-for-recognition-of-exemption";
 
@@ -24,7 +24,7 @@ export default function NotEligibleCard() {
       </span>
 
       <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-3">
-        Google Requires 501(c)(3) Status
+        Google Requires <br /> 501(c)(3) Status
       </h2>
 
       <p className="text-base sm:text-lg text-gray-500 mb-7">

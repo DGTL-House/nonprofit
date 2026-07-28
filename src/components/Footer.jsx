@@ -41,7 +41,7 @@ export default function Footer() {
               </a>
             </div>
             <div className="text-sm sm:text-lg text-slate-500">
-              1 (224) 584 8401
+              +1 (224) 313 4445
             </div>
             <div className="text-sm sm:text-lg text-slate-500">
               1635 Eagle Grove Ct. Wheeling, IL 60090
