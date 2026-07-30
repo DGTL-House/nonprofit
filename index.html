@@ -224,6 +224,11 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
 
+      // GA4 (gtag.js) stub — queues js/config until the library loads below
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'G-T660MYBD46');
+
       // Meta Pixel stub so fbq() calls before load are queued
       !function (f, b, e, v, n) {
         if (f.fbq) return; n = f.fbq = function () {
@@ -242,6 +247,11 @@
         g.async = true;
         g.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-P72X9ZR4';
         document.head.appendChild(g);
+        // GA4 (gtag.js)
+        var ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-T660MYBD46';
+        document.head.appendChild(ga);
         // Meta Pixel
         var p = document.createElement('script');
         p.async = true;
