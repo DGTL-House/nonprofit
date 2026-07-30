@@ -4,7 +4,7 @@ import EligibilityQuiz from "./EligibilityQuiz";
 import NotEligibleCard from "./NotEligibleCard";
 
 const BOOKING_URL =
-  "https://api.dgtl-house.com/widget/booking/tFEuSDRUuOmEuv7QjTPA";
+  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 // Answers live in memory for the current page view only — a reload always
 // starts the quiz over. Nothing is posted anywhere yet; when a backend/CRM
