@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
+import { sendQuizResults } from "../utils/sendQuizResults.js";
 
 // 6 questions, one screen each. Answers are collected locally only —
 // nothing is sent anywhere yet (see ContactFormCard for the hand-off point).
@@ -94,8 +95,16 @@ export default function EligibilityQuiz({ onComplete }) {
       (step / QUESTIONS.length) * (100 - PROGRESS_HEAD_START);
   const chosen = q ? (pending ?? answers[q.id] ?? null) : null;
 
-  const finish = (collected) =>
-    onComplete(collected, collected[STATUS_QUESTION_ID] === STATUS_ELIGIBLE);
+  const finish = (collected) => {
+    const eligible = collected[STATUS_QUESTION_ID] === STATUS_ELIGIBLE;
+    // Email the results with readable question labels (fire-and-forget so the
+    // results screen never waits on the network).
+    const labeled = Object.fromEntries(
+      QUESTIONS.map((question) => [question.question, collected[question.id]]),
+    );
+    sendQuizResults(labeled, { eligible });
+    onComplete(collected, eligible);
+  };
 
   const handleSelect = (option) => {
     if (pending) return; // ignore double taps while the advance is queued

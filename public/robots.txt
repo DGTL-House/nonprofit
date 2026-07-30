@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ad-credit.dgtl-house.com/sitemap.xml
+Sitemap: https://google-grant.dgtl-house.com/sitemap.xml
