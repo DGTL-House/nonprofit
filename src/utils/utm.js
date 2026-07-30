@@ -15,6 +15,30 @@ const FORWARD_KEYS = [
 ];
 
 const STORAGE_KEY = "dgtl_utm_params";
+const LEAD_KEY = "dgtl_lead_id";
+
+/**
+ * A stable per-session id that ties a quiz submission to the same visitor's
+ * later booking. Generated once, reused from sessionStorage, and appended to
+ * both the quiz email and the outbound booking link.
+ */
+export function getLeadId() {
+  if (typeof window === "undefined") return "";
+  try {
+    let id = window.sessionStorage.getItem(LEAD_KEY);
+    if (!id) {
+      id =
+        window.crypto?.randomUUID?.() ||
+        `lead-${Math.random().toString(36).slice(2)}${Math.random()
+          .toString(36)
+          .slice(2)}`;
+      window.sessionStorage.setItem(LEAD_KEY, id);
+    }
+    return id;
+  } catch {
+    return "";
+  }
+}
 
 function readFromLocation() {
   if (typeof window === "undefined") return {};
@@ -68,19 +92,23 @@ export function getUtmParams() {
 }
 
 /**
- * Return `url` with UTM params appended. Existing params on the target URL
- * are preserved — UTMs are only added when not already present.
+ * Return `url` with UTM params and the session lead_id appended. Existing
+ * params on the target URL are preserved — values are only added when not
+ * already present. lead_id is always appended so the booking can be matched
+ * back to the quiz submission even when no UTMs are present.
  */
 export function appendUtmParams(url) {
   if (!url) return url;
   const utm = getUtmParams();
-  const keys = Object.keys(utm);
-  if (keys.length === 0) return url;
+  const leadId = getLeadId();
   try {
     const u = new URL(url, window.location.origin);
-    keys.forEach((k) => {
+    Object.keys(utm).forEach((k) => {
       if (!u.searchParams.has(k)) u.searchParams.set(k, utm[k]);
     });
+    if (leadId && !u.searchParams.has("lead_id")) {
+      u.searchParams.set("lead_id", leadId);
+    }
     return u.toString();
   } catch {
     return url;
