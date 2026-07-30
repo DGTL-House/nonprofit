@@ -31,14 +31,8 @@ const QUESTIONS = [
   },
   {
     id: "team_size",
-    question: "How big is your team?",
-    options: [
-      "Just me / 1–2 people",
-      "3–10",
-      "11–50",
-      "50+",
-      "Mostly volunteers",
-    ],
+    question: "How many people work at your organization?",
+    options: ["Just me / 1–2 people", "3–10", "11–50", "51–200", "200+"],
   },
   {
     id: "priority",
@@ -48,6 +42,7 @@ const QUESTIONS = [
       "More volunteers",
       "Awareness for our cause",
       "Program sign-ups / service reach",
+      "Other",
     ],
   },
   {
@@ -75,6 +70,10 @@ const QUESTIONS = [
 // already feels like part of the way in.
 const PROGRESS_HEAD_START = 18;
 const ADVANCE_DELAY = 280;
+// The confirmation step's "processing" beat — long enough to read as the quiz
+// crunching the answers before the results screen appears.
+const CONFIRM_DELAY = 650;
+const CONFIRM_LABEL = "I understand — got it";
 
 export default function EligibilityQuiz({ onComplete }) {
   const [step, setStep] = useState(0);
@@ -85,10 +84,18 @@ export default function EligibilityQuiz({ onComplete }) {
 
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
+  // One step past the last question is the "what the grant actually is"
+  // confirmation screen, shown before the results screen.
+  const isConfirm = step === QUESTIONS.length;
   const q = QUESTIONS[step];
-  const progress =
-    PROGRESS_HEAD_START + (step / QUESTIONS.length) * (100 - PROGRESS_HEAD_START);
-  const chosen = pending ?? answers[q.id] ?? null;
+  const progress = isConfirm
+    ? 100
+    : PROGRESS_HEAD_START +
+      (step / QUESTIONS.length) * (100 - PROGRESS_HEAD_START);
+  const chosen = q ? (pending ?? answers[q.id] ?? null) : null;
+
+  const finish = (collected) =>
+    onComplete(collected, collected[STATUS_QUESTION_ID] === STATUS_ELIGIBLE);
 
   const handleSelect = (option) => {
     if (pending) return; // ignore double taps while the advance is queued
@@ -98,12 +105,17 @@ export default function EligibilityQuiz({ onComplete }) {
 
     timerRef.current = setTimeout(() => {
       setPending(null);
-      if (step === QUESTIONS.length - 1) {
-        onComplete(next, next[STATUS_QUESTION_ID] === STATUS_ELIGIBLE);
-      } else {
-        setStep(step + 1);
-      }
+      setStep(step + 1); // last question advances to the confirmation screen
     }, ADVANCE_DELAY);
+  };
+
+  const handleConfirm = () => {
+    if (pending) return;
+    setPending(CONFIRM_LABEL); // fill the checkbox while we "process"
+    timerRef.current = setTimeout(() => {
+      setPending(null);
+      finish(answers);
+    }, CONFIRM_DELAY);
   };
 
   const handleBack = () => {
@@ -141,10 +153,10 @@ export default function EligibilityQuiz({ onComplete }) {
         <div
           className="h-1.5 w-full rounded-full bg-gray-100 overflow-hidden"
           role="progressbar"
-          aria-valuenow={step + 1}
+          aria-valuenow={Math.min(step + 1, QUESTIONS.length)}
           aria-valuemin={1}
           aria-valuemax={QUESTIONS.length}
-          aria-label={`Question ${step + 1} of ${QUESTIONS.length}`}
+          aria-label={`Question ${Math.min(step + 1, QUESTIONS.length)} of ${QUESTIONS.length}`}
         >
           <div
             className="h-full rounded-full bg-[#b5e550] transition-[width] duration-300 ease-out"
@@ -152,48 +164,90 @@ export default function EligibilityQuiz({ onComplete }) {
           />
         </div>
         <p className="text-xs sm:text-sm font-semibold text-gray-400 mt-2 text-center">
-          Question {step + 1} of {QUESTIONS.length}
+          Question {Math.min(step + 1, QUESTIONS.length)} of {QUESTIONS.length}
         </p>
       </div>
 
-      {/* One question per screen */}
-      <div key={q.id} className="quiz-fade">
-        <h3 className="text-xl sm:text-3xl font-bold leading-snug text-center mb-2">
-          {q.question}
-        </h3>
-        {q.note && (
-          <p className="text-sm text-gray-400 text-center mb-4">{q.note}</p>
-        )}
-        <div className="mt-4 flex flex-col gap-3">
-          {q.options.map((option) => {
-            const on = chosen === option;
-            return (
-              <button
-                key={option}
-                type="button"
-                onClick={() => handleSelect(option)}
-                aria-pressed={on}
-                className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
-                  on
-                    ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
-                    : "border-gray-200 bg-[#ffffff] text-gray-700 hover:border-[#b5e550] hover:bg-[#f7fce9]"
-                }`}
-              >
-                <span
-                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-[10px] font-bold ${
+      {isConfirm ? (
+        /* Confirmation screen — what the grant actually is */
+        <div className="quiz-fade">
+          <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            ✓ What the grant actually is
+          </span>
+
+          <div className="rounded-2xl bg-[#f2fadf] border-2 border-[#d4e4a8] p-5 sm:p-6 mb-4">
+            <p className="text-base sm:text-xl leading-relaxed">
+              <span className="font-bold text-gray-900">
+                $10,000/month in ad credit for Google Search.
+              </span>{" "}
+              <span className="text-[#5f7d2e]">
+                Not cash — it works as ad spend.
+              </span>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleConfirm}
+            aria-pressed={pending === CONFIRM_LABEL}
+            className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
+              pending === CONFIRM_LABEL
+                ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
+                : "border-gray-200 bg-[#ffffff] text-gray-900 hover:border-[#b5e550] hover:bg-[#f7fce9]"
+            }`}
+          >
+            <span
+              className={`w-6 h-6 rounded-md border-2 flex items-center justify-center flex-shrink-0 text-xs font-bold ${
+                pending === CONFIRM_LABEL
+                  ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
+                  : "border-[#b5e550]"
+              }`}
+            >
+              {pending === CONFIRM_LABEL ? "✓" : ""}
+            </span>
+            {CONFIRM_LABEL}
+          </button>
+        </div>
+      ) : (
+        /* One question per screen */
+        <div key={q.id} className="quiz-fade">
+          <h3 className="text-xl sm:text-3xl font-bold leading-snug text-center mb-2">
+            {q.question}
+          </h3>
+          {q.note && (
+            <p className="text-sm text-gray-400 text-center mb-4">{q.note}</p>
+          )}
+          <div className="mt-4 flex flex-col gap-3">
+            {q.options.map((option) => {
+              const on = chosen === option;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => handleSelect(option)}
+                  aria-pressed={on}
+                  className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
                     on
-                      ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
-                      : "border-gray-300"
+                      ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
+                      : "border-gray-200 bg-[#ffffff] text-gray-700 hover:border-[#b5e550] hover:bg-[#f7fce9]"
                   }`}
                 >
-                  {on ? "✓" : ""}
-                </span>
-                {option}
-              </button>
-            );
-          })}
+                  <span
+                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-[10px] font-bold ${
+                      on
+                        ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
+                        : "border-gray-300"
+                    }`}
+                  >
+                    {on ? "✓" : ""}
+                  </span>
+                  {option}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       <p className="text-center text-sm text-gray-400 mt-6">
         No email required · Your answers stay private
