@@ -1,21 +1,18 @@
 import { useState } from "react";
-import { sendReminderRequest } from "../utils/sendQuizResults.js";
 
 const PHONE = "+1 (224) 313-4445";
 const PHONE_HREF = "tel:+1224313445";
 const IRS_URL =
   "https://www.irs.gov/charities-non-profits/application-for-recognition-of-exemption";
 
-// Shown when the quiz's 501(c)(3) question comes back "No". The reminder email
-// is delivered to nonprofit@dgtl-house.com via Web3Forms, same as quiz results.
+// Shown when the quiz's 501(c)(3) question comes back "No".
 export default function NotEligibleCard() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Fire-and-forget so the confirmation shows instantly.
-    sendReminderRequest(email);
+    // TODO: send `email` (+ quiz answers) to the CRM once the endpoint exists.
     setSubmitted(true);
   };
 

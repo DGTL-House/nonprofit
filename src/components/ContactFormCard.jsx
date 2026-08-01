@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { appendUtmParams } from "../utils/utm.js";
+import { appendBookingParams } from "../utils/quizParams.js";
 import EligibilityQuiz from "./EligibilityQuiz";
 import NotEligibleCard from "./NotEligibleCard";
 
@@ -7,8 +8,8 @@ const BOOKING_URL =
   "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 // Answers live in memory for the current page view only — a reload always
-// starts the quiz over. Nothing is posted anywhere yet; when a backend/CRM
-// endpoint exists, send `answers` from handleComplete().
+// starts the quiz over. On the eligible path they ride the booking link as
+// query params (see the CTA below) so the widget can prefill the GHL contact.
 const LEGACY_STORAGE_KEYS = ["eligibility-quiz-v1", "eligibility-quiz-v2"];
 
 export default function ContactFormCard() {
@@ -118,7 +119,7 @@ export default function ContactFormCard() {
 
             {/* CTA Button */}
             <a
-              href={appendUtmParams(BOOKING_URL)}
+              href={appendUtmParams(appendBookingParams(BOOKING_URL, answers))}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors"
