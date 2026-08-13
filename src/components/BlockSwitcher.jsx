@@ -6,9 +6,9 @@ import { ArrowUp } from "lucide-react";
 // `short` is used below the `sm` breakpoint so all three pills plus the
 // back-to-top arrow still fit on a 320px-wide screen without wrapping.
 const BLOCKS = [
-  { label: "Google Grant", short: "Grant", href: "#what-is-grants" },
-  { label: "Ad Credit", short: "Ad Credit", href: "#ad-credit" },
-  { label: "Case Studies", short: "Cases", href: "#credibility" },
+  { label: "Google Grant", short: "Grant", href: "#ad-credit" },
+  { label: "ROI Projection", short: "ROI", href: "#roi-projection" },
+  { label: "Pricing", short: "Pricing", href: "#pricing" },
 ];
 
 export default function BlockSwitcher() {

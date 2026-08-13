@@ -1,204 +1,223 @@
-// Inline SVG (was lucide-react `Clock`) so Hero doesn't pull the icons chunk
-// onto the critical path on mobile.
-function ClockIcon({ size = 16, className = "" }) {
+import { useEffect, useState } from "react";
+
+// Rotating ROI projections — illustrative figures in the range the calculator
+// (calculator.dgtl-house.com) returns for real nonprofit niches.
+const PROJECTIONS = [
+  { num: "$26,585", roi: "×4.4", conv: "7,477" },
+  { num: "$48,120", roi: "×3.9", conv: "11,240" },
+  { num: "$36,952", roi: "×3.1", conv: "8,890" },
+  { num: "$52,741", roi: "×4.2", conv: "12,156" },
+];
+
+// Trust strip items, repeated to fill the marquee loop.
+const TRUST = ["Google Partner", "200+ US nonprofits", "DH 2-Step Strategy"];
+
+function BoltIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <polyline points="13,2 3,14 12,14 11,22 21,10 12,10" />
+    </svg>
+  );
+}
+
+function TargetIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
       <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" fill="#3d4a1f" stroke="none" />
     </svg>
   );
 }
 
 export default function Hero() {
+  const [i, setI] = useState(0);
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setFade(true);
+      const t = setTimeout(() => {
+        setI((prev) => (prev + 1) % PROJECTIONS.length);
+        setFade(false);
+      }, 260);
+      return () => clearTimeout(t);
+    }, 3000);
+    return () => clearInterval(id);
+  }, []);
+
+  const p = PROJECTIONS[i];
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-12 pb-16 sm:pb-20 bg-[#ffffff]"
+      className="relative overflow-hidden bg-[#ffffff] pt-24 sm:pt-28 pb-12 sm:pb-16 lg:flex lg:min-h-screen lg:items-center"
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col gap-3 sm:gap-8 lg:gap-10">
-          {/* Google for Nonprofits Partners badge */}
-          <div className="pt-6 lg:pt-12">
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full sm:w-auto">
+      {/* Soft brand glow — desktop only, behind the ROI card */}
+      <div className="pointer-events-none absolute right-0 top-1/4 hidden h-[520px] w-[520px] -translate-y-1/4 rounded-full bg-[#d4e4a8]/25 blur-[160px] lg:block" />
+
+      <div className="relative z-10 mx-auto w-full max-w-xl px-5 sm:px-6 lg:max-w-6xl">
+        {/* Badge — centered across the full width */}
+        <div className="flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#d4e4a8] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#3d4a1f] sm:text-xs">
+            <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#ffffff] text-[9px] font-bold text-[#3d4a1f]">
+              G
+            </span>
+            Google Partner · Nonprofits only
+          </span>
+        </div>
+
+        <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+          {/* ---- Left: message + CTA ---- */}
+          <div>
+            {/* Headline */}
+            <h1 className="text-center text-4xl font-black leading-[1.08] tracking-tight text-[#1a1a1a] sm:text-5xl lg:text-left lg:text-[3.5rem]">
+              Grow Your Nonprofit With{" "}
+              <span className="text-[#3d4a1f]">Steady Monthly Donations</span>{" "}
+              From Google's $10K Ad Grant.
+            </h1>
+
+            {/* Subhead */}
+            <p className="mt-4 text-center text-base leading-relaxed text-[#5a5a5a] sm:text-lg lg:text-left">
+              Google Ad Grants management, built exclusively for US nonprofits.
+              Fully done-for-you — your team stays on the mission, we run the
+              account.
+            </p>
+
+            {/* Service pills */}
+            <div className="mt-5 flex items-center justify-center gap-3 lg:justify-start">
               <a
-                href="#google-partner-advantage"
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-sm w-full sm:w-auto justify-center"
+                href="#pricing"
+                className="hero-svc flex flex-1 items-center gap-2.5 rounded-full border border-[#e5e0d0] bg-[#ffffff] px-4 py-2.5 transition-colors hover:border-[#3d4a1f] lg:flex-none lg:px-5"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    fill="#4285F4"
-                  />
-                  <path
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    fill="#FBBC05"
-                  />
-                  <path
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    fill="#EA4335"
-                  />
-                </svg>
-                <span className="text-[#161514] text-base sm:text-lg font-semibold tracking-wide">
-                  Google for Nonprofits Partners
+                <span className="hero-svc-icon">
+                  <BoltIcon />
+                </span>
+                <span className="text-sm font-semibold leading-tight text-[#1a1a1a]">
+                  Grant Management
+                </span>
+              </a>
+              <span className="shrink-0 text-[11px] italic text-[#9a9a94]">
+                or
+              </span>
+              <a
+                href="#pricing"
+                className="hero-svc flex flex-1 items-center gap-2.5 rounded-full border border-[#e5e0d0] bg-[#ffffff] px-4 py-2.5 transition-colors hover:border-[#3d4a1f] lg:flex-none lg:px-5"
+              >
+                <span className="hero-svc-icon">
+                  <TargetIcon />
+                </span>
+                <span className="text-sm font-semibold leading-tight text-[#1a1a1a]">
+                  Full Marketing
                 </span>
               </a>
             </div>
+
+            {/* CTA — full-width on mobile, inline on desktop. The ROI widget
+                becomes the hero's right-hand focal point on desktop, so the CTA
+                also renders inside that card there; here it shows below lg only. */}
+            <div className="mt-5 lg:hidden">
+              <a
+                href="#contact-form"
+                className="btn-primary attention-pulse w-full !py-4 !text-lg sm:!text-xl"
+              >
+                Book a Strategy Call →
+              </a>
+              <p className="mt-2 text-center text-[13px] text-[#5a5a5a]">
+                30 min · Includes your ROI projection
+              </p>
+            </div>
           </div>
 
-          {/* Row 1: image + h1 + p */}
-          <div className="flex flex-col lg:flex-row items-stretch gap-4 sm:gap-10 lg:gap-14">
-            <div className="shrink-0 lg:w-[420px] xl:w-[460px]">
-              <div className="w-full max-w-sm mx-auto lg:max-w-none lg:h-full">
-                <picture>
-                  {/* Mobile gets a tiny image since visible area is just h-32 (128px tall, ~360px wide). */}
-                  <source
-                    media="(max-width: 639px)"
-                    srcSet="/home-img-480.webp"
-                    width="480"
-                    height="320"
-                  />
-                  <img
-                    src="/home-img-720.webp"
-                    srcSet="/home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
-                    sizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, (min-width: 640px) 384px, 100vw"
-                    alt="Nonprofit volunteers working with Google Ad Grants"
-                    width="920"
-                    height="614"
-                    fetchPriority="high"
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
-                  />
-                </picture>
+          {/* ---- Right: ROI widget (elevated card on desktop) ---- */}
+          <div className="mt-6 lg:mt-0">
+            <div className="mx-auto max-w-md rounded-3xl bg-[#f5f1e8] px-5 py-6 text-center lg:px-7 lg:py-8 lg:shadow-[0_24px_60px_rgba(61,74,31,0.14)] lg:ring-1 lg:ring-[#e5e0d0]">
+              <a
+                href="#roi-projection"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#e5e0d0] bg-[#ffffff] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#3d4a1f]"
+              >
+                Projected for your niche ▼
+              </a>
+              <div
+                className={`mt-3 text-5xl font-black tracking-tight text-[#1a1a1a] transition-opacity duration-200 lg:text-6xl ${
+                  fade ? "opacity-20" : "opacity-100"
+                }`}
+              >
+                {p.num}
               </div>
-            </div>
-
-            <div className="flex-1 min-w-0 flex flex-col justify-center">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-3 sm:mb-6 text-center lg:text-left">
-                <span className="text-[#161514]">
-                  Get a Free $10,000/Month{" "}
-                  <a
-                    href="#ad-credit"
-                    className="ad-credit-word whitespace-nowrap hover:opacity-80 transition-opacity"
+              <div className="mt-1 text-[13px] text-[#5a5a5a]">
+                in donations over 24 months
+              </div>
+              <div className="mt-3 flex justify-around border-t border-[#e0d9c7] pt-3 lg:mt-4 lg:pt-4">
+                <div>
+                  <div
+                    className={`text-sm font-bold text-[#3d4a1f] transition-opacity duration-200 lg:text-base ${
+                      fade ? "opacity-20" : "opacity-100"
+                    }`}
                   >
-                    Google Ad Credit
-                    <span className="sparkle-emoji" aria-hidden="true">
-                      ✨
-                    </span>
-                  </a>{" "}
-                  for Your Nonprofit — Guaranteed.
-                </span>
-              </h1>
+                    {p.roi}
+                  </div>
+                  <div className="mt-0.5 text-[8px] uppercase tracking-[0.06em] text-[#5a5a5a] lg:text-[9px]">
+                    ROI
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className={`text-sm font-bold text-[#3d4a1f] transition-opacity duration-200 lg:text-base ${
+                      fade ? "opacity-20" : "opacity-100"
+                    }`}
+                  >
+                    {p.conv}
+                  </div>
+                  <div className="mt-0.5 text-[8px] uppercase tracking-[0.06em] text-[#5a5a5a] lg:text-[9px]">
+                    Conversions
+                  </div>
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-[#3d4a1f] lg:text-base">
+                    9/10
+                  </div>
+                  <div className="mt-0.5 text-[8px] uppercase tracking-[0.06em] text-[#5a5a5a] lg:text-[9px]">
+                    Hit Result
+                  </div>
+                </div>
+              </div>
+              <div className="mt-2 text-[9px] italic text-[#5a5a5a]">
+                Based on 200+ real nonprofit accounts
+              </div>
 
-              <p className="text-base sm:text-lg lg:text-xl text-[#52504C] leading-relaxed text-center lg:text-left mb-3 sm:mb-6">
-                Google pays for the ads. We handle everything end-to-end — so
-                donors and volunteers find you on Google.{" "}
-                <strong className="text-[#52504C]">
-                  $0 ad spend paid by you — service fee only.
-                </strong>
-              </p>
-
-              <div className="flex items-start justify-center lg:justify-start gap-4">
+              {/* CTA lives inside the card on desktop so it anchors the widget */}
+              <div className="mt-5 hidden lg:block">
                 <a
                   href="#contact-form"
-                  className="btn-primary attention-pulse whitespace-nowrap text-base sm:text-2xl lg:text-lg xl:text-xl !py-2 sm:!py-4 !px-6 sm:!px-8 lg:!px-6 xl:!px-7"
+                  className="btn-primary attention-pulse w-full !py-4 !text-lg"
                 >
-                  Check My Eligibility →
+                  Book a Strategy Call →
                 </a>
-                {/* Desktop only — on mobile this button lives in Row 2 below. */}
-                <div className="hidden lg:flex flex-col items-center">
-                  <a
-                    href="#ad-credit"
-                    className="btn-primary attention-pulse whitespace-nowrap text-base sm:text-2xl lg:text-lg xl:text-xl !py-2 sm:!py-4 !px-6 sm:!px-8 lg:!px-6 xl:!px-7"
-                  >
-                    What's Ad Credit?
-                  </a>
-                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-3">
-                    <span>✕ not cash</span>
-                    <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
-                    <span>✓ $10K ad credit</span>
-                  </div>
-                </div>
+                <p className="mt-2 text-[13px] text-[#5a5a5a]">
+                  30 min · Includes your ROI projection
+                </p>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Row 2 */}
-          <div className="flex flex-col items-center">
-            {/* Mobile/tablet only — on desktop these sit next to the hero CTA. */}
-            <div className="flex lg:hidden flex-col items-center w-full mb-2 sm:mb-6">
-              <a
-                href="#ad-credit"
-                className="btn-primary attention-pulse text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-8"
-              >
-                What's Ad Credit?
-              </a>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-1.5 sm:mt-3">
-                <span>✕ not cash</span>
-                <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
-                <span>✓ $10K ad credit</span>
+        {/* Trust marquee — full width beneath both columns */}
+        <div className="mt-8 overflow-hidden lg:mt-14">
+          <div className="hero-marquee flex w-max whitespace-nowrap lg:justify-center">
+            {[0, 1].map((dup) => (
+              <div key={dup} className="flex" aria-hidden={dup === 1}>
+                {TRUST.map((t) => (
+                  <span
+                    key={dup + t}
+                    className="flex items-center text-[10px] font-medium uppercase tracking-[0.08em] text-[#5a5a5a] lg:text-[11px]"
+                  >
+                    {t}
+                    <span className="mx-3 text-[#c9c6bb]">·</span>
+                  </span>
+                ))}
               </div>
-            </div>
-
-            <div className="lg:hidden">
-              <div className="flex flex-col sm:flex-row items-center gap-4 mb-3 sm:mb-6">
-                <a
-                  href="#credibility"
-                  className="btn-secondary text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-7"
-                >
-                  View Case Studies
-                </a>
-              </div>
-            </div>
-
-            {/* Mobile/tablet only */}
-            <div className="flex lg:hidden flex-col items-center gap-3 mb-10 sm:mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#f0eee6]">
-                <ClockIcon size={16} className="text-[#3f5028]" />
-                <span className="text-[#52504C] text-sm sm:text-lg font-medium">
-                  Grant live in as little as{" "}
-                  <strong className="text-[#3f5028] font-bold">2 weeks</strong>
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 sm:gap-8">
-              {[
-                { value: "$10K", label: "Per month free ads" },
-                { value: "99%", label: "Approval rate" },
-                { value: "30d", label: "To first results" },
-              ].map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-black gradient-text mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-500 text-sm sm:text-base lg:text-lg font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>

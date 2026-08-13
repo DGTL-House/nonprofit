@@ -159,7 +159,7 @@ export default function EligibilityQuiz({ onComplete }) {
           aria-label={`Question ${Math.min(step + 1, QUESTIONS.length)} of ${QUESTIONS.length}`}
         >
           <div
-            className="h-full rounded-full bg-[#b5e550] transition-[width] duration-300 ease-out"
+            className="h-full rounded-full bg-[#c9e37a] transition-[width] duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -171,7 +171,7 @@ export default function EligibilityQuiz({ onComplete }) {
       {isConfirm ? (
         /* Confirmation screen — what the grant actually is */
         <div className="quiz-fade">
-          <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+          <span className="inline-flex items-center gap-1.5 bg-[#eaf3de] text-[#3d4a1f] text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
             ✓ What the grant actually is
           </span>
 
@@ -192,15 +192,15 @@ export default function EligibilityQuiz({ onComplete }) {
             aria-pressed={pending === CONFIRM_LABEL}
             className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
               pending === CONFIRM_LABEL
-                ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
-                : "border-gray-200 bg-[#ffffff] text-gray-900 hover:border-[#b5e550] hover:bg-[#f7fce9]"
+                ? "border-[#c9e37a] bg-[#eaf3de] text-[#3d4a1f]"
+                : "border-gray-200 bg-[#ffffff] text-gray-900 hover:border-[#c9e37a] hover:bg-[#f7fce9]"
             }`}
           >
             <span
               className={`w-6 h-6 rounded-md border-2 flex items-center justify-center flex-shrink-0 text-xs font-bold ${
                 pending === CONFIRM_LABEL
-                  ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
-                  : "border-[#b5e550]"
+                  ? "border-[#c9e37a] bg-[#c9e37a] text-[#3d4a1f]"
+                  : "border-[#c9e37a]"
               }`}
             >
               {pending === CONFIRM_LABEL ? "✓" : ""}
@@ -228,14 +228,14 @@ export default function EligibilityQuiz({ onComplete }) {
                   aria-pressed={on}
                   className={`w-full min-h-14 flex items-center gap-3 text-left rounded-2xl border-2 px-5 py-4 text-base sm:text-lg font-medium transition-colors ${
                     on
-                      ? "border-[#b5e550] bg-[#eef9d0] text-[#3B6D11]"
-                      : "border-gray-200 bg-[#ffffff] text-gray-700 hover:border-[#b5e550] hover:bg-[#f7fce9]"
+                      ? "border-[#c9e37a] bg-[#eaf3de] text-[#3d4a1f]"
+                      : "border-gray-200 bg-[#ffffff] text-gray-700 hover:border-[#c9e37a] hover:bg-[#f7fce9]"
                   }`}
                 >
                   <span
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-[10px] font-bold ${
                       on
-                        ? "border-[#b5e550] bg-[#b5e550] text-[#3B6D11]"
+                        ? "border-[#c9e37a] bg-[#c9e37a] text-[#3d4a1f]"
                         : "border-gray-300"
                     }`}
                   >

@@ -149,7 +149,7 @@ export default function FeatureComparison({ plans, money }) {
                       key={plan.id}
                       className={`align-top px-3 py-3 text-center sticky top-0 z-10 ${
                         plan.popular
-                          ? "bg-[#f3f8e6] border-t-2 border-[#b5e550] rounded-t-xl"
+                          ? "bg-[#f3f8e6] border-t-2 border-[#c9e37a] rounded-t-xl"
                           : "bg-[#ffffff]"
                       }`}
                     >
@@ -205,7 +205,7 @@ export default function FeatureComparison({ plans, money }) {
                     onClick={() => setActive(plan.id)}
                     className={`rounded-xl px-2 py-2.5 text-center transition-colors ${
                       active === plan.id
-                        ? "bg-[#eef9d0] border border-[#b5e550]"
+                        ? "bg-[#eaf3de] border border-[#c9e37a]"
                         : "border border-transparent opacity-50"
                     }`}
                   >

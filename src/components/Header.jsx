@@ -69,10 +69,9 @@ const CTA_HREF = "#contact-form";
 
 const navLinks = [
   { label: "What's Ad Credit?", href: "#ad-credit" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Cases", href: "#credibility" },
+  { label: "Case Studies", href: "#case-studies" },
+  { label: "ROI Projection", href: "#roi-projection" },
   { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
 ];
 
 export default function Header() {

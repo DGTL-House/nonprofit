@@ -33,13 +33,13 @@ export default function NotEligibleCard() {
       </p>
 
       {/* Primary action — the reminder capture */}
-      <div className="rounded-2xl bg-[#eef9d0] border border-[#d4e4a8] p-5 sm:p-6">
-        <p className="font-bold text-[#3B6D11] text-lg sm:text-xl mb-3">
+      <div className="rounded-2xl bg-[#eaf3de] border border-[#d4e4a8] p-5 sm:p-6">
+        <p className="font-bold text-[#3d4a1f] text-lg sm:text-xl mb-3">
           Want us to check in later?
         </p>
 
         {submitted ? (
-          <p className="text-[#3B6D11] text-base sm:text-lg font-semibold">
+          <p className="text-[#3d4a1f] text-base sm:text-lg font-semibold">
             ✓ Got it — we'll send one reminder to {email}.
           </p>
         ) : (
@@ -58,16 +58,16 @@ export default function NotEligibleCard() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="flex-1 min-w-0 rounded-full border border-[#d4e4a8] bg-[#ffffff] px-5 py-3 text-base sm:text-lg outline-none focus:border-[#b5e550]"
+                className="flex-1 min-w-0 rounded-full border border-[#d4e4a8] bg-[#ffffff] px-5 py-3 text-base sm:text-lg outline-none focus:border-[#c9e37a]"
               />
               <button
                 type="submit"
-                className="bg-[#b5e550] hover:bg-[#a3d444] text-black font-bold text-base sm:text-lg rounded-full px-6 py-3 transition-colors whitespace-nowrap"
+                className="bg-[#c9e37a] hover:bg-[#bcd869] text-black font-bold text-base sm:text-lg rounded-full px-6 py-3 transition-colors whitespace-nowrap"
               >
                 Notify Me →
               </button>
             </form>
-            <p className="text-[#3B6D11]/80 text-sm mt-3">
+            <p className="text-[#3d4a1f]/80 text-sm mt-3">
               We'll send one reminder when it's time — no newsletter.
             </p>
           </>
@@ -81,7 +81,7 @@ export default function NotEligibleCard() {
       </p>
       <a
         href={PHONE_HREF}
-        className="flex items-center justify-center gap-2 w-full sm:w-auto sm:inline-flex border-2 border-gray-200 hover:border-[#b5e550] text-gray-700 font-semibold text-base sm:text-lg rounded-full px-6 py-3 transition-colors"
+        className="flex items-center justify-center gap-2 w-full sm:w-auto sm:inline-flex border-2 border-gray-200 hover:border-[#c9e37a] text-gray-700 font-semibold text-base sm:text-lg rounded-full px-6 py-3 transition-colors"
       >
         📞 {PHONE}
       </a>

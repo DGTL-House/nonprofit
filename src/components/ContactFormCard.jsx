@@ -70,49 +70,53 @@ export default function ContactFormCard() {
           <NotEligibleCard />
         ) : (
           <div className="bg-[#ffffff] rounded-3xl border border-gray-100 p-6 sm:p-10 quiz-fade">
-            <span className="inline-flex items-center gap-1.5 bg-[#eef9d0] text-[#3B6D11] text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
-              ✓ You look like a strong fit
+            <span className="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[#3d4a1f] mb-3.5">
+              Your Roadmap Session
             </span>
 
             {/* Headline */}
-            <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-2">
-              Great — Let's Book
-              <br />
-              Your Call
+            <h2 className="text-3xl sm:text-5xl font-black leading-[1.08] tracking-tight text-[#1a1a1a] mb-0">
+              Map Your Path to{" "}
+              <span className="text-[#3d4a1f]">Steady Monthly Donations.</span>
             </h2>
 
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 bg-[#f3ebe6] text-[#8a4b2f] text-sm sm:text-base font-bold px-4 py-2 rounded-full">
-                ✕ not cash
-              </span>
-              <a
-                href="#ad-credit"
-                className="inline-flex items-center gap-1.5 bg-[#b5e550] hover:bg-[#a3d444] text-black text-sm sm:text-base font-bold px-4 py-2 rounded-full transition-colors"
-              >
-                ✓ $10K ad credit
-              </a>
-            </div>
-
-            <hr className="border-gray-100 mb-6" />
-
-            {/* What we'll cover */}
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
-              What we'll cover
+            <p className="text-base sm:text-lg text-[#5a5a5a] leading-relaxed mt-3.5">
+              In 30 minutes, we'll build your 6-month plan — from grant setup to
+              steady donation flow. Based on 200+ nonprofit accounts, tailored to
+              your niche.
             </p>
-            <ul className="space-y-3 mb-6">
+
+            {/* What we'll build together */}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#5a5a5a] mt-7 mb-3.5">
+              What we'll build together
+            </p>
+            <ul className="space-y-3.5 mb-2">
               {[
-                "Review your nonprofit's profile and current digital presence",
-                "Confirm your eligibility for the Google Ad Grant program",
-                "Map out your next steps and what results to expect",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-base sm:text-lg text-gray-700"
-                >
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-[#b5e550] flex items-center justify-center flex-shrink-0 text-[10px] font-bold text-[#3B6D11]">
+                [
+                  "Your DH 2-Step plan",
+                  "How we'll spend the full $10K and turn traffic into donations.",
+                ],
+                [
+                  "Your ROI projection",
+                  "Donations, conversions, month-by-month for your niche.",
+                ],
+                [
+                  "Your grant readiness check",
+                  "What's ready, what needs fixing, where the quick wins are.",
+                ],
+              ].map(([lead, desc]) => (
+                <li key={lead} className="flex items-start gap-3">
+                  <span className="mt-0.5 w-6 h-6 rounded-md bg-[#d4e4a8] flex items-center justify-center flex-shrink-0 text-[11px] font-bold text-[#3d4a1f]">
                     ✓
                   </span>
-                  {item}
+                  <span>
+                    <span className="block font-semibold text-[#1a1a1a] text-base sm:text-lg">
+                      {lead}
+                    </span>
+                    <span className="text-[13px] sm:text-sm text-[#5a5a5a]">
+                      {desc}
+                    </span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -122,27 +126,25 @@ export default function ContactFormCard() {
               href={appendUtmParams(appendBookingParams(BOOKING_URL, answers))}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-[#b5e550] hover:bg-[#a3d444] text-black font-semibold text-base sm:text-2xl py-3 sm:py-4 px-6 rounded-full transition-colors"
+              className="btn-primary w-full !text-lg sm:!text-xl !py-4 mt-7"
             >
-              Schedule a Call — It's Free →
+              Book Your Strategy Call →
             </a>
 
-            <p className="text-center text-sm sm:text-lg text-gray-400 mt-2">
-              Check your time zone
-              <br />
-              Times shown in your local time zone.
+            <p className="text-center text-sm text-[#5a5a5a] mt-2.5 leading-relaxed">
+              30 min · Google Meet · Times shown in your local time zone
             </p>
 
-            {/* Booking confirmation notice — last, so it's the final thing read */}
-            <div className="flex items-start gap-3 rounded-2xl bg-[#fff8e6] border border-[#f1dfae] p-4 sm:p-5 mt-6">
+            {/* Booking confirmation notice */}
+            <div className="flex items-start gap-3 rounded-2xl bg-[#fef7e0] p-4 sm:p-5 mt-5">
               <span className="text-lg leading-none mt-0.5">⚠️</span>
               <div>
-                <p className="font-bold text-[#7a5a12] text-base sm:text-lg mb-1">
+                <p className="font-semibold text-[#8a6a1d] text-sm sm:text-base mb-1">
                   Confirm your booking
                 </p>
-                <p className="text-[#7a5a12]/90 text-sm sm:text-base">
+                <p className="text-[#8a6a1d] text-[13px] sm:text-sm leading-relaxed">
                   You'll get an email or SMS — your call{" "}
-                  <strong className="font-bold text-[#7a5a12]">
+                  <strong className="font-bold">
                     isn't confirmed until you reply.
                   </strong>
                 </p>

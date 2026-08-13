@@ -144,7 +144,7 @@ export default function Pricing() {
                     onClick={() => setBilling(b)}
                     className={`px-5 sm:px-8 py-2 rounded-full text-sm sm:text-base font-bold capitalize transition-colors ${
                       billing === b
-                        ? "bg-[#b5e550] text-black"
+                        ? "bg-[#c9e37a] text-black"
                         : "text-slate-300 hover:text-white"
                     }`}
                   >
@@ -153,9 +153,9 @@ export default function Pricing() {
                 ))}
 
                 {/* Save badge anchored to the Annual option */}
-                <span className="absolute -top-3 left-1 -translate-y-full inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#3B6D11] bg-[#eef9d0] px-2.5 py-1 rounded-full shadow-sm whitespace-nowrap">
+                <span className="absolute -top-3 left-1 -translate-y-full inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#3d4a1f] bg-[#eaf3de] px-2.5 py-1 rounded-full shadow-sm whitespace-nowrap">
                   💚 Save up to 35%
-                  <span className="absolute -bottom-1 left-6 w-2 h-2 bg-[#eef9d0] rotate-45" />
+                  <span className="absolute -bottom-1 left-6 w-2 h-2 bg-[#eaf3de] rotate-45" />
                 </span>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function Pricing() {
                   onClick={() => setActivePlan(plan.id)}
                   className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
                     activePlan === plan.id
-                      ? "bg-[#b5e550] text-black"
+                      ? "bg-[#c9e37a] text-black"
                       : "bg-white/5 text-slate-300 border border-white/10 hover:text-white"
                   }`}
                 >
@@ -190,12 +190,12 @@ export default function Pricing() {
                     key={plan.id}
                     className={`relative rounded-3xl glass-card flex-col h-full ${
                       plan.popular
-                        ? "!border-2 !border-[#b5e550] shadow-[0_10px_40px_rgba(181,229,80,0.2)]"
+                        ? "!border-2 !border-[#c9e37a] shadow-[0_10px_40px_rgba(181,229,80,0.2)]"
                         : ""
                     } ${activePlan === plan.id ? "flex" : "hidden lg:flex"}`}
                   >
                     {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#b5e550] text-black text-xs font-black tracking-widest uppercase px-4 py-1 rounded-full whitespace-nowrap">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c9e37a] text-black text-xs font-black tracking-widest uppercase px-4 py-1 rounded-full whitespace-nowrap">
                         ⭐ Best value
                       </div>
                     )}
@@ -212,7 +212,7 @@ export default function Pricing() {
                       {/* Reserve the row even without a badge so the CTAs stay aligned */}
                       <div className="mb-4 min-h-9">
                         {plan.badge && (
-                          <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] border border-[#d4e4a8] px-3 py-1.5 rounded-full">
+                          <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#3d4a1f] bg-[#eaf3de] border border-[#d4e4a8] px-3 py-1.5 rounded-full">
                             ⚡ {plan.badge}
                           </span>
                         )}
@@ -220,10 +220,10 @@ export default function Pricing() {
 
                       {billing === "annual" && (
                         <div className="flex flex-wrap gap-2 mb-4">
-                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-lg">
+                          <span className="text-xs sm:text-sm font-bold text-[#3d4a1f] bg-[#eaf3de] px-3 py-1.5 rounded-lg">
                             Save {plan.save}%
                           </span>
-                          <span className="text-xs sm:text-sm font-bold text-[#3B6D11] bg-[#eef9d0] px-3 py-1.5 rounded-lg">
+                          <span className="text-xs sm:text-sm font-bold text-[#3d4a1f] bg-[#eaf3de] px-3 py-1.5 rounded-lg">
                             −{money(plan.saveYear)}/year
                           </span>
                         </div>
@@ -265,7 +265,7 @@ export default function Pricing() {
 
                       <a
                         href="#contact-form"
-                        className="flex items-center justify-center w-full bg-[#b5e550] hover:bg-[#a3d444] text-black rounded-full py-3.5 transition-colors font-bold text-base sm:text-lg"
+                        className="flex items-center justify-center w-full bg-[#c9e37a] hover:bg-[#bcd869] text-black rounded-full py-3.5 transition-colors font-bold text-base sm:text-lg"
                       >
                         Check My Eligibility →
                       </a>

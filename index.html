@@ -16,14 +16,6 @@
   <link rel="canonical" href="https://google-grant.dgtl-house.com/" />
   <meta name="format-detection" content="telephone=no" />
 
-  <!-- Preload the LCP image. These MUST mirror the <picture> in Hero.jsx exactly:
-       a single srcset-based preload made the browser pick 720w on mobile while
-       <picture>'s media source rendered 480w — two downloads for one image. -->
-  <link rel="preload" as="image" media="(max-width: 639px)" href="/home-img-480.webp" fetchpriority="high" />
-  <link rel="preload" as="image" media="(min-width: 640px)" href="/home-img-720.webp"
-    imagesrcset="/home-img-720.webp 720w, /home-img-960.webp 960w, /home-img-1280.webp 1280w"
-    imagesizes="(min-width: 1280px) 460px, (min-width: 1024px) 420px, 384px" fetchpriority="high" />
-
   <!-- Speed up the booking widget handshake -->
   <link rel="preconnect" href="https://api.dgtl-house.com" />
   <link rel="dns-prefetch" href="https://api.dgtl-house.com" />
