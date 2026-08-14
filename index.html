@@ -84,16 +84,6 @@
       function loadThirdParty() {
         if (window.__thirdPartyLoaded) return;
         window.__thirdPartyLoaded = true;
-        // Open the sockets first so the four fetches below overlap their
-        // handshakes rather than paying DNS + TLS one origin at a time.
-        ['https://www.googletagmanager.com', 'https://connect.facebook.net',
-         'https://t.contentsquare.net'].forEach(function (origin) {
-          var pc = document.createElement('link');
-          pc.rel = 'preconnect';
-          pc.href = origin;
-          pc.crossOrigin = '';
-          document.head.appendChild(pc);
-        });
         // GTM
         var g = document.createElement('script');
         g.async = true;
