@@ -1,10 +1,5 @@
 import { Star, Quote } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  staggerContainer,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
 const testimonials = [
   {

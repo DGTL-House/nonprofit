@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { DollarSign, Search, ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  slideLeft,
-  slideRight,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp, slideRight } from "../utils/animations";
 import { useCounter } from "../hooks/useCounter";
 
 const searchQueries = [

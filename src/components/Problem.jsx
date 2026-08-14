@@ -1,10 +1,5 @@
 import { AlertTriangle, TrendingDown, Users, Eye } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  staggerContainer,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
 const pains = [
   {
