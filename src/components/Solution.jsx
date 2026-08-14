@@ -1,11 +1,5 @@
-import { m } from "framer-motion";
 import { CheckCircle, Globe, ChevronRight } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  staggerContainer,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
 const services = [
   { icon: "✓", text: "Eligibility check and grant application" },
@@ -50,17 +44,10 @@ export default function Solution() {
                 <h3 className="text-white font-bold text-base sm:text-lg mb-6">
                   Everything we take off your plate:
                 </h3>
-                <m.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={staggerContainer}
-                  className="space-y-1 sm:space-y-3"
-                >
+                <AnimSection className="space-y-1 sm:space-y-3">
                   {services.map((s, i) => (
-                    <m.div
+                    <AnimItem
                       key={i}
-                      variants={fadeUp}
                       className="flex items-start gap-3 p-3 rounded-xl hover:bg-emerald-500/5 transition-colors group"
                     >
                       <div className="w-6 h-6 rounded-md bg-emerald-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-emerald-500/25 transition-colors">
@@ -69,9 +56,9 @@ export default function Solution() {
                       <span className="text-slate-300 text-sm sm:text-lg leading-relaxed">
                         {s.text}
                       </span>
-                    </m.div>
+                    </AnimItem>
                   ))}
-                </m.div>
+                </AnimSection>
               </div>
             </AnimItem>
           </AnimSection>

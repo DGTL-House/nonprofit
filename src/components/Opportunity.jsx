@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { m } from "framer-motion";
 import {
   Search,
   Wallet,
@@ -8,7 +7,13 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useInView } from "react-intersection-observer";
-import { AnimSection, AnimItem, fadeUp, slideLeft } from "../utils/animations";
+import {
+  AnimSection,
+  AnimItem,
+  fadeUp,
+  slideLeft,
+  slideRight,
+} from "../utils/animations";
 
 const searchQueries = [
   '"volunteer opportunities"',
@@ -181,11 +186,10 @@ function PhoneMockup() {
               </span>
             </div>
             {/* Ad card */}
-            <m.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={showAd ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mb-3 p-3 border border-[#e8f0fe] rounded-xl bg-[#fafbff] shadow-sm"
+            <div
+              className={`reveal-rise mb-3 p-3 border border-[#e8f0fe] rounded-xl bg-[#fafbff] shadow-sm ${
+                showAd ? "is-shown" : ""
+              }`}
             >
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="text-[8px] font-bold text-gray-600 border border-gray-400 rounded px-1 py-px leading-none">
@@ -203,13 +207,10 @@ function PhoneMockup() {
                 <br />
                 {currentAd.desc2}
               </p>
-            </m.div>
+            </div>
             {/* Skeleton organic results */}
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={showResults ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5 }}
-              className="space-y-2.5"
+            <div
+              className={`reveal-fade space-y-2.5 ${showResults ? "is-shown" : ""}`}
             >
               {[
                 { w1: "55%", w2: "80%", w3: "90%", w4: "65%" },
@@ -234,7 +235,7 @@ function PhoneMockup() {
                   />
                 </div>
               ))}
-            </m.div>
+            </div>
           </div>
         </div>
       </div>
@@ -272,37 +273,26 @@ export default function Opportunity() {
         </AnimSection>
 
         {/* 2. Phone mockup + search examples */}
-        <m.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-6 sm:mb-8"
-        >
-          Here's what it looks like in Google Search
-        </m.p>
-
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-8 sm:mb-10">
-          {/* Left: phone mockup */}
-          <div className="flex flex-col items-center shrink-0">
-            <m.div
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              viewport={{ once: true }}
-            >
-              <PhoneMockup />
-            </m.div>
-          </div>
-
-          {/* Right: search examples + green callout */}
-          <m.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={slideLeft}
-            className="flex-1 min-w-0 w-full"
+        <AnimSection>
+          {/* data-anim-item rather than <AnimItem> where the original tag
+              matters: AnimItem always renders a div. */}
+          <p
+            data-anim-item
+            className="anim-item anim-fade-up text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-6 sm:mb-8"
           >
+            Here's what it looks like in Google Search
+          </p>
+
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-8 sm:mb-10">
+            {/* Left: phone mockup */}
+            <div className="flex flex-col items-center shrink-0">
+              <AnimItem>
+                <PhoneMockup />
+              </AnimItem>
+            </div>
+
+            {/* Right: search examples + green callout */}
+            <AnimItem variant={slideLeft} className="flex-1 min-w-0 w-full">
             <div className="glass-card rounded-2xl p-6 sm:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
@@ -314,12 +304,9 @@ export default function Opportunity() {
               </div>
               <div className="space-y-3">
                 {searchQueries.map((query, i) => (
-                  <m.div
+                  <AnimItem
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                    viewport={{ once: true }}
+                    variant={slideRight}
                     className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
                   >
                     <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
@@ -333,7 +320,7 @@ export default function Opportunity() {
                         Ad
                       </span>
                     </div>
-                  </m.div>
+                  </AnimItem>
                 ))}
               </div>
               <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
@@ -347,9 +334,10 @@ export default function Opportunity() {
                   Check My Eligibility →
                 </button>
               </div>
-            </div>
-          </m.div>
-        </div>
+              </div>
+            </AnimItem>
+          </div>
+        </AnimSection>
 
         {/* 3. Comparison + bridge */}
         <AnimSection>

@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import {
   ShieldCheck,
   Zap,
@@ -24,17 +23,9 @@ export default function Guarantee() {
 
               <div className="relative z-10 flex flex-col items-center">
                 {/* Shield icon + label stacked */}
-                <m.div
-                  animate={{ y: [-4, 4, -4] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="w-24 h-24 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5 glow-green"
-                >
+                <div className="float-soft w-24 h-24 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5 glow-green">
                   <ShieldCheck size={44} className="text-emerald-400" />
-                </m.div>
+                </div>
 
                 {/* Label */}
                 <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-7">
@@ -77,12 +68,8 @@ export default function Guarantee() {
                       desc: "Once approved, we manage and optimize your campaigns to bring in real donors and volunteers.",
                     },
                   ].map((item, i) => (
-                    <m.div
+                    <AnimItem
                       key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.15 }}
-                      viewport={{ once: true }}
                       className="p-5 rounded-xl bg-white/[0.04] border border-white/[0.07] overflow-hidden"
                     >
                       <div
@@ -98,7 +85,7 @@ export default function Guarantee() {
                       <div className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                         {item.desc}
                       </div>
-                    </m.div>
+                    </AnimItem>
                   ))}
                 </div>
 

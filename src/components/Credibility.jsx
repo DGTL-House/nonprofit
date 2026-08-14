@@ -1,11 +1,5 @@
-import { m } from "framer-motion";
 import { Star, Quote } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  staggerContainer,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
 const testimonials = [
   {
@@ -131,17 +125,10 @@ export default function Credibility() {
         </div>
 
         {/* Testimonials */}
-        <m.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
-          className="grid lg:grid-cols-3 gap-6 mb-8"
-        >
+        <AnimSection className="grid lg:grid-cols-3 gap-6 mb-8">
           {testimonials.map((t, i) => (
-            <m.div
+            <AnimItem
               key={i}
-              variants={fadeUp}
               className="testimonial-card p-6 flex flex-col gap-4"
             >
               {/* Author at top */}
@@ -211,9 +198,9 @@ export default function Credibility() {
               <p className="text-slate-300 text-sm sm:text-lg leading-relaxed">
                 &ldquo;{t.quote}&rdquo;
               </p>
-            </m.div>
+            </AnimItem>
           ))}
-        </m.div>
+        </AnimSection>
         <div className="mt-4 sm:mt-6 mb-6 sm:mb-8 flex justify-center">
           <button
             onClick={scrollToEligibility}
@@ -234,19 +221,24 @@ export default function Credibility() {
               </p>
               <div className="flex flex-wrap gap-2.5 justify-center">
                 {niches.map((n, i) => (
-                  <m.span
+                  <span
                     key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.05 }}
-                    viewport={{ once: true }}
+                    data-anim-item
+                    className="anim-item anim-scale-in"
                     className={`px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/15 text-sm sm:text-base font-medium hover:bg-emerald-500/20 transition-colors cursor-default ${i === 2 ? "font-bold" : "text-slate-400"}`}
                     style={
                       i === 2 ? { color: "#52504c", fontWeight: "bold" } : {}
                     }
                   >
-                    {n}
-                  </m.span>
+                    <span
+                      className={`px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/15 text-sm sm:text-base font-medium hover:bg-emerald-500/20 transition-colors cursor-default ${i === 2 ? "font-bold" : "text-slate-400"}`}
+                      style={
+                        i === 2 ? { color: "#52504c", fontWeight: "bold" } : {}
+                      }
+                    >
+                      {n}
+                    </span>
+                  </span>
                 ))}
               </div>
             </div>

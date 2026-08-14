@@ -1,11 +1,5 @@
-import { m } from "framer-motion";
 import { AlertTriangle, TrendingDown, Users, Eye } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  staggerContainer,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
 const pains = [
   {
@@ -57,17 +51,12 @@ export default function Problem() {
             </p>
           </AnimItem>
           {/* Pain cards */}
-          <m.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14"
-          >
+          {/* Plain grid: the enclosing AnimSection already stages every
+              [data-anim-item] beneath it, nested or not. */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
             {pains.map((pain, i) => (
-              <m.div
+              <AnimItem
                 key={i}
-                variants={fadeUp}
                 className="glass-card rounded-2xl p-6 hover:border-red-500/20 transition-all duration-300 group"
               >
                 <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -79,22 +68,19 @@ export default function Problem() {
                 <p className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                   {pain.desc}
                 </p>
-              </m.div>
+              </AnimItem>
             ))}
 
             {/* Closing insight */}
-            <m.div
-              variants={fadeUp}
-              className="sm:col-span-2 lg:col-span-3 rounded-2xl p-6 bg-gradient-to-r from-red-500/10 via-orange-500/5 to-red-500/10 border border-red-500/15"
-            >
+            <AnimItem className="sm:col-span-2 lg:col-span-3 rounded-2xl p-6 bg-gradient-to-r from-red-500/10 via-orange-500/5 to-red-500/10 border border-red-500/15">
               <p className="text-slate-200 text-center text-sm sm:text-lg font-medium leading-relaxed">
                 Your mission is clear.{" "}
                 <span className="text-red-400 font-bold">
                   The problem? The people who need you can't find you.
                 </span>
               </p>
-            </m.div>
-          </m.div>
+            </AnimItem>
+          </div>
           <AnimItem variant={fadeUp}>
             <div className="flex justify-center mt-8">
               <a
