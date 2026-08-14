@@ -1,3 +1,14 @@
+/* Self-hosted Lexend (variable, latin). Body text resolves to it, so fetching
+   it from fonts.gstatic.com meant a third-party DNS + TLS handshake before any
+   text could settle. One 39 KB file covers every weight the page uses. */
+@font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/lexend-var.woff2") format("woff2");
+}
+
 @import "tailwindcss";
 
 /* ============================================================

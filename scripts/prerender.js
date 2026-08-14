@@ -24,11 +24,50 @@ if (!html.includes(marker)) {
   throw new Error(`prerender: could not find ${marker} in dist/index.html`);
 }
 
-writeFileSync(
-  htmlPath,
-  html.replace(marker, `<div id="root">${appHtml}</div>`),
-  "utf8",
-);
+let out = html.replace(marker, `<div id="root">${appHtml}</div>`);
+
+// Inline the stylesheet as well. It is the last render-blocking request on the
+// page: the browser cannot paint the markup above until it has been fetched, a
+// full round-trip that costs more on throttled mobile than the bytes do. This
+// is a single-page landing site, so a separately cached CSS file buys nothing —
+// there is no second page to reuse it — and the HTML is revalidated anyway, so
+// repeat visits still get a 304 rather than re-downloading it.
+//
+// Guarded below rather than assumed. Moving a sheet into the document changes
+// what relative url()s resolve against — /assets/… becomes /… — so those are
+// refused; root-absolute and data: urls resolve identically either way and are
+// fine. The file stays in dist/ (unreferenced, never requested) so a stale HTML
+// copy pointing at it cannot 404 mid-deploy.
+const linkRe =
+  /\s*<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"[^>]*>/;
+const link = out.match(linkRe);
+let cssKb = 0;
+
+if (!link) {
+  throw new Error("prerender: no stylesheet <link> found in dist/index.html");
+}
+
+const cssPath = resolve(root, "dist", link[1]);
+const css = readFileSync(cssPath, "utf8");
+const relativeUrls = [...css.matchAll(/url\(\s*['"]?([^'")]+)/g)]
+  .map((m) => m[1])
+  .filter((u) => !/^(\/|data:|https?:|#)/.test(u));
+if (relativeUrls.length) {
+  throw new Error(
+    `prerender: ${link[1]} has relative url()s that would break when inlined: ` +
+      relativeUrls.join(", "),
+  );
+}
+if (css.includes("</style") || css.includes("@import")) {
+  throw new Error(`prerender: ${link[1]} contains @import or </style`);
+}
+out = out.replace(linkRe, `\n    <style>${css}</style>`);
+cssKb = Buffer.byteLength(css) / 1024;
+
+writeFileSync(htmlPath, out, "utf8");
 
 const kb = (Buffer.byteLength(appHtml) / 1024).toFixed(1);
-console.log(`prerender: inlined ${kb} kB of markup into dist/index.html`);
+console.log(
+  `prerender: inlined ${kb} kB of markup and ${cssKb.toFixed(1)} kB of CSS ` +
+    `into dist/index.html`,
+);
