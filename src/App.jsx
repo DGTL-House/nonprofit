@@ -22,7 +22,6 @@ const FinalCTA = lazy(() => import("./components/FinalCTA"));
 const Footer = lazy(() => import("./components/Footer"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 const BlockSwitcher = lazy(() => import("./components/BlockSwitcher"));
-const MotionProvider = lazy(() => import("./components/MotionProvider"));
 
 // Reserve vertical space so the deferred mount doesn't trigger a CLS spike
 // once the lazy chunks start streaming in.
@@ -44,25 +43,59 @@ export default function App() {
           fetch window.
         */}
         <DeferredMount placeholder={belowFoldPlaceholder}>
+          {/*
+            One Suspense per section rather than one around all of them: a
+            shared boundary holds its fallback until the *slowest* chunk
+            resolves, so a single slow request kept the entire page below the
+            hero blank. Split, each section paints as soon as its own chunk
+            lands. Only the first boundary reserves a viewport of height —
+            the rest would otherwise stack placeholders into a huge blank page.
+          */}
           <Suspense fallback={belowFoldPlaceholder}>
-            <MotionProvider>
-              <SocialProofBar />
-              <Opportunity />
-              <WhatIsGrants />
-              <Problem />
-              <Credibility />
-              {/* <Guarantee /> */}
-              <Ownership />
-              <Solution />
-              <FinalCTA />
-              <GooglePartnerAdvantage />
-              <Pricing />
-              <ContactFormCard />
-              <FAQ />
-              <Footer />
-              <ScrollToTop />
-              <BlockSwitcher />
-            </MotionProvider>
+            <SocialProofBar />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Opportunity />
+          </Suspense>
+          <Suspense fallback={null}>
+            <WhatIsGrants />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Problem />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Credibility />
+          </Suspense>
+          {/* <Guarantee /> */}
+          <Suspense fallback={null}>
+            <Ownership />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Solution />
+          </Suspense>
+          <Suspense fallback={null}>
+            <FinalCTA />
+          </Suspense>
+          <Suspense fallback={null}>
+            <GooglePartnerAdvantage />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Pricing />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ContactFormCard />
+          </Suspense>
+          <Suspense fallback={null}>
+            <FAQ />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
+          <Suspense fallback={null}>
+            <BlockSwitcher />
           </Suspense>
         </DeferredMount>
       </main>
