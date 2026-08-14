@@ -128,7 +128,7 @@ export default function Header() {
             alt="DGTL-House — Google Ad Grants for Nonprofits"
             width="160"
             height="32"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             className="h-8 w-auto group-hover:opacity-90 transition-opacity duration-300"
           />

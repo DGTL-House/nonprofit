@@ -82,7 +82,7 @@ export default function Hero() {
                     alt="Nonprofit volunteers working with Google Ad Grants"
                     width="920"
                     height="614"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     loading="eager"
                     decoding="async"
                     className="w-full h-32 sm:h-80 lg:h-full object-cover rounded-3xl shadow-2xl"
