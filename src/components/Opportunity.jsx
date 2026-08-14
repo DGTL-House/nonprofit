@@ -7,7 +7,13 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useInView } from "react-intersection-observer";
-import { AnimSection, AnimItem, fadeUp, slideRight } from "../utils/animations";
+import {
+  AnimSection,
+  AnimItem,
+  fadeUp,
+  slideLeft,
+  slideRight,
+} from "../utils/animations";
 
 const searchQueries = [
   '"volunteer opportunities"',
