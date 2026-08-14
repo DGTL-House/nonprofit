@@ -19,13 +19,30 @@ export default function BlockSwitcher() {
 
   useEffect(() => {
     const hero = document.getElementById("hero");
+    // Reading offsetHeight inside the scroll handler forced a synchronous
+    // layout on every event. Measure once, refresh on resize, and rAF-throttle
+    // the rest.
+    let threshold = hero ? hero.offsetHeight - 120 : 600;
+    const measure = () => {
+      threshold = hero ? hero.offsetHeight - 120 : 600;
+    };
+
+    let ticking = false;
     const onScroll = () => {
-      const past = hero
-        ? window.scrollY > hero.offsetHeight - 120
-        : window.scrollY > 600;
-      setVisible(past);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const past = window.scrollY > threshold;
+        setVisible((prev) => (prev === past ? prev : past));
+      });
+    };
+    const onResize = () => {
+      measure();
+      onScroll();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
     onScroll();
 
     const sections = BLOCKS.map((b) => document.getElementById(b.href.slice(1)))
@@ -55,6 +72,7 @@ export default function BlockSwitcher() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
       io?.disconnect();
       formIo?.disconnect();
     };
@@ -63,9 +81,21 @@ export default function BlockSwitcher() {
   const handleTap = (e) => {
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
     const el = e.currentTarget;
+    // Restart the pop without `void el.offsetWidth`, which flushed layout
+    // synchronously inside the pointer handler and landed straight in INP.
+    // Match on the animation name so the pill's colour transitions — also
+    // returned by getAnimations() — aren't rewound along with it.
+    const pop = el
+      .getAnimations?.()
+      .find((a) => a.animationName === "switch-pop");
+    if (pop) {
+      pop.currentTime = 0;
+      return;
+    }
+    // Finished animations drop out of getAnimations(), so the class may still
+    // be set from an earlier tap: clear it and re-add on the next frame.
     el.classList.remove("tapped");
-    void el.offsetWidth; // restart the animation
-    el.classList.add("tapped");
+    requestAnimationFrame(() => el.classList.add("tapped"));
   };
 
   return (
