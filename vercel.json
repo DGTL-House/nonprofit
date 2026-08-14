@@ -1,9 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "//": "Vercel merges every matching rule and lets later ones win on duplicate keys, so these run general -> specific.",
   "headers": [
     {
-      "//": "Baseline: security headers everywhere, plus the HTML policy. Browsers always revalidate; the edge holds a copy so x-vercel-cache reports HIT instead of MISS on each visit. A deploy purges the edge, so content still ships immediately.",
       "source": "/(.*)",
       "headers": [
         {
@@ -23,7 +21,6 @@
       ]
     },
     {
-      "//": "Unhashed media in public/: a week in the browser, a year on the edge.",
       "source": "/(.*)\\.(webp|png|jpg|jpeg|svg|ico)",
       "headers": [
         {
@@ -33,7 +30,6 @@
       ]
     },
     {
-      "//": "Vite emits content-hashed filenames here — safe to freeze forever.",
       "source": "/assets/(.*)",
       "headers": [
         {
