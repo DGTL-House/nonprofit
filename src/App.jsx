@@ -39,20 +39,54 @@ export default function App() {
           fetch window.
         */}
         <DeferredMount placeholder={belowFoldPlaceholder}>
+          {/*
+            One Suspense per section rather than one around all of them: a
+            shared boundary holds its fallback until the *slowest* chunk
+            resolves, so a single slow request kept the entire page below the
+            hero blank. Split, each section paints as soon as its own chunk
+            lands. Only the first boundary reserves a viewport of height —
+            the rest would otherwise stack placeholders into a huge blank page.
+          */}
           <Suspense fallback={belowFoldPlaceholder}>
             <SocialProofBar />
+          </Suspense>
+          <Suspense fallback={null}>
             <Opportunity />
+          </Suspense>
+          <Suspense fallback={null}>
             <Problem />
+          </Suspense>
+          <Suspense fallback={null}>
             <WhatIsGrants />
+          </Suspense>
+          <Suspense fallback={null}>
             <Credibility />
+          </Suspense>
+          <Suspense fallback={null}>
             <Guarantee />
+          </Suspense>
+          <Suspense fallback={null}>
             <Ownership />
+          </Suspense>
+          <Suspense fallback={null}>
             <Solution />
+          </Suspense>
+          <Suspense fallback={null}>
             <FinalCTA />
+          </Suspense>
+          <Suspense fallback={null}>
             <Pricing />
+          </Suspense>
+          <Suspense fallback={null}>
             <ContactFormCard />
+          </Suspense>
+          <Suspense fallback={null}>
             <FAQ />
+          </Suspense>
+          <Suspense fallback={null}>
             <Footer />
+          </Suspense>
+          <Suspense fallback={null}>
             <ScrollToTop />
           </Suspense>
         </DeferredMount>

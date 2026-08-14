@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { DollarSign, Search, ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import {
@@ -162,11 +161,10 @@ function PhoneMockup() {
               </span>
             </div>
             {/* Ad card */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={showAd ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mb-3 p-3 border border-[#e8f0fe] rounded-xl bg-[#fafbff] shadow-sm"
+            <div
+              className={`reveal-rise mb-3 p-3 border border-[#e8f0fe] rounded-xl bg-[#fafbff] shadow-sm ${
+                showAd ? "is-shown" : ""
+              }`}
             >
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="text-[8px] font-bold text-gray-600 border border-gray-400 rounded px-1 py-px leading-none">
@@ -184,13 +182,10 @@ function PhoneMockup() {
                 <br />
                 {currentAd.desc2}
               </p>
-            </motion.div>
+            </div>
             {/* Skeleton organic results */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={showResults ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5 }}
-              className="space-y-2.5"
+            <div
+              className={`reveal-fade space-y-2.5 ${showResults ? "is-shown" : ""}`}
             >
               {[
                 { w1: "55%", w2: "80%", w3: "90%", w4: "65%" },
@@ -215,7 +210,7 @@ function PhoneMockup() {
                   />
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -236,36 +231,24 @@ export default function Opportunity() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Phone mockup demo — left, h2+p — right */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
+        <AnimSection className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16">
           {/* Left: phone mockup */}
           <div className="flex flex-col items-center shrink-0">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-10"
+            {/* data-anim-item rather than <AnimItem> where the original tag
+                matters: AnimItem always renders a div. */}
+            <p
+              data-anim-item
+              className="anim-item anim-fade-up text-center text-slate-400 text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-10"
             >
               Here's what it looks like in Google Search
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-              viewport={{ once: true }}
-            >
+            </p>
+            <AnimItem>
               <PhoneMockup />
-            </motion.div>
+            </AnimItem>
           </div>
 
           {/* Right: h2 + p + button */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            viewport={{ once: true }}
-            className="flex-1 min-w-0"
-          >
+          <AnimItem variant={slideRight} className="flex-1 min-w-0">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center lg:text-left leading-tight mb-6">
               $10,000/Month. Every Month. Already Yours If You Qualify.
             </h2>
@@ -285,19 +268,13 @@ export default function Opportunity() {
                 Check My Eligibility →
               </button>
             </div>
-          </motion.div>
-        </div>
+          </AnimItem>
+        </AnimSection>
 
         {/* Two column layout */}
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           {/* Left: Search queries visual */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={slideLeft}
-            className="glass-card rounded-2xl p-6 sm:p-8"
-          >
+          <AnimSection className="glass-card rounded-2xl p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
                 <Search size={20} className="text-emerald-400" />
@@ -308,12 +285,9 @@ export default function Opportunity() {
             </div>
             <div className="space-y-3">
               {searchQueries.map((query, i) => (
-                <motion.div
+                <AnimItem
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
+                  variant={slideRight}
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
                 >
                   <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
@@ -327,22 +301,16 @@ export default function Opportunity() {
                       Ad
                     </span>
                   </div>
-                </motion.div>
+                </AnimItem>
               ))}
             </div>
             <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
               → Your organization appears first. You pay $0.
             </p>
-          </motion.div>
+          </AnimSection>
 
           {/* Right: Stats & math */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={slideRight}
-            className="flex flex-col gap-4"
-          >
+          <AnimSection className="flex flex-col gap-4">
             {/* Big dollar visual */}
             <div className="glass-card rounded-2xl p-8 text-center border border-emerald-500/15 flex-1 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl" />
@@ -395,7 +363,7 @@ export default function Opportunity() {
                 </div>
               </div>
             </div> */}
-          </motion.div>
+          </AnimSection>
         </div>
 
         {/* Counter stats */}

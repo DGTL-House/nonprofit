@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Key, Shield, LogOut, X, ChevronRight } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -42,18 +41,9 @@ export default function Ownership() {
           </AnimItem>
           <div className="grid sm:grid-cols-2 gap-5">
             {points.map((point, i) => (
-              <motion.div
+              <AnimItem
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.1,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4, borderColor: "rgba(16,185,129,0.3)" }}
-                className="glass-card rounded-2xl p-6 flex gap-4 transition-all duration-300 cursor-default"
+                className="hover-lift glass-card rounded-2xl p-6 flex gap-4 cursor-default"
               >
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0">
                   {point.icon}
@@ -66,7 +56,7 @@ export default function Ownership() {
                     {point.desc}
                   </p>
                 </div>
-              </motion.div>
+              </AnimItem>
             ))}
           </div>
         </AnimSection>

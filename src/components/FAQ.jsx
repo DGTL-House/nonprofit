@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -87,21 +86,20 @@ function FAQItem({ q, a, isOpen, onToggle }) {
         </div>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="text-slate-400 text-sm sm:text-lg leading-relaxed pb-5">
-              {a}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Always rendered and collapsed with a 0fr -> 1fr grid row, which is the
+          one way CSS can transition to a content-driven height. Keeping it
+          mounted also means the answer text stays in the document for search
+          engines instead of appearing only once expanded. */}
+      <div
+        className={`faq-answer ${isOpen ? "is-open" : ""}`}
+        aria-hidden={!isOpen}
+      >
+        <div>
+          <p className="text-slate-400 text-sm sm:text-lg leading-relaxed pb-5">
+            {a}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

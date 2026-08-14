@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
 export default function ScrollToTop() {
@@ -25,20 +24,22 @@ export default function ScrollToTop() {
   }, []);
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.7 }}
-          transition={{ duration: 0.25 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Scroll to top"
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-900/40 glow-green hover:scale-110 transition-transform duration-200"
-        >
-          <ArrowUp size={18} className="text-white" />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    // Always mounted and faded with CSS rather than mounted/unmounted through
+    // AnimatePresence, so the exit animation costs no JS. It is taken out of
+    // the tab order while hidden, which the old version got for free by
+    // unmounting. The hover scale lives in CSS too: a Tailwind `hover:scale-*`
+    // utility would fight the transform this class already owns.
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Scroll to top"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+      className={`scroll-top-btn fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-900/40 glow-green ${
+        visible ? "is-visible" : ""
+      }`}
+    >
+      <ArrowUp size={18} className="text-white" />
+    </button>
   );
 }

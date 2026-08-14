@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 
@@ -74,12 +73,8 @@ export default function HowItWorks() {
 
           <div className="space-y-8 sm:space-y-12">
             {steps.map((step, i) => (
-              <motion.div
+              <AnimItem
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
                 className={`relative flex flex-col sm:flex-row gap-6 items-start ${i % 2 === 1 ? "sm:flex-row-reverse" : ""}`}
               >
                 {/* Connector dot */}
@@ -99,10 +94,7 @@ export default function HowItWorks() {
                 <div
                   className={`w-full sm:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "sm:mr-auto sm:pr-6" : "sm:ml-auto sm:pl-6"}`}
                 >
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    className="glass-card rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/20"
-                  >
+                  <div className="hover-lift glass-card rounded-2xl p-6 sm:p-7 hover:border-emerald-500/20">
                     {/* Mobile step number */}
                     <div
                       className="sm:hidden w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-lg mb-4"
@@ -122,9 +114,9 @@ export default function HowItWorks() {
                     <p className="text-slate-400 text-sm sm:text-lg leading-relaxed">
                       {step.desc}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </AnimItem>
             ))}
           </div>
         </div>

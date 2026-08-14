@@ -300,6 +300,175 @@ samp {
     border-radius: 16px;
 }
 
+/* --------- Scroll reveal ---------
+   Replaces framer-motion's fadeUp/fadeIn/scaleIn/slide* variants and its
+   staggerChildren. AnimSection adds .is-visible once the section scrolls into
+   view and sets each item's transition-delay in tree order.
+   Only opacity and transform are animated, so this stays on the compositor. */
+
+/* The hidden state is scoped to "inside a section that hasn't revealed yet"
+   rather than applied to .anim-item outright. An AnimItem with no AnimSection
+   above it then renders normally — which is what framer did with a bare
+   `variants` prop and no animation driver — instead of being stuck invisible
+   forever because nothing was ever going to add .is-visible. */
+
+.anim-item {
+    transition:
+        opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.anim-fade-in {
+    transition-duration: 0.6s;
+}
+
+.anim-scale-in {
+    transition-duration: 0.6s;
+}
+
+.anim-section:not(.is-visible) .anim-item {
+    opacity: 0;
+}
+
+.anim-section:not(.is-visible) .anim-fade-up {
+    transform: translateY(40px);
+}
+
+.anim-section:not(.is-visible) .anim-scale-in {
+    transform: scale(0.88);
+}
+
+.anim-section:not(.is-visible) .anim-slide-left {
+    transform: translateX(-50px);
+}
+
+.anim-section:not(.is-visible) .anim-slide-right {
+    transform: translateX(50px);
+}
+
+/* Gentle bob, replacing framer's `animate={{ y: [-4, 4, -4] }}` loop. */
+
+@keyframes float-soft {
+
+    0%,
+    100% {
+        transform: translateY(-4px);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+}
+
+.float-soft {
+    animation: float-soft 3s ease-in-out infinite;
+}
+
+/* Replaces `whileHover={{ y: -4 }}`. */
+
+.hover-lift {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .float-soft {
+        animation: none;
+    }
+
+    .hover-lift:hover {
+        transform: none;
+    }
+}
+
+/* State-driven reveals — for elements shown by React state rather than by
+   scrolling into view, where framer's `animate={cond ? ... : {}}` was used. */
+
+.reveal-rise {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+        opacity 0.4s ease-out,
+        transform 0.4s ease-out;
+}
+
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.reveal-rise.is-shown,
+.reveal-fade.is-shown {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------- FAQ accordion ---------
+   0fr -> 1fr animates to the content's natural height, which `height: auto`
+   cannot do in CSS; the inner element supplies the min-height:0 the grid row
+   needs in order to actually collapse. */
+
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+        grid-template-rows 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+        opacity 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.faq-answer>* {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.faq-answer.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* --------- Scroll-to-top button --------- */
+
+.scroll-top-btn {
+    opacity: 0;
+    transform: scale(0.7);
+    pointer-events: none;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.scroll-top-btn.is-visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.scroll-top-btn.is-visible:hover {
+    transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .anim-item,
+    .anim-section:not(.is-visible) .anim-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .faq-answer,
+    .scroll-top-btn {
+        transition: none;
+    }
+}
+
 /* --------- Animations (kept from original) --------- */
 
 @keyframes float {
