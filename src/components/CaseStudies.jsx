@@ -11,7 +11,7 @@ const cases = [
     spendFrom: "$200",
     spendTo: "$7,600",
     budget: "$0 → $7,600/mo",
-    img: "/case_1.png",
+    img: "/case_1.webp",
     before:
       "$200/mo of $10K. Account at risk of suspension, almost no donations from ads.",
     didIt:
@@ -33,7 +33,7 @@ const cases = [
     spendFrom: "$500",
     spendTo: "~$10,000",
     budget: "20× growth",
-    img: "/case_2.png",
+    img: "/case_2.webp",
     before:
       "Broad keywords, low CTR, one click-through risk warning from Google.",
     didIt:
@@ -55,7 +55,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "$0 → ~$10,000/mo",
-    img: "/case_3.png",
+    img: "/case_3.webp",
     before:
       "No Google Ad Grant. No Google Ads account. Zero grant-funded traffic.",
     didIt:
@@ -77,7 +77,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "~100%",
-    img: "/case_4.png",
+    img: "/case_4.webp",
     before:
       "No Google Ad Grant. No Google Ads account. Zero grant-funded traffic.",
     didIt:
@@ -136,11 +136,17 @@ export default function CaseStudies() {
   useLayoutEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    const recompute = () => setPages(computePages());
+    // Cached so the scroll handler doesn't read clientWidth — a forced layout —
+    // on every frame of a touch drag. Refreshed with the page count on resize.
+    let cachedWidth = track.clientWidth || 1;
+    const recompute = () => {
+      cachedWidth = track.clientWidth || 1;
+      setPages(computePages());
+    };
     recompute();
     const onScroll = () => {
-      const cw = track.clientWidth || 1;
-      setActive(Math.max(0, Math.round(track.scrollLeft / cw)));
+      const next = Math.max(0, Math.round(track.scrollLeft / cachedWidth));
+      setActive((prev) => (prev === next ? prev : next));
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     let t;
@@ -393,6 +399,8 @@ export default function CaseStudies() {
                       <img
                         src={c.img}
                         alt={`${c.org} — Google Ads monthly spend growing to ${c.spendTo}`}
+                        width="1150"
+                        height="575"
                         loading="lazy"
                         decoding="async"
                         className="block h-full w-full select-none object-cover transition-transform duration-500 group-hover:scale-[1.03]"

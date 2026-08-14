@@ -35,15 +35,53 @@ export default function Hero() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    const id = setInterval(() => {
+    // The cross-fade timeout has to be tracked out here: returning a cleanup
+    // from a setInterval callback does nothing, so it used to leak a pending
+    // setState on every tick. The interval is also held off until the page has
+    // loaded, keeping these re-renders out of the hydration/TBT window, and
+    // paused while the tab is hidden.
+    let swapId;
+    let intervalId;
+
+    const tick = () => {
       setFade(true);
-      const t = setTimeout(() => {
+      swapId = setTimeout(() => {
         setI((prev) => (prev + 1) % PROJECTIONS.length);
         setFade(false);
       }, 260);
-      return () => clearTimeout(t);
-    }, 3000);
-    return () => clearInterval(id);
+    };
+
+    const start = () => {
+      if (intervalId === undefined) intervalId = setInterval(tick, 3000);
+    };
+    const stop = () => {
+      clearInterval(intervalId);
+      clearTimeout(swapId);
+      intervalId = undefined;
+      // Stopping mid-cross-fade would otherwise strand the card half-faded
+      // until the next tick.
+      setFade(false);
+    };
+    const onVisibility = () => (document.hidden ? stop() : start());
+
+    const begin = () => {
+      if (!document.hidden) start();
+      document.addEventListener("visibilitychange", onVisibility);
+    };
+
+    let startTimer;
+    if (document.readyState === "complete") {
+      startTimer = setTimeout(begin, 0);
+    } else {
+      window.addEventListener("load", begin, { once: true });
+    }
+
+    return () => {
+      clearTimeout(startTimer);
+      window.removeEventListener("load", begin);
+      document.removeEventListener("visibilitychange", onVisibility);
+      stop();
+    };
   }, []);
 
   const p = PROJECTIONS[i];
