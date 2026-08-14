@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CheckCircle, Zap, Clock } from "lucide-react";
 import { AnimSection, AnimItem, fadeUp, scaleIn } from "../utils/animations";
 import { appendUtmParams } from "../utils/utm.js";
@@ -92,12 +92,35 @@ export default function Pricing() {
   const [billing, setBilling] = useState("annual");
   const [activePlan, setActivePlan] = useState("standard");
 
-  useEffect(() => {
-    const timerInterval = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+  // Mirrors timeLeft so the interval can read the current value without being
+  // re-created every second, and without branching inside a state updater
+  // (which StrictMode may invoke twice).
+  const remainingRef = useRef(timeLeft);
 
-    return () => clearInterval(timerInterval);
+  useEffect(() => {
+    // Every tick re-renders this whole tree, so the interval no longer runs for
+    // the entire session: it stops at zero and pauses while the tab is hidden.
+    let id;
+    const stop = () => {
+      clearInterval(id);
+      id = undefined;
+    };
+    const start = () => {
+      if (id !== undefined || remainingRef.current <= 0) return;
+      id = setInterval(() => {
+        remainingRef.current = Math.max(0, remainingRef.current - 1);
+        setTimeLeft(remainingRef.current);
+        if (remainingRef.current === 0) stop();
+      }, 1000);
+    };
+    const onVisibility = () => (document.hidden ? stop() : start());
+
+    if (!document.hidden) start();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      stop();
+    };
   }, []);
 
   const formatTime = (seconds) => {
