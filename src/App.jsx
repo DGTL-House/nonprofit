@@ -20,7 +20,6 @@ const ContactFormCard = lazy(() => import("./components/ContactFormCard")); // F
 const Footer = lazy(() => import("./components/Footer"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 const BlockSwitcher = lazy(() => import("./components/BlockSwitcher"));
-const MotionProvider = lazy(() => import("./components/MotionProvider"));
 
 // Reserve vertical space so the deferred mount doesn't trigger a CLS spike
 // once the lazy chunks start streaming in.
@@ -40,22 +39,52 @@ export default function App() {
           lazy chunks no longer compete with the hero's critical render.
         */}
         <DeferredMount placeholder={belowFoldPlaceholder}>
+          {/*
+            One Suspense per section rather than one around all of them: a
+            shared boundary holds its fallback until the *slowest* chunk
+            resolves, so a single slow request kept the entire page below the
+            hero blank. Split, each section paints as soon as its own chunk
+            lands. Only the first boundary reserves a viewport of height —
+            the rest would otherwise stack placeholders into a huge blank page.
+          */}
           <Suspense fallback={belowFoldPlaceholder}>
-            <MotionProvider>
-              <Opportunity />
-              <WhatIsGrants />
-              <CaseStudies />
-              <HowWeGetYouThere />
-              <Problem />
-              <WhoWeAre />
-              <RoiProjection />
-              <Pricing />
-              <ContactFormCard />
-              <FAQ />
-              <Footer />
-              <ScrollToTop />
-              <BlockSwitcher />
-            </MotionProvider>
+            <Opportunity />
+          </Suspense>
+          <Suspense fallback={null}>
+            <WhatIsGrants />
+          </Suspense>
+          <Suspense fallback={null}>
+            <CaseStudies />
+          </Suspense>
+          <Suspense fallback={null}>
+            <HowWeGetYouThere />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Problem />
+          </Suspense>
+          <Suspense fallback={null}>
+            <WhoWeAre />
+          </Suspense>
+          <Suspense fallback={null}>
+            <RoiProjection />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Pricing />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ContactFormCard />
+          </Suspense>
+          <Suspense fallback={null}>
+            <FAQ />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
+          <Suspense fallback={null}>
+            <BlockSwitcher />
           </Suspense>
         </DeferredMount>
       </main>
