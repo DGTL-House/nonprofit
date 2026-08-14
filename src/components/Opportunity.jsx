@@ -58,7 +58,10 @@ function PhoneMockup() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showAd, setShowAd] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+  // Deliberately not `triggerOnce`: the typewriter below re-runs its effect
+  // every 45-85ms, so latching `inView` to true would keep it re-rendering for
+  // the rest of the session once the section had been seen a single time.
+  const { ref, inView } = useInView({ threshold: 0.3 });
 
   const queries = [
     {
@@ -86,9 +89,11 @@ function PhoneMockup() {
     const current = queries[queryIndex].text;
     let timeout;
 
+    let resultsTimeout;
+
     if (!isDeleting && typedText === current) {
       setShowAd(true);
-      setTimeout(() => setShowResults(true), 450);
+      resultsTimeout = setTimeout(() => setShowResults(true), 450);
       timeout = setTimeout(() => {
         setShowAd(false);
         setShowResults(false);
@@ -109,7 +114,10 @@ function PhoneMockup() {
       );
     }
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(resultsTimeout);
+    };
   }, [inView, typedText, isDeleting, queryIndex]);
 
   const currentAd = queries[queryIndex];

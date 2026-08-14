@@ -56,6 +56,117 @@
   <meta name="twitter:image" content="https://ad-credit.dgtl-house.com/home-img.webp" />
   <meta name="twitter:image:alt" content="Nonprofit team running Google Ad Grants with DGTL-House" />
 
+
+
+
+  <!-- Fonts. Both faces are render-non-blocking (media=print flipped on load),
+       but both are fetched here rather than later: h1-h6 resolve to Neue
+       Montreal, so deferring it re-lays-out the LCP heading mid-scroll. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap"
+    media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=neue-montreal@500,700&display=swap"
+    media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=neue-montreal@500,700&display=swap" />
+  </noscript>
+
+  <!-- Analytics / Marketing: deferred until browser is idle to keep critical path light -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+
+      // Meta Pixel stub so fbq() calls before load are queued
+      !function (f, b, e, v, n) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      }(window, document, 'script');
+      fbq('init', '814203840958106');
+      fbq('track', 'PageView');
+
+      function loadThirdParty() {
+        if (window.__thirdPartyLoaded) return;
+        window.__thirdPartyLoaded = true;
+        // Open the sockets first so the four fetches below overlap their
+        // handshakes rather than paying DNS + TLS one origin at a time.
+        ['https://www.googletagmanager.com', 'https://connect.facebook.net',
+         'https://t.contentsquare.net'].forEach(function (origin) {
+          var pc = document.createElement('link');
+          pc.rel = 'preconnect';
+          pc.href = origin;
+          pc.crossOrigin = '';
+          document.head.appendChild(pc);
+        });
+        // GTM
+        var g = document.createElement('script');
+        g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-P72X9ZR4';
+        document.head.appendChild(g);
+        // Meta Pixel
+        var p = document.createElement('script');
+        p.async = true;
+        p.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        document.head.appendChild(p);
+        // Contentsquare (deferred; not needed for first paint)
+        var cs = document.createElement('script');
+        cs.async = true;
+        cs.src = 'https://t.contentsquare.net/uxa/fc16179df91a5.js';
+        document.head.appendChild(cs);
+      }
+      // Load on the first real user interaction...
+      var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+      function trigger() {
+        events.forEach(function (e) { window.removeEventListener(e, trigger); });
+        loadThirdParty();
+      }
+      events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+
+      // ...otherwise ~3.5s after load. requestIdleCallback's `timeout` is an
+      // upper bound, not a delay: on its own it grants no minimum wait at all
+      // and can run as soon as the first idle gap appears, which on a fast
+      // hydrating page is still inside the LCP window. Burn a real timer to get
+      // a guaranteed floor, then let rIC pick a quiet moment within it.
+      function whenIdle() {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadThirdParty, { timeout: 2000 });
+        } else {
+          loadThirdParty();
+        }
+      }
+      function startTimer() { setTimeout(whenIdle, 3500); }
+      if (document.readyState === 'complete') {
+        startTimer();
+      } else {
+        window.addEventListener('load', startTimer, { once: true });
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P72X9ZR4" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Meta Pixel (noscript) -->
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=814203840958106&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel (noscript) -->
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Structured data: kept out of the head so the preload scanner reaches
+       the stylesheet and module preloads in the first bytes of the document.
+       Crawlers parse JSON-LD wherever it appears. -->
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
   {
@@ -76,7 +187,7 @@
       "postalCode": "60090",
       "addressCountry": "US"
     },
-    "priceRange": "$$",
+    "priceRange": "$",
     "areaServed": "US",
     "knowsAbout": ["Google Ad Grants", "Nonprofit Marketing", "Google Ads", "PPC Management"],
     "aggregateRating": {
@@ -123,7 +234,6 @@
     }
   }
   </script>
-
   <!-- JSON-LD: WebSite -->
   <script type="application/ld+json">
   {
@@ -134,7 +244,6 @@
     "inLanguage": "en-US"
   }
   </script>
-
   <!-- JSON-LD: FAQPage (answer text matches the on-page FAQ verbatim) -->
   <script type="application/ld+json">
   {
@@ -208,85 +317,6 @@
     ]
   }
   </script>
-
-  <!-- Fonts: Lexend loaded non-blocking; Neue Montreal loaded async after page load -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap"
-    media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" />
-  </noscript>
-
-  <!-- Analytics / Marketing: deferred until browser is idle to keep critical path light -->
-  <script>
-    (function () {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-
-      // Meta Pixel stub so fbq() calls before load are queued
-      !function (f, b, e, v, n) {
-        if (f.fbq) return; n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-      }(window, document, 'script');
-      fbq('init', '814203840958106');
-      fbq('track', 'PageView');
-
-      function loadThirdParty() {
-        if (window.__thirdPartyLoaded) return;
-        window.__thirdPartyLoaded = true;
-        // GTM
-        var g = document.createElement('script');
-        g.async = true;
-        g.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-P72X9ZR4';
-        document.head.appendChild(g);
-        // Meta Pixel
-        var p = document.createElement('script');
-        p.async = true;
-        p.src = 'https://connect.facebook.net/en_US/fbevents.js';
-        document.head.appendChild(p);
-        // Contentsquare (deferred; not needed for first paint)
-        var cs = document.createElement('script');
-        cs.async = true;
-        cs.src = 'https://t.contentsquare.net/uxa/fc16179df91a5.js';
-        document.head.appendChild(cs);
-        // Async fonts (non-critical display face)
-        var f = document.createElement('link');
-        f.rel = 'stylesheet';
-        f.href = 'https://api.fontshare.com/v2/css?f[]=neue-montreal@500,700&display=swap';
-        document.head.appendChild(f);
-      }
-      // Wait for first user interaction or 4s, whichever is first.
-      var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
-      function trigger() {
-        events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
-        loadThirdParty();
-      }
-      events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadThirdParty, { timeout: 4000 });
-      } else {
-        setTimeout(loadThirdParty, 4000);
-      }
-    })();
-  </script>
-</head>
-
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P72X9ZR4" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <!-- Meta Pixel (noscript) -->
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=814203840958106&ev=PageView&noscript=1" /></noscript>
-  <!-- End Meta Pixel (noscript) -->
-
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
