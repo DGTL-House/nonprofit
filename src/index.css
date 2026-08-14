@@ -306,15 +306,16 @@ samp {
    view and sets each item's transition-delay in tree order.
    Only opacity and transform are animated, so this stays on the compositor. */
 
+/* The hidden state is scoped to "inside a section that hasn't revealed yet"
+   rather than applied to .anim-item outright. An AnimItem with no AnimSection
+   above it then renders normally — which is what framer did with a bare
+   `variants` prop and no animation driver — instead of being stuck invisible
+   forever because nothing was ever going to add .is-visible. */
+
 .anim-item {
-    opacity: 0;
     transition:
         opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
         transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.anim-fade-up {
-    transform: translateY(40px);
 }
 
 .anim-fade-in {
@@ -322,21 +323,27 @@ samp {
 }
 
 .anim-scale-in {
-    transform: scale(0.88);
     transition-duration: 0.6s;
 }
 
-.anim-slide-left {
+.anim-section:not(.is-visible) .anim-item {
+    opacity: 0;
+}
+
+.anim-section:not(.is-visible) .anim-fade-up {
+    transform: translateY(40px);
+}
+
+.anim-section:not(.is-visible) .anim-scale-in {
+    transform: scale(0.88);
+}
+
+.anim-section:not(.is-visible) .anim-slide-left {
     transform: translateX(-50px);
 }
 
-.anim-slide-right {
+.anim-section:not(.is-visible) .anim-slide-right {
     transform: translateX(50px);
-}
-
-.anim-section.is-visible .anim-item {
-    opacity: 1;
-    transform: none;
 }
 
 /* Gentle bob, replacing framer's `animate={{ y: [-4, 4, -4] }}` loop. */
@@ -450,7 +457,7 @@ samp {
 @media (prefers-reduced-motion: reduce) {
 
     .anim-item,
-    .anim-section.is-visible .anim-item {
+    .anim-section:not(.is-visible) .anim-item {
         opacity: 1;
         transform: none;
         transition: none;
