@@ -4,7 +4,7 @@ import { AnimSection, AnimItem, fadeUp } from "../utils/animations";
 const pains = [
   {
     icon: <TrendingDown size={22} className="text-red-400" />,
-    title: "Donations are unpredictable",
+    title: "Reaching new people is hard",
     desc: "You rely on the same donors year after year — and one bad quarter can threaten everything.",
   },
   // {
@@ -41,7 +41,7 @@ export default function Problem() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-6">
               Running a Nonprofit Is Hard Enough Without{" "}
               <span className="text-red-400">
-                Worrying About Where the Next Donor Comes From.
+                Worrying About Who Will Find Your Mission.
               </span>
             </h2>
           </AnimItem>

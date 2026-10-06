@@ -21,8 +21,8 @@ const faqs = [
     a: "Your first eligibility check happens within 24 hours of reaching out. Grant approval from Google typically takes 2–4 weeks. Most clients have live campaigns within 30 days of signing on.",
   },
   {
-    q: "Can this help us get more donations?",
-    a: "Google Ad Grants brings targeted traffic to your website from people actively searching for what you do. Whether that traffic converts into donations depends on your website, donation page, and cause. We optimize for the conversions that matter to you — donations, volunteer signups, program applications. We don't guarantee a specific number of donations, but we build the infrastructure that makes them possible.",
+    q: "Can this help us reach more people?",
+    a: "Google Ad Grants brings targeted traffic to your website from people actively searching for what you do. We optimize your campaigns to put your $10K/month credit to work and reach the right audience. We don't guarantee specific results, since they depend on your cause and your website, but we build the foundation that makes growth possible.",
   },
   {
     q: "What if we already have Google Ad Grants but it's not working?",
@@ -51,10 +51,6 @@ const faqs = [
   {
     q: "Why should we act now and not wait a few months?",
     a: "Every month without the grant is $10,000 in free advertising that disappears forever — it doesn't accumulate or carry over. If your board needs to approve it, we're happy to provide materials that make that conversation easier. But the math is simple: waiting 3 months to start costs you $30,000 in potential reach.",
-  },
-  {
-    q: "We found another agency cheaper. Why should we choose you?",
-    a: "If you've found a legitimate registered agency (not a freelancer) offering the same full scope of Google Ad Grants management for a lower monthly fee — show us the quote. We'll match or beat it. The difference is that we specialize exclusively in Google Ad Grants for nonprofits.",
   },
   {
     q: "We've had a bad experience with a previous agency. Why should we trust you?",

@@ -90,7 +90,7 @@ export default function WhatIsGrants() {
                 </div>
                 <div className="space-y-2.5">
                   {[
-                    "Missing donors who search daily",
+                    "Missing people who already care about your mission",
                     "Paying $2–$10 per click for Google ads",
                     "Invisible in search results",
                     "Competing with deep-pocket advertisers",
@@ -122,9 +122,9 @@ export default function WhatIsGrants() {
                 </div>
                 <div className="space-y-2.5">
                   {[
-                    "Reach donors, volunteers & beneficiaries",
+                    "Bring relevant visitors to your website",
                     "$0 ad spend — Google funds every click",
-                    "Top position in Google search results",
+                    "Visible in Google search results",
                     "Up to $10,000/month in reach",
                     "Trackable conversions",
                   ].map((item, i) => (

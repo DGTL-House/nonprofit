@@ -267,7 +267,7 @@ export default function Opportunity() {
               Google gives you a free{" "}
               <strong className="text-white">$10,000/month budget</strong> for
               search ads. People are already searching for organizations like
-              yours — it brings donors and volunteers to your site.
+              yours — it brings visitors to your site.
             </p>
           </AnimItem>
         </AnimSection>
@@ -293,47 +293,47 @@ export default function Opportunity() {
 
             {/* Right: search examples + green callout */}
             <AnimItem variant={slideLeft} className="flex-1 min-w-0 w-full">
-            <div className="glass-card rounded-2xl p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                  <Search size={20} className="text-emerald-400" />
+              <div className="glass-card rounded-2xl p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                    <Search size={20} className="text-emerald-400" />
+                  </div>
+                  <h3 className="text-white font-bold text-base sm:text-lg">
+                    People are already searching for you:
+                  </h3>
                 </div>
-                <h3 className="text-white font-bold text-base sm:text-lg">
-                  People are already searching for you:
-                </h3>
-              </div>
-              <div className="space-y-3">
-                {searchQueries.map((query, i) => (
-                  <AnimItem
-                    key={i}
-                    variant={slideRight}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
-                  >
-                    <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                      <Search size={12} className="text-emerald-400" />
-                    </div>
-                    <span className="text-slate-300 text-sm sm:text-lg font-mono">
-                      {query}
-                    </span>
-                    <div className="ml-auto">
-                      <span className="text-sm sm:text-lg text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                        Ad
+                <div className="space-y-3">
+                  {searchQueries.map((query, i) => (
+                    <AnimItem
+                      key={i}
+                      variant={slideRight}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-emerald-500/20 transition-colors"
+                    >
+                      <div className="w-6 h-6 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                        <Search size={12} className="text-emerald-400" />
+                      </div>
+                      <span className="text-slate-300 text-sm sm:text-lg font-mono">
+                        {query}
                       </span>
-                    </div>
-                  </AnimItem>
-                ))}
-              </div>
-              <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
-                → Your organization appears first. You pay $0 for the ads.
-              </p>
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={scrollToEligibility}
-                  className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
-                >
-                  Check My Eligibility →
-                </button>
-              </div>
+                      <div className="ml-auto">
+                        <span className="text-sm sm:text-lg text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                          Ad
+                        </span>
+                      </div>
+                    </AnimItem>
+                  ))}
+                </div>
+                <p className="text-emerald-400 font-semibold text-base sm:text-lg mt-5 text-center">
+                  → Your organization can appear in these searches, with $0 spent on ads.
+                </p>
+                <div className="flex justify-center mt-6">
+                  <button
+                    onClick={scrollToEligibility}
+                    className="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-6 sm:!px-8"
+                  >
+                    Check My Eligibility →
+                  </button>
+                </div>
               </div>
             </AnimItem>
           </div>
@@ -466,8 +466,8 @@ export default function Opportunity() {
                 Google Ads is a full-time profession — and it's ours. We handle
                 every requirement above so your{" "}
                 <strong className="text-white">$10K/month credit</strong>{" "}
-                actually converts into donors, volunteers, and awareness. You
-                keep doing what you're here to do.
+                actually works, bringing people who care about your cause to
+                your website. You keep doing what you're here to do.
               </p>
               <button
                 onClick={scrollToEligibility}

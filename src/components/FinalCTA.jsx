@@ -1,10 +1,5 @@
 import { CheckCircle } from "lucide-react";
-import {
-  AnimSection,
-  AnimItem,
-  fadeUp,
-  slideRight,
-} from "../utils/animations";
+import { AnimSection, AnimItem, fadeUp, slideRight } from "../utils/animations";
 import ContactFormCard from "./ContactFormCard";
 
 const guarantees = [
@@ -57,8 +52,8 @@ export default function FinalCTA() {
 
               <AnimItem variant={fadeUp}>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
-                  While you're thinking, other nonprofits are already getting
-                  donors{" "}
+                  While you're thinking, other nonprofits are already reaching
+                  more people, with zero ad budget.{" "}
                   <span className="text-white">— with zero ad budget.</span>
                 </h2>
               </AnimItem>

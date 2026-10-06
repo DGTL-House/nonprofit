@@ -12,7 +12,7 @@ const testimonials = [
     color: "from-emerald-500 to-emerald-700",
     rating: 5,
     quote:
-      "Before DGTL-House, we spent $1,200/month on Google ads with mediocre results. Now we're at the top of search for every relevant keyword in our city — and paying nothing. Our donation page visits went up 340% in 3 months.",
+      "We used to pay $1,200 a month to promote our shelter online. Now that budget is free for our programs, and we get 7,900 visitors a month instead of 1,800.",
   },
   {
     name: "Marcus Williams",
@@ -24,7 +24,7 @@ const testimonials = [
     color: "from-blue-500 to-blue-700",
     rating: 5,
     quote:
-      "We'd applied for Google Ad Grants ourselves and got rejected twice. DGTL-House handled everything — and we were approved in 12 days. Three months in, we've added over 80 new regular donors.",
+      "We applied for Google Ad Grants ourselves and got rejected twice. DGTL-House handled everything, and we were approved in 12 days. Three months in, our website gets 2,400 more visitors a month.",
   },
   {
     name: "Dr. Elena Reyes",
@@ -36,7 +36,7 @@ const testimonials = [
     color: "from-purple-500 to-purple-700",
     rating: 4.5,
     quote:
-      "Our cause is urgent but we had zero online presence. DGTL-House built our website, got the grant, and launched campaigns — all in one month. We now get 200+ calls per month from people who found us via Google.",
+      "We went from 400 website visits a month to over 3,000 in 3 months. Our organization finally shows up when people search for mental health support, and it costs us $0 in ads.",
   },
 ];
 

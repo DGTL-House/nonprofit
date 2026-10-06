@@ -347,36 +347,6 @@ export default function Pricing() {
             <FeatureComparison plans={plans} money={money} />
           </AnimItem>
 
-          {/* Price match */}
-          <AnimItem variant={fadeUp}>
-            <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center flex-shrink-0">
-                  <Zap size={22} className="text-blue-400" />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">
-                    Price Match Guarantee
-                  </h3>
-                  <p className="text-slate-300 text-sm sm:text-lg leading-relaxed mb-3">
-                    Found a lower price? We'll beat it. If you find a legitimate
-                    registered agency (not a freelancer) offering the same scope
-                    of Google Ad Grants management for a lower monthly rate —
-                    <strong className="text-white">
-                      {" "}
-                      show us the quote. We'll match or beat their price.
-                    </strong>
-                  </p>
-                  <p className="text-slate-400 text-sm sm:text-lg italic">
-                    Why are we confident? Because we specialize exclusively in
-                    Google Ad Grants for nonprofits. Generalist agencies charge
-                    the same but deliver less.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </AnimItem>
-
           {/* Urgency block */}
           <AnimItem variant={fadeUp}>
             <div className="urgency-box p-6 sm:p-8">
