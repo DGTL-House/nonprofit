@@ -178,7 +178,7 @@ export default function EligibilityQuiz({ onComplete }) {
           <div className="rounded-2xl bg-[#f2fadf] border-2 border-[#d4e4a8] p-5 sm:p-6 mb-4">
             <p className="text-base sm:text-xl leading-relaxed">
               <span className="font-bold text-gray-900">
-                $10,000/month in ad credit for Google Search.
+                $10,000/month in ad budget for Google Search.
               </span>{" "}
               <span className="text-[#5f7d2e]">
                 Not cash — it works as ad spend.

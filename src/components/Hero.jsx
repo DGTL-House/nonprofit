@@ -97,17 +97,17 @@ export default function Hero() {
             <div className="flex-1 min-w-0 flex flex-col justify-center">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black leading-[1.08] tracking-tight mb-3 sm:mb-6 text-center lg:text-left">
                 <span className="text-[#161514]">
-                  Get a Free $10,000/Month{" "}
+                  Get a Free $10,000/Month Google{" "}
                   <a
                     href="#ad-credit"
                     className="ad-credit-word whitespace-nowrap hover:opacity-80 transition-opacity"
                   >
-                    Google Ad Credit
+                    Ad Budget.
                     <span className="sparkle-emoji" aria-hidden="true">
                       ✨
                     </span>
                   </a>{" "}
-                  for Your Nonprofit — Guaranteed.
+                  Bring 24,000+ Visitors/year to Your Nonprofit Website
                 </span>
               </h1>
 
@@ -132,12 +132,12 @@ export default function Hero() {
                     href="#ad-credit"
                     className="btn-primary attention-pulse whitespace-nowrap text-base sm:text-2xl lg:text-lg xl:text-xl !py-2 sm:!py-4 !px-6 sm:!px-8 lg:!px-6 xl:!px-7"
                   >
-                    What's Ad Credit?
+                    What's Ad Budget?
                   </a>
                   <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-3">
                     <span>✕ not cash</span>
                     <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
-                    <span>✓ $10K ad credit</span>
+                    <span>✓ $10K ad budget</span>
                   </div>
                 </div>
               </div>
@@ -152,12 +152,12 @@ export default function Hero() {
                 href="#ad-credit"
                 className="btn-primary attention-pulse text-base sm:text-2xl !py-2.5 sm:!py-3.5 !px-6 sm:!px-8"
               >
-                What's Ad Credit?
+                What's Ad Budget?
               </a>
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium mt-1.5 sm:mt-3">
                 <span>✕ not cash</span>
                 <span className="w-1 h-1 rounded-full bg-[#cfcfcf]" />
-                <span>✓ $10K ad credit</span>
+                <span>✓ $10K ad budget</span>
               </div>
             </div>
 

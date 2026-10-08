@@ -12,7 +12,7 @@ const credibility = [
     icon: BarChart3,
     stat: "$10 billion+",
     title: "Awarded in free advertising",
-    body: "Google has awarded more than $10 billion in ad credits to registered nonprofits since the program began. Every month, $650M+ in credits flow to grantees globally.",
+    body: "Google has awarded more than $10 billion in ad budgets to registered nonprofits since the program began. Every month, $650M+ in credits flow to grantees globally.",
   },
   {
     icon: Globe,

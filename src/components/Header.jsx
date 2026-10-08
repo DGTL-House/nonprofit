@@ -68,7 +68,7 @@ function ChevronRightIcon({ size = 16 }) {
 const CTA_HREF = "#contact-form";
 
 const navLinks = [
-  { label: "What's Ad Credit?", href: "#ad-credit" },
+  { label: "What's Ad Budget?", href: "#ad-credit" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Cases", href: "#credibility" },
   { label: "Pricing", href: "#pricing" },

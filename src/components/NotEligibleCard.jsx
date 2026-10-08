@@ -28,7 +28,7 @@ export default function NotEligibleCard() {
 
       <p className="text-base sm:text-lg text-gray-500 mb-7">
         Google requires valid 501(c)(3) status for the Ad Grant program. Once
-        your status is approved, you're eligible for $10,000/month in ad credit
+        your status is approved, you're eligible for $10,000/month in ad budget
         — and we'll be here to set it up.
       </p>
 

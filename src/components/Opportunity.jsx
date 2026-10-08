@@ -259,7 +259,7 @@ export default function Opportunity() {
         <AnimSection>
           <AnimItem variant={fadeUp}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center max-w-4xl mx-auto leading-tight mb-4">
-              Ad Credit Isn't Cash.
+              Ad Budget Isn't Cash.
               <br />
               <span className="text-[#3f5028]">It's Something Better</span>
             </h2>

@@ -89,7 +89,7 @@ export default function ContactFormCard() {
                 href="#ad-credit"
                 className="inline-flex items-center gap-1.5 bg-[#b5e550] hover:bg-[#a3d444] text-black text-sm sm:text-base font-bold px-4 py-2 rounded-full transition-colors"
               >
-                ✓ $10K ad credit
+                ✓ $10K ad budget
               </a>
             </div>
 
