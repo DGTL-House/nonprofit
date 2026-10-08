@@ -7,7 +7,7 @@ import { ArrowUp } from "lucide-react";
 // back-to-top arrow still fit on a 320px-wide screen without wrapping.
 const BLOCKS = [
   { label: "Google Grant", short: "Grant", href: "#what-is-grants" },
-  { label: "Ad Credit", short: "Ad Credit", href: "#ad-credit" },
+  { label: "Ad Budget", short: "Ad Budget", href: "#ad-credit" },
   { label: "Case Studies", short: "Cases", href: "#credibility" },
 ];
 

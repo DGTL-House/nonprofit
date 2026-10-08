@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Is this really free advertising? What's the catch?",
-    a: 'Google Ad Grants is a real, legitimate program — Google gives up to $10,000/month in search ad credits to eligible nonprofits at no cost. The "catch" is that managing it effectively requires expertise: specific compliance rules, proper campaign structure, ongoing optimization. Without professional management, most organizations either don\'t get approved or lose the grant within months.',
+    a: 'Google Ad Grants is a real, legitimate program — Google gives up to $10,000/month in search ad budgets to eligible nonprofits at no cost. The "catch" is that managing it effectively requires expertise: specific compliance rules, proper campaign structure, ongoing optimization. Without professional management, most organizations either don\'t get approved or lose the grant within months.',
   },
   {
     q: "Why do we need an agency if Google gives the grant for free?",

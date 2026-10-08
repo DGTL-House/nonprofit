@@ -26,7 +26,7 @@ export default function Footer() {
               href="#ad-credit"
               className="inline-flex items-center gap-1.5 text-slate-500 hover:text-emerald-400 text-sm sm:text-lg font-semibold transition-colors"
             >
-              What's Ad Credit? →
+              What's Ad Budget? →
             </a>
           </div>
 
